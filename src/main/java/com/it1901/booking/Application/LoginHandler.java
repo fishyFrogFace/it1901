@@ -18,10 +18,10 @@ public class LoginHandler {
         PreparedStatement prepStatement = con.prepareStatement(query);
         prepStatement.setString(1, userName);
         ResultSet userData = prepStatement.executeQuery();
-        int userID = userData.getInt(1);
 
         //check if the password matches the encrypted one
         if (userData.next()) {
+            int userID = userData.getInt(1);
             if (BCrypt.checkpw(password, userData.getString(4))) {
                 if (userData.getString(5).equals("booker")) {
                     booker = new Booker(userID);
@@ -40,7 +40,7 @@ public class LoginHandler {
                 System.out.println("Connected to database.\n");
             }
             else {
-                System.out.printl("Could not establish a connection to the database.\n");
+                System.out.println("Could not establish a connection to the database.\n");
             }
 
             //log in as a booker
