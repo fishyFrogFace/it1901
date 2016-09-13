@@ -83,5 +83,6 @@ CREATE TABLE budgetPost (
     budgetPostID SERIAL,
     description TEXT NOT NULL,
     price INT NOT NULL,
+	expense BOOLEAN NOT NULL,
     eventID INT REFERENCES event(eventID),
     PRIMARY KEY(budgetPostID));
