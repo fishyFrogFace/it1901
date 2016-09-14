@@ -35,7 +35,7 @@ public class LoginHandler {
         try {
             //establish connection
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection("jdbc:postgresql://52.40.176.177:5432/booking", "postgres", "it1901");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://52.40.176.177:5432/booking", "team", "it1901");
             if (con != null) {
                 System.out.println("Connected to database.\n");
             }
