@@ -1,6 +1,6 @@
 package com.it1901.booking.Application;
 
-public class Booker {
+public class Booker extends  User {
 
     private int bookerID;
 
