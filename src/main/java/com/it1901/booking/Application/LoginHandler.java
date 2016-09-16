@@ -1,8 +1,5 @@
 package com.it1901.booking.Application;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -12,7 +9,7 @@ public class LoginHandler {
 
     public static User login(String userName, String password) throws SQLException {
         User user = null;
-        ResultSet userData = DatabaseHandler987.getUser(userName);
+        ResultSet userData = DatabaseHandler.getUser(userName);
 
         //check if the password matches the encrypted one
         if (userData.next()) {
@@ -32,7 +29,7 @@ public class LoginHandler {
     public static void main(String[] args) {
         //TODO load login screen
 
-        DatabaseHandler987 dbh = new DatabaseHandler987(
+        DatabaseHandler dbh = new DatabaseHandler(
                 "org.postgresql.Driver",
                 "jdbc:postgresql://52.40.176.177:5432/booking",
                 "team",
