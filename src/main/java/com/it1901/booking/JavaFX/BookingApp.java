@@ -1,7 +1,6 @@
-package com.it1901.booking.Application.JavaFX;
+package com.it1901.booking.JavaFX;
 
 import com.it1901.booking.Application.Booker;
-import com.it1901.booking.Application.LoginHandler;
 import com.it1901.booking.Application.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

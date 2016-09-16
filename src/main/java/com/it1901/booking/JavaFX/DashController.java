@@ -1,4 +1,4 @@
-package com.it1901.booking.Application.JavaFX;
+package com.it1901.booking.JavaFX;
 
 import com.it1901.booking.Application.Booker;
 import com.it1901.booking.Application.User;

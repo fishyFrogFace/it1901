@@ -1,4 +1,4 @@
-package com.it1901.booking.Application.JavaFX;
+package com.it1901.booking.JavaFX;
 
 public abstract class Controller {
     protected BookingApp app;
