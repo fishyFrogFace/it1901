@@ -15,6 +15,7 @@ public class BookingApp extends Application {
 
     private User user = new Booker(123); //FIXME temp test
     private Stage primarystage;
+    private Controller curentController;
 
     public static void main(String[] args) {
         launch(args);
@@ -27,26 +28,28 @@ public class BookingApp extends Application {
     }
 
     public void makeLogin() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml")); //need instantiated loader to get controller later
-        Parent parent = loader.load();
-        LoginController controller = loader.getController();
-        controller.setApp(this);
-        primarystage.setTitle("Login");
-        primarystage.setScene(new Scene(parent));
-        primarystage.show();
+        setScene(loadGeneric("Login.fxml", "Login"));
     }
 
     public void makeDash() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
-        Parent parent = loader.load();
-        DashController controller = loader.getController();
-        controller.setApp(this);
-        controller.addDashElements(user);
+        Parent parent = loadGeneric("Dashboard.fxml", "Dashboard");
+        ((DashController)curentController).addDashElements(user);
         primarystage.setTitle("Dashboard");
+        setScene(parent);
+    }
+
+    public Parent loadGeneric(String path, String title) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path)); //need instantiated loader to get controller
+        Parent parent = loader.load(); //Loads fxml
+        curentController = loader.getController(); //Set current controller
+        curentController.setApp(this); //register app in controller
+        primarystage.setTitle(title);
+        return parent;
+    }
+
+    public void setScene(Parent parent) {
         primarystage.setScene(new Scene(parent));
         primarystage.show();
     }
-
-    //TODO clean up duplicate code
 
 }
