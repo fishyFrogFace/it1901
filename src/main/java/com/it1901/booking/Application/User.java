@@ -5,6 +5,7 @@ public abstract class User {
 	private String password = null;
 	
 	User(String name, String password){
-		
+		this.name = name;
+		this.password = password;
 	}
 }
