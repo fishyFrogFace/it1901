@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class BookingApp extends Application {
 
-    private User user = new Booker(123); //FIXME temp test
+    private User user = new Booker(123, "user name", "name"); //FIXME temp test
     private Stage primarystage;
     private Controller curentController;
 

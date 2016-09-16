@@ -2,9 +2,7 @@ package com.it1901.booking.Application;
 
 public class Booker extends  User {
 
-    private int bookerID;
-
-    public Booker(int bookerID) {
-        this.bookerID = bookerID;
+    public Booker(int bookerID, String userName, String name) {
+        super(bookerID, userName, name);
     }
 }
