@@ -1,6 +1,7 @@
 package com.it1901.booking.Application;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class DatabaseHandler {
 
@@ -40,6 +41,34 @@ public class DatabaseHandler {
             prepStatement.setString(1, "pending");
             prepStatement.setInt(2, bookerID);
             prepStatement.setNull(3, java.sql.Types.INTEGER);
+            prepStatement.executeUpdate();
+        }
+
+        //inserts a new event
+        public static void createEvent(
+                LocalDate date, int duration, int ticketPrice,
+                int artistID, int offerID, int stageID) throws SQLException {
+            String query = "INSERT INTO event VALUES " +
+                    "(DEFAULT, ?, ?, ?, 0, ?, ?, ?)";
+            PreparedStatement prepStatement = con.prepareStatement(query);
+            prepStatement.setObject(1, date);
+            prepStatement.setInt(2, duration);
+            prepStatement.setInt(3, ticketPrice);
+            prepStatement.setInt(4, artistID);
+            prepStatement.setInt(5, offerID);
+            prepStatement.setInt(6, stageID);
+            prepStatement.executeUpdate();
+        }
+
+        //inserts a new email
+        public static void createEmail(String subject, String body, int offerID) throws SQLException {
+            String query = "INSERT INTO email VALUES" +
+                    "(DEFAULT, ?, ?, ?)";
+            PreparedStatement prepStatement = con.prepareStatement(query);
+            prepStatement.setString(1, subject);
+            prepStatement.setString(2, body);
+            prepStatement.setInt(3, offerID);
+            prepStatement.executeUpdate();
         }
 
         //writes a ResultSet to console
