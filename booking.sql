@@ -45,19 +45,21 @@ CREATE TABLE artistinfo (
 
 CREATE TYPE offerState AS ENUM
     ('unfinished', 'pending', 'accepted', 
-    'declined', 'sent', 'returned', 'archived');
+    'declined', 'sent', 'returned', 'booked');
 
 CREATE TABLE offer (
     offerID SERIAL,
-    emailSubject TEXT NOT NULL,
-    emailBody TEXT NOT NULL,
-    date DATE NOT NULL,
     state offerState NOT NULL,
-    artistID INT NOT NULL REFERENCES artist(artistID),
     bookerID INT NOT NULL REFERENCES employee(employeeID),
     managerID INT REFERENCES employee(employeeID),
-    stageID INT NOT NULL REFERENCES stage(stageID),
     PRIMARY KEY(offerID));
+
+CREATE TABLE email (
+    emailID SERIAL,
+    emailSubject TEXT NOT NULL,
+    emailBody TEXT NOT NULL,
+    offerID INT NOT NULL REFERENCES offer(offerID)
+    ON DELETE CASCADE);
 
 CREATE TABLE event (
     eventID SERIAL,
@@ -65,9 +67,12 @@ CREATE TABLE event (
     duration INT,
     ticketPrice INT,
     ticketsSold INT,
-    artistID INT NOT NULL REFERENCES artist(artistID),
-    offerID INT REFERENCES offer(offerID),
-    stageID INT NOT NULL REFERENCES stage(stageID),
+    artistID INT NOT NULL REFERENCES artist(artistID)
+    ON DELETE CASCADE,
+    offerID INT NOT NULL REFERENCES offer(offerID)
+    ON DELETE CASCADE,
+    stageID INT NOT NULL REFERENCES stage(stageID)
+    ON DELETE CASCADE,
     PRIMARY KEY(eventID));
 
 CREATE TABLE assigned (
