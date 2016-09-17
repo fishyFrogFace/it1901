@@ -8,10 +8,8 @@ public class DatabaseHandler {
 
         public DatabaseHandler(String dbclass, String host, String user, String pass) {
             try {
-                //establish connection
                 Class.forName(dbclass);
                 this.con = DriverManager.getConnection(host, user, pass);
-                //will be moved to tests/interface
                 if (con != null) {
                     System.out.println("Connected to database.\n");
                 }
