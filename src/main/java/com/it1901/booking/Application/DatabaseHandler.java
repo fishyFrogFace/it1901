@@ -6,9 +6,6 @@ import java.time.LocalDate;
 public class DatabaseHandler {
 
         private static Connection con;
-        private enum offerState {
-            pending, accepted, declined;
-        }
 
         public DatabaseHandler(String dbclass, String host, String user, String pass) {
             try {
@@ -85,4 +82,13 @@ public class DatabaseHandler {
             return 0;
         }
 
+        public static ResultSet getArtistKey(String artist) throws SQLException {
+            String query = "SELECT artist.artistID, name, genre, spotify, albumsSold, concerts " +
+                    "FROM artist, artistinfo " +
+                    "WHERE artist.name = ?" +
+                    "AND artistinfo.artistID = artist.artistID";
+            PreparedStatement prepStatement = con.prepareStatement(query);
+            prepStatement.setString(1, artist);
+            return prepStatement.executeQuery();
+        }
 }
