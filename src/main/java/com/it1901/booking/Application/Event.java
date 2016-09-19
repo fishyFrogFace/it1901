@@ -1,25 +1,39 @@
 package com.it1901.booking.Application;
 
+
 public class Event {
-	
-	enum Status{
-		Proposed, accepted, denied;
-	} 
 	
 	private int id;
 	private String band;
 	private String scene;
 	private float price;
+	Status status;
 	
 	
 	
-	Event(int id, String band, String scene, float price){
+	Event(int id, String band, String scene, float price, Status status){
 		this.id = id;
 		this.band = band;
 		this.scene = scene;
 		this.price = price;
+		this.status = status;
 		
 		
 	}
+	public void SetStatus(Status status){
+		this.status = status;
+	}
 
+	public Status getStatus(){
+		return status;
+	}
+	
+	public static void main(String[] args) {
+		//Set new event example --> Will delete this soon
+		Event eve =  new Event(3, "Adersbandet", "Storsalen", 15000, Status.propose);
+		System.out.println(eve.getStatus());
+		eve.SetStatus(Status.declined);
+		System.out.println(eve.getStatus());
+	}
 }
+
