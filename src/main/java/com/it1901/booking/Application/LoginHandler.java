@@ -15,12 +15,7 @@ public class LoginHandler {
         if (userData.next()) {
             int userID = userData.getInt(1);
             if (BCrypt.checkpw(password, userData.getString(4))) {
-                if (userData.getString(5).equals("booker")) {
-                    user = new Booker(
-                            userData.getInt(1),
-                            userData.getString(2),
-                            userData.getString(3));
-                }
+                user = new User(userData.getInt(1), userData.getString(2), userData.getString(3), userData.getString(5));
             }
         }
         return user;

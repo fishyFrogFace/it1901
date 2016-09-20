@@ -1,6 +1,5 @@
 package com.it1901.booking.JavaFX;
 
-import com.it1901.booking.Application.Booker;
 import com.it1901.booking.Application.User;
 import com.it1901.booking.JavaFX.Controllers.Controller;
 import com.it1901.booking.JavaFX.Controllers.DashController;
@@ -14,7 +13,7 @@ import java.io.IOException;
 
 public class BookingApp extends Application {
 
-    private User user = new Booker(123, "user name", "name"); //FIXME temp test
+    private User user;
     private Stage primarystage;
     private Controller curentController;
 
@@ -53,4 +52,7 @@ public class BookingApp extends Application {
         primarystage.show();
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
