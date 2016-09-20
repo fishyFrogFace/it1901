@@ -2,6 +2,8 @@ package com.it1901.booking.JavaFX;
 
 import com.it1901.booking.Application.Booker;
 import com.it1901.booking.Application.User;
+import com.it1901.booking.JavaFX.Controllers.Controller;
+import com.it1901.booking.JavaFX.Controllers.DashController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,11 +29,11 @@ public class BookingApp extends Application {
     }
 
     public void makeLogin() throws IOException {
-        setScene(loadGeneric("Login.fxml", "Login"));
+        setScene(loadGeneric("FXML/Login.fxml", "Login"));
     }
 
     public void makeDash() throws IOException {
-        Parent parent = loadGeneric("Dashboard.fxml", "Dashboard");
+        Parent parent = loadGeneric("FXML/Dashboard.fxml", "Dashboard");
         ((DashController)curentController).addDashElements(user);
         primarystage.setTitle("Dashboard");
         setScene(parent);
