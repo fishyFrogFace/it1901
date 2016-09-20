@@ -50,7 +50,7 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.it1901.booking.??MAINCLASS??</mainClass>
+                                    <mainClass>com.it1901.booking.JavaFX.BookingApp</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
