@@ -30,9 +30,9 @@ public class Event {
 	
 	public static void main(String[] args) {
 		//Set new event example --> Will delete this soon
-		Event eve =  new Event(3, "Adersbandet", "Storsalen", 15000, Status.propose);
+		Event eve =  new Event(3, "Adersbandet", "Storsalen", 15000, Status.PROPOSED);
 		System.out.println(eve.getStatus());
-		eve.SetStatus(Status.declined);
+		eve.SetStatus(Status.DECLINED);
 		System.out.println(eve.getStatus());
 	}
 }
