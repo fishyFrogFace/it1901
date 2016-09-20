@@ -21,7 +21,7 @@ public class TestDatabaseHandler {
     @Test
     public void testGetUser() {
         try {
-            ResultSet actual = DatabaseHandler.getUser("acme");
+            ResultSet actual = dbh.getUser("acme");
             actual.next();
             assertEquals("Wile E. Coyote", actual.getString(3));
         } catch (SQLException e) {
@@ -33,7 +33,7 @@ public class TestDatabaseHandler {
 /*    @Test
     public void testCreateOffer() {
         try {
-            DatabaseHandler.createOffer(2);
+            dbh.createOffer(2);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -42,7 +42,7 @@ public class TestDatabaseHandler {
 /*    @Test
     public void testCreateEvent() {
         try {
-            DatabaseHandler.createEvent(LocalDate.now(), 5, 200, 2, 2, 2);
+            dbh.createEvent(LocalDate.now(), 5, 200, 2, 2, 2);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class TestDatabaseHandler {
 /*    @Test
     public void testCreateEvent() {
         try {
-            DatabaseHandler.createEmail("test subject", "test body", 2);
+            dbh.createEmail("test subject", "test body", 2);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -60,10 +60,21 @@ public class TestDatabaseHandler {
     @Test
     public void testGetArtistKey() {
         try {
-            ResultSet actual = DatabaseHandler.getArtistKey("Bob Marley");
+            ResultSet actual = dbh.getArtistKey("Bob Marley");
             actual.next();
             assertEquals("reggae", actual.getString(3));
             assertEquals(5004549, actual.getInt(4));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testEventsByGenre() {
+        try {
+            ResultSet actual = dbh.eventsByGenre("electronic");
+            actual.next();
+            assertEquals(1, actual.getInt(1));
         } catch (SQLException e) {
             e.printStackTrace();
         }

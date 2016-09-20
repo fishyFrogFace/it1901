@@ -53,7 +53,7 @@ INSERT INTO offer VALUES
 INSERT INTO email VALUES
 	(DEFAULT, 'Tilbud om spillejobb', 'Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 1);
 
-INSERT INTO event VALUES
+INSERT INTO concert VALUES
 	(DEFAULT, '2016-09-23', 5, 150, NULL, 4, 1, 1);
 
 INSERT INTO assigned VALUES

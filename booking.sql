@@ -61,8 +61,8 @@ CREATE TABLE email (
     offerID INT NOT NULL REFERENCES offer(offerID)
     ON DELETE CASCADE);
 
-CREATE TABLE event (
-    eventID SERIAL,
+CREATE TABLE concert (
+    concertID SERIAL,
     startDate DATE NOT NULL,
     duration INT,
     ticketPrice INT,
@@ -73,14 +73,14 @@ CREATE TABLE event (
     ON DELETE CASCADE,
     stageID INT NOT NULL REFERENCES stage(stageID)
     ON DELETE CASCADE,
-    PRIMARY KEY(eventID));
+    PRIMARY KEY(concertID));
 
 CREATE TABLE assigned (
     assignedID SERIAL,
     hours INT,
     employeeID INT REFERENCES employee(employeeID)
     ON DELETE CASCADE,
-    eventID INT REFERENCES event(eventID)
+    concertID INT REFERENCES concert(concertID)
     ON DELETE CASCADE,
     PRIMARY KEY(assignedID));
     
@@ -89,5 +89,5 @@ CREATE TABLE budgetPost (
     description TEXT NOT NULL,
     price INT NOT NULL,
 	expense BOOLEAN NOT NULL,
-    eventID INT REFERENCES event(eventID),
+    concertID INT REFERENCES concert(concertID),
     PRIMARY KEY(budgetPostID));

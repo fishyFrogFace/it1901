@@ -33,7 +33,7 @@ public class LoginController extends Controller{
 
         User user = null;
         try {
-            user = LoginHandler.login(username.getText(), pass.getText());
+            user = LoginHandler.login(username.getText(), pass.getText(), dbh);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             errorLabel.setTextFill(Paint.valueOf("#ff3636"));

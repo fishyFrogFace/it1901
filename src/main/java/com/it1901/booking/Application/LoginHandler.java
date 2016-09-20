@@ -7,8 +7,8 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginHandler {
 
-    public static User login(String userName, String password) throws SQLException {
-        ResultSet userData = DatabaseHandler.getUser(userName);
+    public static User login(String userName, String password, DatabaseHandler dbh) throws SQLException {
+        ResultSet userData = dbh.getUser(userName);
         //check if the password matches the encrypted one
         if (userData.next()) {
             if (BCrypt.checkpw(password, userData.getString(4))) {

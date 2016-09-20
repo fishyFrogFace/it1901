@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class DatabaseHandler {
 
-        private static Connection con;
+        private Connection con;
 
         public DatabaseHandler(String dbclass, String host, String user, String pass) {
             try {
@@ -23,7 +23,7 @@ public class DatabaseHandler {
         }
 
         //fetches a user from the database
-        public static ResultSet getUser(String userName) throws SQLException {
+        public ResultSet getUser(String userName) throws SQLException {
             String query = "SELECT * FROM employee WHERE username = ?";
             PreparedStatement prepStatement = con.prepareStatement(query);
             prepStatement.setString(1, userName);
@@ -31,7 +31,7 @@ public class DatabaseHandler {
         }
 
         //inserts a new offer
-        public static void createOffer(int bookerID) throws SQLException {
+        public void createOffer(int bookerID) throws SQLException {
             String query = "INSERT INTO offer VALUES " +
                     "(DEFAULT, ?::offerState, ?, ?)";
             PreparedStatement prepStatement = con.prepareStatement(query);
@@ -42,7 +42,7 @@ public class DatabaseHandler {
         }
 
         //inserts a new event
-        public static void createEvent(
+        public void createEvent(
                 LocalDate date, int duration, int ticketPrice,
                 int artistID, int offerID, int stageID) throws SQLException {
             String query = "INSERT INTO event VALUES " +
@@ -58,8 +58,8 @@ public class DatabaseHandler {
         }
 
         //inserts a new email
-        public static void createEmail(String subject, String body, int offerID) throws SQLException {
-            String query = "INSERT INTO email VALUES" +
+        public void createEmail(String subject, String body, int offerID) throws SQLException {
+            String query = "INSERT INTO email VALUES " +
                     "(DEFAULT, ?, ?, ?)";
             PreparedStatement prepStatement = con.prepareStatement(query);
             prepStatement.setString(1, subject);
@@ -69,7 +69,7 @@ public class DatabaseHandler {
         }
 
         //writes a ResultSet to console
-        public static int displayResult(ResultSet result) throws SQLException {
+        public int displayResult(ResultSet result) throws SQLException {
             ResultSetMetaData resultMeta = result.getMetaData();
             int columnsNumber = resultMeta.getColumnCount();
 
@@ -82,13 +82,28 @@ public class DatabaseHandler {
             return 0;
         }
 
-        public static ResultSet getArtistKey(String artist) throws SQLException {
+        //fetches artist name and key information (streaming etc.)
+        public ResultSet getArtistKey(String artist) throws SQLException {
             String query = "SELECT artist.artistID, name, genre, spotify, albumsSold, concerts " +
                     "FROM artist, artistinfo " +
-                    "WHERE artist.name = ?" +
+                    "WHERE artist.name = ? " +
                     "AND artistinfo.artistID = artist.artistID";
             PreparedStatement prepStatement = con.prepareStatement(query);
             prepStatement.setString(1, artist);
+            return prepStatement.executeQuery();
+        }
+
+        //fetches stage and ticketsSold for concerts in a genre
+        public ResultSet eventsByGenre(String genre) throws SQLException {
+            String query = "SELECT concert.concertID, genre, ticketsSold, stage.name " +
+                    "FROM concert, stage, artist " +
+                    "WHERE genre = ?::musicgenre " +
+                    "AND concert.artistID = artist.artistID " +
+                    "AND concert.stageID = stage.stageID " +
+                    "ORDER BY genre, ticketsSold";
+            PreparedStatement prepStatement = con.prepareStatement(query);
+            prepStatement.setString(1, genre);
+            System.out.println(prepStatement);
             return prepStatement.executeQuery();
         }
 }
