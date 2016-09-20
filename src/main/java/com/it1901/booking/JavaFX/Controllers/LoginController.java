@@ -25,14 +25,17 @@ public class LoginController extends Controller{
 
     @FXML
     public void onSubmitClick() {
+        DatabaseHandler dbh = new DatabaseHandler(
+                "org.postgresql.Driver",
+                "jdbc:postgresql://52.40.176.177:5432/booking",
+                "team",
+                "it1901");
 
         User user = null;
         try {
-            String usnm = username.getText();
-            String pswd = pass.getText();
-            user = LoginHandler.login(usnm, pswd);
+            user = LoginHandler.login(username.getText(), pass.getText());
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             errorLabel.setTextFill(Paint.valueOf("#ff3636"));
             errorLabel.setText("Error");
         }
@@ -41,8 +44,8 @@ public class LoginController extends Controller{
             try {
                 app.setUser(user);
                 app.makeDash();
-            } catch (IOException io) {
-                io.printStackTrace();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
         else {

@@ -6,7 +6,7 @@ public class User {
 	private String name;
     private String type;
 
-    public enum Type {
+    public enum Type { //Not currently used, see if possible to connect sql enums and java enums. If not drop them
         BOOKER, ADMINISTRATOR, ORGANIZER, TECH
     }
 
