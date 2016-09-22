@@ -9,10 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
 
-import java.io.IOException;
 import java.sql.SQLException;
-
-import static com.it1901.booking.Application.LoginHandler.login;
 
 public class LoginController extends Controller{
 
