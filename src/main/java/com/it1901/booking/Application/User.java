@@ -1,5 +1,8 @@
 package com.it1901.booking.Application;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class User {
 	private int userID;
 	private String userName;
@@ -10,11 +13,15 @@ public class User {
         BOOKER, ADMINISTRATOR, ORGANIZER, TECH
     }
 
-	public User(int userID, String userName, String name, String type){
-		this.userID = userID;
-		this.userName = userName;
-		this.name = name;
-        this.type = type;
+	public User(ResultSet userData) throws SQLException {
+		this.userID = userData.getInt(1);
+		this.userName = userData.getString(2);
+		this.name = userData.getString(3);
+        this.type = userData.getString(5);
+	}
+
+	public int getUserID() {
+		return this.userID;
 	}
 
     public String getUserType(){
