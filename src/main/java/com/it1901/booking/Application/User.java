@@ -4,10 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class User {
-	private int userID;
-	private String userName;
-	private String name;
-    private String type;
+	private final int userID;
+	private final String userName;
+	private final String name;
+    private final String type;
 
     public enum Type { //Not currently used, see if possible to connect sql enums and java enums. If not drop them
         BOOKER, ADMINISTRATOR, ORGANIZER, TECH

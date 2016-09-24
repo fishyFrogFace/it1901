@@ -28,11 +28,11 @@ public class BookingApp extends Application {
     }
 
     public void makeLogin() throws IOException {
-        setScene(loadGeneric("FXML/Login.fxml", "Login"));
+        setScene(loadGeneric("/Login.fxml", "Login"));
     }
 
     public void makeDash() throws IOException {
-        Parent parent = loadGeneric("FXML/Dashboard.fxml", "Dashboard");
+        Parent parent = loadGeneric("/Dashboard.fxml", "Dashboard");
         ((DashController)curentController).addDashElements(user);
         primarystage.setTitle("Dashboard");
         setScene(parent);
