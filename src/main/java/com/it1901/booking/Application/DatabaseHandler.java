@@ -39,28 +39,4 @@ public class DatabaseHandler {
             }
             return 0;
         }
-
-        //fetches artist name and key information (streaming etc.)
-        public ResultSet getArtistKey(String artist) throws SQLException {
-            String query = "SELECT artist.artistID, name, genre, spotify, albumsSold, concerts " +
-                    "FROM artist, artistinfo " +
-                    "WHERE artist.name = ? " +
-                    "AND artistinfo.artistID = artist.artistID";
-            PreparedStatement prepStatement = con.prepareStatement(query);
-            prepStatement.setString(1, artist);
-            return prepStatement.executeQuery();
-        }
-
-        //fetches stage and ticketsSold for concerts in a genre
-        public ResultSet eventsByGenre(String genre) throws SQLException {
-            String query = "SELECT concert.concertID, genre, ticketsSold, stage.name " +
-                    "FROM concert, stage, artist " +
-                    "WHERE genre = ?::musicgenre " +
-                    "AND concert.artistID = artist.artistID " +
-                    "AND concert.stageID = stage.stageID " +
-                    "ORDER BY genre, ticketsSold";
-            PreparedStatement prepStatement = con.prepareStatement(query);
-            prepStatement.setString(1, genre);
-            return prepStatement.executeQuery();
-        }
 }
