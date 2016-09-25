@@ -38,6 +38,10 @@ public class BookingApp extends Application {
         setScene(parent);
     }
 
+    public void makeSearchArtist() throws IOException {
+    	setScene(loadGeneric("FXML/SearchArtist.fxml", "Search for artist"));
+    }
+
     public Parent loadGeneric(String path, String title) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path)); //need instantiated loader to get controller
         Parent parent = loader.load(); //Loads fxml
