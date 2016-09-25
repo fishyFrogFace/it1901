@@ -35,7 +35,7 @@ public class ArtistInfo {
 					"\nTickets sold: " + ticketsSold +
 					"\nTicket price: " + ticketPrice);
 		} else {
-			return ("Artist has not had a concert here before.");
+			return ("Artist/band has not had a concert here before.");
 		}
 	}
 }
