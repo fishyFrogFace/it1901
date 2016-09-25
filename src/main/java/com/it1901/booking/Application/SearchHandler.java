@@ -11,7 +11,7 @@ public class SearchHandler {
     public static ResultSet getArtistKey(String artist, DatabaseHandler dbh) throws SQLException {
         String query = "SELECT artist.artistID, name, genre, spotify, albumsSold, concerts " +
                 "FROM artist, artistinfo " +
-                "WHERE artist.name = ? " +
+                "WHERE UPPER(artist.name) = UPPER(?) " +
                 "AND artistinfo.artistID = artist.artistID";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         prepStatement.setString(1, artist);
@@ -46,4 +46,27 @@ public class SearchHandler {
         prepStatement.setString(2, stage);
         return prepStatement.executeQuery();
     }
+    
+    public static ResultSet previousConcerts(String artist, DatabaseHandler dbh) throws SQLException {
+        LocalDate today = LocalDate.now();
+        String query = "SELECT startDate " +
+                "FROM artist, concert " +
+                "WHERE startDate > ? " +
+                "AND artist.artistID = concert.artistID" + 
+                "AND UPPER(artist.name) = UPPER(?)";
+        PreparedStatement prepStatement = dbh.prepareQuery(query);
+        prepStatement.setObject(1, today);
+        prepStatement.setString(2, artist);
+        return prepStatement.executeQuery();
+    }
+
+	public static ResultSet getPreviousConcerts(String artist, DatabaseHandler dbh) throws SQLException {
+		String query = "SELECT concertID, duration, ticketPrice, ticketsSold " + 
+					   "FROM concert, artist " + 
+					   "WHERE concert.artistID = artist.artistID " + 
+					   "AND UPPER(artist.name) = UPPER(?)";
+		PreparedStatement prepStatement = dbh.prepareQuery(query);
+		prepStatement.setString(1, artist);
+		return prepStatement.executeQuery();
+	}
 }
