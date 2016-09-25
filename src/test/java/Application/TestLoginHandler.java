@@ -13,17 +13,6 @@ import static org.junit.Assert.assertEquals;
 public class TestLoginHandler {
 
     @Test
-    public void testGetUser() {
-        try {
-            ResultSet actual = LoginHandler.getUser("acme", dbh);
-            actual.next();
-            assertEquals("Wile E. Coyote", actual.getString(3));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
     public void testLogin() {
         try {
             User actual = LoginHandler.login("acme", "1234", dbh);

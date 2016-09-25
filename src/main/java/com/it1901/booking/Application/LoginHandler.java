@@ -19,7 +19,7 @@ public class LoginHandler {
         return null;
     }
 
-    public static ResultSet getUser(String userName, DatabaseHandler dbh) throws SQLException {
+    private static ResultSet getUser(String userName, DatabaseHandler dbh) throws SQLException {
         String query = "SELECT * FROM employee WHERE username = ?";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         prepStatement.setString(1, userName);
