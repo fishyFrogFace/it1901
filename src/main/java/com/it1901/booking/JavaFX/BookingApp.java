@@ -64,13 +64,8 @@ public class BookingApp extends Application {
         return parent;
     }
 
-    public void placeHolder(String string) {
-        System.out.println(string);
-        if(string == "Sjangeroversikt"){
-        	System.out.println("Smekk opp nytt vindu");
-        	makeSearchGenre();
-        	
-        }
+    public void placeHolder() {
+        System.out.println("PlaceHolder, change method to your make___() method!");
     }
 
     public void setScene(Parent parent) {
