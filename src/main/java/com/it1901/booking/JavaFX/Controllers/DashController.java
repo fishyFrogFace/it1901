@@ -21,18 +21,18 @@ public class DashController extends Controller {
         //TODO Add appropriate elemets for this type of user
         switch (user.getUserType()) {
             case "administrator":
-                createButton("Prisforslag", event -> app.placeHolder());
-                createButton("Konsert rapporter", event -> app.placeHolder());
-                createButton("Hendelses oversikt", event -> app.placeHolder());
-                createButton("Godkjenn tilbud", event -> app.placeHolder());
+                createButton("Prisforslag", event -> app.placeHolder(""));
+                createButton("Konsert rapporter", event -> app.placeHolder(""));
+                createButton("Hendelses oversikt", event -> app.placeHolder(""));
+                createButton("Godkjenn tilbud", event -> app.placeHolder(""));
             case "booker":
-                createButton("Søk blant konserter", event -> app.placeHolder());
-                createButton("Søk blant artister", event -> app.placeHolder());
-                createButton("Opprett tilbud", event -> app.placeHolder());
-                createButton("Sjangeroversikt", event -> app.placeHolder());
+                createButton("Søk blant konserter", event -> app.placeHolder(""));
+                createButton("Søk blant artister", event -> app.placeHolder(""));
+                createButton("Opprett tilbud", event -> app.placeHolder(""));
+                createButton("Sjangeroversikt", event -> app.placeHolder("Sjangeroversikt"));
             case "organizer":
-                createButton("Deleger teknikere", event -> app.placeHolder());
-                createButton("Konsertoversikt", event -> app.placeHolder());
+                createButton("Deleger teknikere", event -> app.placeHolder(""));
+                createButton("Konsertoversikt", event -> app.placeHolder(""));
                 break;
             case "tech":
                 //TODO redirect to tech page

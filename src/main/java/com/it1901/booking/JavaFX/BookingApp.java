@@ -47,6 +47,9 @@ public class BookingApp extends Application {
     	setScene(loadGeneric("FXML/SearchArtist.fxml", "Search for artist"));
     }
 
+    public void makeSearchGenre(){
+    	setScene(loadGeneric("/InformationByGenre.fxml", "Search for artist"));
+    }
     public Parent loadGeneric(String path, String title) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path)); //need instantiated loader to get controller
         Parent parent = null; //Loads fxml
@@ -61,8 +64,13 @@ public class BookingApp extends Application {
         return parent;
     }
 
-    public void placeHolder() {
-        System.out.println("This is a placeholder, and a very nice one at that!");
+    public void placeHolder(String string) {
+        System.out.println(string);
+        if(string == "Sjangeroversikt"){
+        	System.out.println("Smekk opp nytt vindu");
+        	makeSearchGenre();
+        	
+        }
     }
 
     public void setScene(Parent parent) {
