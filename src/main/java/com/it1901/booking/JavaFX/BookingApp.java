@@ -22,33 +22,47 @@ public class BookingApp extends Application {
     }
 
     @Override
-    public void start(Stage ps) throws IOException{
+    public void start(Stage ps) {
         this.primarystage = ps;
         makeLogin();
     }
 
-    public void makeLogin() throws IOException {
+    public void makeLogin() {
         setScene(loadGeneric("/Login.fxml", "Login"));
     }
 
-    public void makeDash() throws IOException {
+    public void makeDash() {
         Parent parent = loadGeneric("/Dashboard.fxml", "Dashboard");
-        ((DashController)curentController).addDashElements(user);
+        try {
+            ((DashController)curentController).addDashElements(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Could not add dashboard elements.");
+        }
         primarystage.setTitle("Dashboard");
         setScene(parent);
     }
 
-    public void makeSearchArtist() throws IOException {
+    public void makeSearchArtist() {
     	setScene(loadGeneric("FXML/SearchArtist.fxml", "Search for artist"));
     }
 
-    public Parent loadGeneric(String path, String title) throws IOException {
+    public Parent loadGeneric(String path, String title) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path)); //need instantiated loader to get controller
-        Parent parent = loader.load(); //Loads fxml
+        Parent parent = null; //Loads fxml
+        try {
+            parent = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         curentController = loader.getController(); //Set current controller
         curentController.setApp(this); //register app in controller
         primarystage.setTitle(title);
         return parent;
+    }
+
+    public void placeHolder() {
+        System.out.println("This is a placeholder, and a very nice one at that!");
     }
 
     public void setScene(Parent parent) {
