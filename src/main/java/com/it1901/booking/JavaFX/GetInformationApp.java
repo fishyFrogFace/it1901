@@ -13,7 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class GetInformationApp extends Application{
-	
+	//Not connected to booking app yet
 	Stage window;
 	
 	public static void main(String[] args) {
