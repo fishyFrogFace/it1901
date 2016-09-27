@@ -61,7 +61,7 @@ public class GenreSearchController extends Controller implements Initializable {
 		String artistName = "";
 		int check = 0;
 
-		//if more concerts by this genre. 
+		//if more concerts by this genre.
 		while (res.next()){
 				check ++;
 				System.out.println("search");

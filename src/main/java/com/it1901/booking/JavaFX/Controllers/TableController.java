@@ -32,7 +32,7 @@ public class TableController extends Controller{
 			new Table("The Beatles", "Pop", "1 Billion", 100000, "Samfundet")
 	);
 
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize() {
 		iName.setCellValueFactory(new PropertyValueFactory<Table, String>("rName"));
 		iGenre.setCellValueFactory(new PropertyValueFactory<Table, String>("rGenre"));
 		iSpotify.setCellValueFactory(new PropertyValueFactory<Table, String>("rSpotify"));
