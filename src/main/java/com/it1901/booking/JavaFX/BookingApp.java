@@ -92,5 +92,7 @@ public class BookingApp extends Application {
         this.user = user;
     }
 
+
+
     public User getUser(){ return this.user; }
 }
