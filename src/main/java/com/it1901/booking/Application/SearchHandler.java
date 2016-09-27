@@ -20,7 +20,7 @@ public class SearchHandler {
 
     //fetches stage and ticketsSold for concerts in a genre
     public static ResultSet eventsByGenre(String genre, DatabaseHandler dbh) throws SQLException {
-        String query = "SELECT concert.concertID, genre, ticketsSold, stage.name " +
+        String query = "SELECT concert.concertID, genre, ticketsSold, stage.name, artist.name " +
                 "FROM concert, stage, artist " +
                 "WHERE genre = ?::musicgenre " +
                 "AND concert.artistID = artist.artistID " +

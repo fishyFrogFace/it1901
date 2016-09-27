@@ -58,6 +58,7 @@ public class GenreSearchController extends Controller implements Initializable {
 		String genre = "";
 		String ticketSales = "";
 		String scene = "";
+		String artistName = "";
 		int check = 0;
 
 		//if more concerts by this genre. 
@@ -68,7 +69,8 @@ public class GenreSearchController extends Controller implements Initializable {
 				genre = res.getString(2);
 				ticketSales = res.getString(3);
 				scene = res.getString(4);
-				genreSearch = "ID: " + id + " 	Genre: " + genre + " 	Ticket-Sales: " + ticketSales + " 	Scene: " + scene;   
+				artistName = res.getString(5);
+				genreSearch = "ID: " + id + "	Artist: " + artistName + "	Genre: " + genre + "	Ticket-Sales: " + ticketSales + " 	Scene: " + scene;
 				genres.add(genreSearch);
 				list.setItems(genres);
 				
