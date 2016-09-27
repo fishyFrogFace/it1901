@@ -1,21 +1,20 @@
 package com.it1901.booking.JavaFX.Controllers;
-
-import javafx.beans.property.SimpleIntegerProperty;
+	
 import javafx.beans.property.SimpleStringProperty;
 
 public class Table {
 	private final SimpleStringProperty rName;
 	private final SimpleStringProperty rGenre;
 	private final SimpleStringProperty rSpotify;
-	private final SimpleIntegerProperty rAlbumsSold;
+	private final SimpleStringProperty rAlbumsSold;
 	private final SimpleStringProperty rConcerts;
 	
-	public Table(String sName, String sGenre, String sSpotify, Integer sAlbumsSold, String sConcerts){
+	public Table(String sName, String sGenre, String sSpotify, String sAlbumsSold, String sConcerts){
 		//Defining the columns
 		this.rName = new SimpleStringProperty(sName); 
 		this.rGenre = new SimpleStringProperty(sGenre);
 		this.rSpotify = new SimpleStringProperty(sSpotify); 
-		this.rAlbumsSold = new SimpleIntegerProperty(sAlbumsSold);
+		this.rAlbumsSold = new SimpleStringProperty(sAlbumsSold);
 		this.rConcerts = new SimpleStringProperty(sConcerts);
 	}
 	
@@ -42,10 +41,10 @@ public class Table {
 		rSpotify.set(v);
 	}
 	
-	public Integer getRAlbumsSold(){
+	public String getRAlbumsSold(){
 		return rAlbumsSold.get();
 	}
-	public void setRAlbumsSold(Integer v){
+	public void setRAlbumsSold(String v){
 		rAlbumsSold.set(v);
 	}
 	public String getRConcerts(){
