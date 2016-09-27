@@ -9,7 +9,7 @@ public class SearchHandler {
 
     //fetches artist name and key information (streaming etc.)
     public static ResultSet getArtistKey(String artist, DatabaseHandler dbh) throws SQLException {
-        String query = "SELECT artist.artistID, name, genre, spotify, albumsSold, concerts " +
+        String query = "SELECT artist.artistID, name, genre, spotify, email, albumsSold, fee, accomodationCost, concerts " +
                 "FROM artist, artistinfo " +
                 "WHERE UPPER(artist.name) = UPPER(?) " +
                 "AND artistinfo.artistID = artist.artistID";
@@ -61,7 +61,7 @@ public class SearchHandler {
     }
 
 	public static ResultSet getPreviousConcerts(String artist, DatabaseHandler dbh) throws SQLException {
-		String query = "SELECT concertID, duration, ticketPrice, ticketsSold " + 
+		String query = "SELECT concertID, duration, ticketPrice, ticketsSold, stageID " +
 					   "FROM concert, artist " + 
 					   "WHERE concert.artistID = artist.artistID " + 
 					   "AND UPPER(artist.name) = UPPER(?)";

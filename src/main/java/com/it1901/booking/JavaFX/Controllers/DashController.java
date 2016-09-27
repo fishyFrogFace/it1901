@@ -25,6 +25,7 @@ public class DashController extends Controller {
                 createButton("Konsert rapporter", event -> app.placeHolder());
                 createButton("Hendelses oversikt", event -> app.placeHolder());
                 createButton("Godkjenn tilbud", event -> app.placeHolder());
+                createButton("Example of artist view", event -> app.makeArtistView("Deathgore"));
             case "booker":
                 createButton("Søk blant konserter", event -> app.placeHolder());
                 createButton("Søk blant artister", event -> app.placeHolder());
