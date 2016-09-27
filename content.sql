@@ -48,13 +48,17 @@ INSERT INTO artistinfo VALUES
 	(DEFAULT, 20000, 345, 'Spilte på en middels stor scene på Hovefestivalen 2016. Holder ellers konserter på utesteder.', 6);
 
 INSERT INTO offer VALUES
-	(DEFAULT, 'pending', 2, NULL);
+	(DEFAULT, 'pending', 2, NULL),
+	(DEFAULT, 'pending', 2, NULL),
+	(DEFAULT, 'accepted', 2, 1);
 
 INSERT INTO email VALUES
 	(DEFAULT, 'Tilbud om spillejobb', 'Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 1);
 
 INSERT INTO concert VALUES
-	(DEFAULT, '2016-09-23', 5, 150, NULL, 4, 1, 1);
+	(DEFAULT, '2016-09-23', 5, 150, NULL, 4, 1, 1),
+	(DEFAULT, '2016-12-24', 6, 200, NULL, 4, 2, 3),
+	(DEFAULT, '2016-08-30', 4, 180, 260, 3, 3, 1);
 
 INSERT INTO assigned VALUES
 	(DEFAULT, 7, 4, 1),
