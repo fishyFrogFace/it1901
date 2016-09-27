@@ -44,7 +44,7 @@ public class BookingApp extends Application {
     }
 
     public void makeSearchArtist() {
-    	setScene(loadGeneric("FXML/SearchArtist.fxml", "Search for artist"));
+    	setScene(loadGeneric("/SearchArtist.fxml", "Search for artist"));
     }
 
     public void makeSearchGenre(){
