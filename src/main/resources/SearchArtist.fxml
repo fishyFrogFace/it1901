@@ -8,28 +8,50 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.it1901.booking.JavaFX.Controllers.SearchArtistController">
    <children>
-      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Key information">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="nameString" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="220.0" promptText="Enter artist/band name" />
-                        <Button fx:id="searchButton" layoutX="248.0" layoutY="14.0" mnemonicParsing="false" onAction="#onSearchClick" text="Search" />
-                        <TextArea fx:id="result" editable="false" layoutX="14.0" layoutY="47.0" prefHeight="317.0" prefWidth="573.0" promptText="Key information" />
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Earlier events">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextArea fx:id="result1" editable="false" layoutX="14.0" layoutY="9.0" prefHeight="355.0" prefWidth="573.0" promptText="Earlier events" />
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
+      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab text="Key information">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="nameString" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="220.0" promptText="Enter artist/band name" />
+                              <Button fx:id="searchButton" layoutX="248.0" layoutY="14.0" mnemonicParsing="false" onAction="#onSearchClick" text="Search" />
+                              <TextArea fx:id="result" editable="false" layoutX="14.0" layoutY="47.0" prefHeight="317.0" prefWidth="573.0" promptText="Key information" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Earlier events">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextArea fx:id="result1" editable="false" layoutX="14.0" layoutY="9.0" prefHeight="355.0" prefWidth="573.0" promptText="Earlier events" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="Navigation">
+                  <items>
+                    <MenuItem fx:id="menuDash" mnemonicParsing="false" onAction="#goToDash" text="Dashboard" />
+                    <MenuItem fx:id="menuLogout" mnemonicParsing="false" onAction="#logOut" text="Logout" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+      </BorderPane>
    </children>
 </AnchorPane>
