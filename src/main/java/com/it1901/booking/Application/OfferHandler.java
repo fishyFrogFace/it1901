@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class OfferHandler {
 
     //inserts a new offer
-    private void saveOffer(DatabaseHandler dbh, User user) throws SQLException {
+    public void saveOffer(DatabaseHandler dbh, User user) throws SQLException {
         String query = "INSERT INTO offer VALUES " +
                 "(DEFAULT, ?::offerState, ?, ?)";
         PreparedStatement prepStatement = dbh.prepareQuery(query);

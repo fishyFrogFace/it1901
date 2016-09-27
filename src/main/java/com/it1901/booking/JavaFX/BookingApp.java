@@ -4,7 +4,7 @@ import com.it1901.booking.Application.User;
 import com.it1901.booking.JavaFX.Controllers.ArtistViewController;
 import com.it1901.booking.JavaFX.Controllers.Controller;
 import com.it1901.booking.JavaFX.Controllers.DashController;
-
+import com.it1901.booking.JavaFX.Controllers.OfferController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -74,6 +74,11 @@ public class BookingApp extends Application {
         setScene(parent);
     }
 
+    public void makeOffer() {
+        Parent parent = loadGeneric("/OfferView.FXML", "Make an offer");
+        setScene(parent);
+    }
+
     public void placeHolder() {
         System.out.println("PlaceHolder, change method to your make___() method!");
     }
@@ -86,4 +91,8 @@ public class BookingApp extends Application {
     public void setUser(User user) {
         this.user = user;
     }
+
+
+
+    public User getUser(){ return this.user; }
 }
