@@ -41,7 +41,7 @@ public class TestSearchHandler {
         try {
             ResultSet actual = SearchHandler.bookedInPast("Storsalen", dbh);
             actual.next();
-            assertEquals("Super Mario", actual.getString(1));
+            assertEquals("Money$$", actual.getString(1));
         } catch (SQLException e) {
             e.printStackTrace();
         }

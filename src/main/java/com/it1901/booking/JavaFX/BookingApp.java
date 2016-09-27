@@ -4,7 +4,7 @@ import com.it1901.booking.Application.User;
 import com.it1901.booking.JavaFX.Controllers.ArtistViewController;
 import com.it1901.booking.JavaFX.Controllers.Controller;
 import com.it1901.booking.JavaFX.Controllers.DashController;
-import com.it1901.booking.JavaFX.Controllers.TableController;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -82,11 +82,5 @@ public class BookingApp extends Application {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public void makeTable() {
-        Parent parent = loadGeneric("/TableController.FXML", "Table test");
-        ((TableController) curentController).initialize();
-        setScene(parent);
     }
 }
