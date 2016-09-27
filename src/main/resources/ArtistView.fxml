@@ -7,14 +7,12 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.it1901.booking.JavaFX.Controllers.ArtistViewController">
    <children>
       <BorderPane layoutX="146.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <Label fx:id="artistName" text="Artist name" BorderPane.alignment="CENTER" />
-         </top>
          <center>
             <SplitPane dividerPositions="0.5" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <items>
                   <VBox prefHeight="381.0" prefWidth="163.0">
                      <children>
+                        <Label fx:id="artistName" text="Artist name" />
                         <Separator prefWidth="200.0" />
                         <Label fx:id="artistGenre" text="Genre: " />
                         <Separator prefWidth="200.0" />
@@ -42,6 +40,23 @@
                </items>
             </SplitPane>
          </center>
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="Navigation">
+                  <items>
+                    <MenuItem fx:id="menuDash" mnemonicParsing="false" onAction="#goToDash" text="Dashboard" />
+                    <MenuItem fx:id="menuLogout" mnemonicParsing="false" onAction="#logOut" text="Logout" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>

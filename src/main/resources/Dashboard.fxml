@@ -17,11 +17,29 @@
             </FlowPane>
          </center>
          <top>
-            <Label fx:id="userType" text="role_name" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="32.0" />
-               </font>
-            </Label>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Navigation">
+                        <items>
+                          <MenuItem fx:id="menuLogout" mnemonicParsing="false" onAction="#logOut" text="Logout" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="About" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <Label fx:id="userType" alignment="CENTER" contentDisplay="CENTER" text="role_name">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
          </top>
       </BorderPane>
    </children>
