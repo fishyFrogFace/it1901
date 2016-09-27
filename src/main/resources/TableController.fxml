@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.it1901.booking.JavaFX.Controllers.TableController">
+   <children>
+      <SplitPane dividerPositions="0.8996655518394648" layoutX="188.0" layoutY="84.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TableView fx:id="tableID" layoutX="85.0" layoutY="-25.0" prefHeight="534.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="iGenre" prefWidth="75.0" text="Genre" />
+                      <TableColumn fx:id="iConcerts" prefWidth="75.0" text="Concerts" />
+                        <TableColumn fx:id="iName" prefWidth="75.0" text="Name" />
+                        <TableColumn fx:id="iSpotify" prefWidth="75.0" text="Spotify" />
+                        <TableColumn fx:id="iAlbumsSold" prefWidth="75.0" text="Album Sold" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

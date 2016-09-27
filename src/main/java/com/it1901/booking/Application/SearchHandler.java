@@ -20,14 +20,17 @@ public class SearchHandler {
 
     //fetches stage and ticketsSold for concerts in a genre
     public static ResultSet eventsByGenre(String genre, DatabaseHandler dbh) throws SQLException {
-        String query = "SELECT concert.concertID, genre, ticketsSold, stage.name " +
+        LocalDate today = LocalDate.now();
+        String query = "SELECT concert.concertID, genre, ticketsSold, stage.name, artist.name " +
                 "FROM concert, stage, artist " +
                 "WHERE genre = ?::musicgenre " +
                 "AND concert.artistID = artist.artistID " +
                 "AND concert.stageID = stage.stageID " +
+                "AND startDate < ? " +
                 "ORDER BY genre, ticketsSold";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         prepStatement.setString(1, genre);
+        prepStatement.setObject(2, today);
         return prepStatement.executeQuery();
     }
 
