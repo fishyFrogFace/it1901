@@ -35,7 +35,7 @@ public class TableController extends Controller implements Initializable{
 			new Table("The Beatles", "Pop", "1 Billion", "1000", "Samfundet")
 	);
 
-	public void initialize() {
+	public void initialize(URL location, ResourceBundle resources) {
 		iName.setCellValueFactory(new PropertyValueFactory<Table, String>("rName"));
 		iGenre.setCellValueFactory(new PropertyValueFactory<Table, String>("rGenre"));
 		iSpotify.setCellValueFactory(new PropertyValueFactory<Table, String>("rSpotify"));
