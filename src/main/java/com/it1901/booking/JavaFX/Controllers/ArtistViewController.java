@@ -37,10 +37,9 @@ public class ArtistViewController extends Controller {
     private TableView<List<String>> artistConcerts;
 
     public void displayArtist(String artist) {
-        DatabaseHandler dbh = new DatabaseHandler("org.postgresql.Driver", "jdbc:postgresql://52.40.176.177:5432/booking",
-                "team", "it1901");
+
         try {
-            ResultSet artistRS = SearchHandler.getArtistKey(artist, dbh);
+            ResultSet artistRS = SearchHandler.getArtistKey(artist, app.getDatabaseHandler());
             if (artistRS.next()) {
                 artistName.setText(artistRS.getString("name"));
                 artistMail.setText("Email: " + artistRS.getString("email"));
@@ -69,6 +68,4 @@ public class ArtistViewController extends Controller {
         }
         //Need get___(artist) methods first
     }
-
-
 }

@@ -1,13 +1,10 @@
 package com.it1901.booking.JavaFX.Controllers;
 
-
-
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import com.it1901.booking.Application.DatabaseHandler;
 import com.it1901.booking.Application.SearchHandler;
 
 import javafx.collections.FXCollections;
@@ -24,8 +21,7 @@ public class GenreSearchController extends Controller implements Initializable {
 	@FXML private TextField searchField;
 	@FXML private Label errorLabel;
 	@FXML private ListView<String> list;
-	
-	DatabaseHandler dtb;
+
 	private String tekst;
 	
 	//When searchbutton clicked. 
@@ -38,8 +34,7 @@ public class GenreSearchController extends Controller implements Initializable {
 		try{
 			tekst = searchField.getText();
 			System.out.println("searchword: " + tekst);
-			SearchHandler src = new SearchHandler();
-			ResultSet res = src.eventsByGenre(tekst, dtb);
+			ResultSet res = SearchHandler.eventsByGenre(tekst, app.getDatabaseHandler());
 			displayToScreen(res);
 			
 		}catch(SQLException e){
@@ -86,10 +81,7 @@ public class GenreSearchController extends Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		dtb = new DatabaseHandler("org.postgresql.Driver",
-                "jdbc:postgresql://52.40.176.177:5432/booking",
-                "team",
-                "it1901");
+		app.getDatabaseHandler();
 		
 	}
 }

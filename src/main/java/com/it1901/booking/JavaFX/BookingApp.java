@@ -1,5 +1,6 @@
 package com.it1901.booking.JavaFX;
 
+import com.it1901.booking.Application.DatabaseHandler;
 import com.it1901.booking.Application.User;
 import com.it1901.booking.JavaFX.Controllers.ArtistViewController;
 import com.it1901.booking.JavaFX.Controllers.Controller;
@@ -16,6 +17,7 @@ import java.io.IOException;
 public class BookingApp extends Application {
 
     private User user;
+    private DatabaseHandler dbh;
     private Stage primarystage;
     private Controller curentController;
 
@@ -92,7 +94,13 @@ public class BookingApp extends Application {
         this.user = user;
     }
 
-
+    public void setDatabaseHandler(DatabaseHandler dbh) {
+        this.dbh = dbh;
+    }
 
     public User getUser(){ return this.user; }
+
+    public DatabaseHandler getDatabaseHandler() {
+        return this.dbh;
+    }
 }

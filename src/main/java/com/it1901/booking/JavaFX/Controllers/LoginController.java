@@ -27,6 +27,7 @@ public class LoginController extends Controller{
                 "jdbc:postgresql://52.40.176.177:5432/booking",
                 "team",
                 "it1901");
+        app.setDatabaseHandler(dbh);
 
         User user = null;
         try {
