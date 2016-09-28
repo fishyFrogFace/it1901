@@ -69,7 +69,7 @@ public class BookingApp extends Application {
     }
 
     public void makeArtistView(String artist) {
-        Parent parent = loadGeneric("/ArtistView.FXML", artist);
+        Parent parent = loadGeneric("/ArtistView.fxml", artist);
         ((ArtistViewController) curentController).displayArtist(artist);
         setScene(parent);
     }
