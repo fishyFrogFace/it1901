@@ -77,7 +77,7 @@ public class BookingApp extends Application {
     }
 
     public void makeOffer() {
-        Parent parent = loadGeneric("/OfferView.FXML", "Make an offer");
+        Parent parent = loadGeneric("/OfferView.fxml", "Make an offer");
         setScene(parent);
     }
 

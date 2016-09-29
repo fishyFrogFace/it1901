@@ -37,17 +37,7 @@
                                 <Insets right="10.0" />
                             </padding>
                         </Label>
-                        <ChoiceBox fx:id="stage" value="Scene 1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" >
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="Scene 1" />
-                                    <String fx:value="Scene 2" />
-                                    <String fx:value="Scene 3" />
-                                    <String fx:value="Scene 4" />
-                                    <String fx:value="Scene 5" />
-                                </FXCollections>
-                            </items>
-                        </ChoiceBox>
+                        <ChoiceBox fx:id="stages" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="Price per ticket:" GridPane.rowIndex="2">
                             <padding>
                                 <Insets right="10.0" />
