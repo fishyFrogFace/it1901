@@ -19,7 +19,7 @@ public class BookingApp extends Application {
     private User user;
     private DatabaseHandler dbh;
     private Stage primarystage;
-    private Controller curentController;
+    private Controller currentController;
 
     public static void main(String[] args) {
         launch(args);
@@ -38,7 +38,7 @@ public class BookingApp extends Application {
     public void makeDash() {
         Parent parent = loadGeneric("/Dashboard.fxml", "Dashboard");
         try {
-            ((DashController)curentController).addDashElements(user);
+            ((DashController)currentController).addDashElements(user);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Could not add dashboard elements.");
@@ -64,15 +64,15 @@ public class BookingApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        curentController = loader.getController(); //Set current controller
-        curentController.setApp(this); //register app in controller
+        currentController = loader.getController(); //Set current controller
+        currentController.setApp(this); //register app in controller
         primarystage.setTitle(title);
         return parent;
     }
 
     public void makeArtistView(String artist) {
         Parent parent = loadGeneric("/ArtistView.fxml", artist);
-        ((ArtistViewController) curentController).displayArtist(artist);
+        ((ArtistViewController) currentController).displayArtist(artist);
         setScene(parent);
     }
 
