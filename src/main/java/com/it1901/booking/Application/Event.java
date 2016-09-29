@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import javafx.animation.Animation.Status;
+
 public class Event {
 	
 	private int id;
@@ -32,13 +34,7 @@ public class Event {
 		return status;
 	}
 	
-	public static void main(String[] args) {
-		//Set new event example --> Will delete this soon
-		Event eve =  new Event(3, "Adersbandet", "Storsalen", 15000, Status.PROPOSED);
-		System.out.println(eve.getStatus());
-		eve.SetStatus(Status.DECLINED);
-		System.out.println(eve.getStatus());
-	}
+
 
 	//inserts a new event
     //FIXME is not syncronized with event class
