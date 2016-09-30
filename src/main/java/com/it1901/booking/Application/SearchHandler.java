@@ -3,6 +3,7 @@ package com.it1901.booking.Application;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.time.LocalDate;
 
 public class SearchHandler {
@@ -30,7 +31,7 @@ public class SearchHandler {
                 "ORDER BY genre, ticketsSold";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         prepStatement.setString(1, genre);
-        prepStatement.setObject(2, today);
+        prepStatement.setObject(2, today, Types.DATE);
         return prepStatement.executeQuery();
     }
 
