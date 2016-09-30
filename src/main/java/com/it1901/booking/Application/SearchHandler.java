@@ -73,4 +73,13 @@ public class SearchHandler {
 		prepStatement.setString(1, artist);
 		return prepStatement.executeQuery();
 	}
+	public static ResultSet getSceneCapacity(String scene, DatabaseHandler dbh) throws SQLException {
+		String query = "SELECT maxAudience" + 
+						"FROM stage" +
+						"WHERE name = " + scene;
+		PreparedStatement prepStatement = dbh.prepareQuery(query);
+		prepStatement.setString(1, scene);
+		return prepStatement.executeQuery();
+		
+	}
 }
