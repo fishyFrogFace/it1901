@@ -74,9 +74,9 @@ public class SearchHandler {
 		return prepStatement.executeQuery();
 	}
 	public static ResultSet getSceneCapacity(String scene, DatabaseHandler dbh) throws SQLException {
-		String query = "SELECT maxAudience" + 
-						"FROM stage" +
-						"WHERE name = " + scene;
+		String query = "SELECT maxAudience " + 
+						"FROM stage " +
+						"WHERE name = ?";
 		PreparedStatement prepStatement = dbh.prepareQuery(query);
 		prepStatement.setString(1, scene);
 		return prepStatement.executeQuery();
