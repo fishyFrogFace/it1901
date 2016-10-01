@@ -62,7 +62,10 @@ INSERT INTO concert VALUES
 
 INSERT INTO assigned VALUES
 	(DEFAULT, 7, 4, 1),
-	(DEFAULT, 5, 3, 1);
+	(DEFAULT, 5, 3, 1),
+	(DEFAULT, 5, 4, 2),
+	(DEFAULT, 8, 3, 2),
+	(DEFAULT, 2, 2, 2);
 
 INSERT INTO budgetPost VALUES
 	(DEFAULT, 'Leie av utstyr', 4000, TRUE, 1),
