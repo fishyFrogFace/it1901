@@ -63,5 +63,20 @@ public class Event {
                 .withStageID(rs.getInt(8))
                 .build();
     }
+
+    public ResultSet calendarView(LocalDate basis, DatabaseHandler dbh) throws SQLException {
+		//TODO change to semester view (instead of +-6 months)
+		LocalDate past = basis.plusMonths(6);
+		LocalDate future = basis.minusMonths(6);
+		String query = "SELECT concertID, startDate, artist.artistID, artist.name, genre, state " +
+				"FROM concert, artist, offer " +
+				"WHERE concert.artistID = artist.artistID " +
+				"AND concert.offerID = offer.offerID " +
+				"AND startDate > ? AND startdate < ?";
+		PreparedStatement prepStatement = dbh.prepareQuery(query);
+		prepStatement.setObject(1, past);
+		prepStatement.setObject(2, future);
+		return prepStatement.executeQuery();
+	}
 }
 
