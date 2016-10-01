@@ -81,7 +81,6 @@ public class GenreSearchController extends Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		app.getDatabaseHandler();
-		
+		System.out.println();
 	}
 }

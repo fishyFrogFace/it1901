@@ -33,6 +33,7 @@ public class OfferController extends Controller implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         stages.getItems().setAll(Stage.stages.values());
+        stages.getSelectionModel().selectFirst();
     }
 
     public void onSubmitClick() throws SQLException{
