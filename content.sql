@@ -19,11 +19,11 @@ INSERT INTO employee VALUES
 	'tech', 4);
 
 INSERT INTO stage VALUES
-    (DEFAULT, 'Storsalen', 1000),
-    (DEFAULT, 'Klubben', 400),
-    (DEFAULT, 'Knaus', 200),
-    (DEFAULT, 'Selskapssiden', 50),
-    (DEFAULT, 'Strossa', 150);
+    (DEFAULT, 'Storsalen', 1000, 10000),
+    (DEFAULT, 'Klubben', 400, 5000),
+    (DEFAULT, 'Knaus', 200, 7000),
+    (DEFAULT, 'Selskapssiden', 50, 3000),
+    (DEFAULT, 'Strossa', 150, 8000);
 
 INSERT INTO artist VALUES
     (DEFAULT, 'Michigan J. Frog', 'prosjektarbeidartist@mail.com', 3000, 

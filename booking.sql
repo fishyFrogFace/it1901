@@ -17,8 +17,9 @@ CREATE TABLE employee (
 
 CREATE TABLE stage (
     stageID SERIAL,
-    name TEXT,
+    name TEXT NOT NULL,
     maxAudience INT NOT NULL,
+    price INT NOT NULL,
     PRIMARY KEY(stageID));
 
 CREATE TYPE musicGenre AS ENUM
