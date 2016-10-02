@@ -49,16 +49,42 @@ INSERT INTO artistinfo VALUES
 
 INSERT INTO offer VALUES
 	(DEFAULT, 'pending', 2, NULL),
+	(DEFAULT, 'accepted', 2, 1),
+	(DEFAULT, 'accepted', 2, 1),
 	(DEFAULT, 'pending', 2, NULL),
-	(DEFAULT, 'accepted', 2, 1);
+	(DEFAULT, 'accepted', 2, 1),
+	(DEFAULT, 'declined', 2, 1),
+	(DEFAULT, 'sent', 2, NULL),
+	(DEFAULT, 'declined', 2, 1),
+	(DEFAULT, 'accepted', 2, 1),
+	(DEFAULT, 'declined', 2, 1),
+	(DEFAULT, 'declined', 2, 1);
 
 INSERT INTO email VALUES
-	(DEFAULT, 'Tilbud om spillejobb', 'Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 1);
+	(DEFAULT, 'Tilbud om spillejobb', '1. Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 1),
+	(DEFAULT, 'Tilbud om spillejobb', '2. Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 2),
+	(DEFAULT, 'Tilbud om spillejobb', '3. Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 3),
+	(DEFAULT, 'Tilbud om spillejobb', '4. Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 4),
+	(DEFAULT, 'Tilbud om spillejobb', '5. Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 5),
+	(DEFAULT, 'Tilbud om spillejobb', '6. Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 6),
+	(DEFAULT, 'Tilbud om spillejobb', '7. Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 7),
+	(DEFAULT, 'Tilbud om spillejobb', '8. Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 8),
+	(DEFAULT, 'Tilbud om spillejobb', '9. Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 9),
+	(DEFAULT, 'Tilbud om spillejobb', '10. Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 10),
+	(DEFAULT, 'Tilbud om spillejobb', '11. Hei,\nVi ønsker herved å gi et tilbud til dere, blablabla', 11);
 
 INSERT INTO concert VALUES
-	(DEFAULT, '2016-09-23', 5, 150, NULL, 4, 1, 1),
-	(DEFAULT, '2016-12-24', 6, 200, NULL, 4, 2, 3),
-	(DEFAULT, '2016-08-30', 4, 180, 260, 3, 3, 1);
+	(DEFAULT, '2016-09-23', 5, 150, 326, 4, 1, 1),
+	(DEFAULT, '2016-12-24', 6, 200, 37, 4, 2, 3),
+	(DEFAULT, '2016-08-30', 4, 180, 260, 3, 3, 1),
+	(DEFAULT, '2016-10-03', 6, 200, 0, 1, 4, 2),
+	(DEFAULT, '2016-10-04', 3, 100, 47, 2, 5, 3),
+	(DEFAULT, '2016-10-06', 4, 300, 0, 4, 6, 1),
+	(DEFAULT, '2016-10-07', 5, 100, 0, 3, 7, 2),
+	(DEFAULT, '2016-10-07', 6, 150, 0, 5, 8, 2),
+	(DEFAULT, '2016-10-08', 4, 175, 459, 1, 9, 1),
+	(DEFAULT, '2016-10-08', 4, 200, 0, 2, 10, 1),
+	(DEFAULT, '2016-10-08', 4, 350, 0, 4, 11, 1);
 
 INSERT INTO assigned VALUES
 	(DEFAULT, 7, 4, 1),

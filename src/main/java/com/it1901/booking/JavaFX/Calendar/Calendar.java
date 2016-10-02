@@ -34,31 +34,37 @@ public class Calendar extends Application {
 
 		GridPane calendar = new GridPane();
 
-		LocalDate today = LocalDate.now();
+		LocalDate today = LocalDate.now().plusDays(1);
 		LocalDate startOfWeek = today.minusDays(today.getDayOfWeek().getValue() - 1);
 		LocalDate endOfWeek = startOfWeek.plusDays(6);
 
-		for (LocalDate date = startOfWeek; !date.isAfter(endOfWeek); date = date.plusDays(1)) {
-			int slotIndex = 1;
+		try {
+			ResultSet rs = getCalendarContent(today, startOfWeek, endOfWeek, dbh);
+            rs.next();
+			for (LocalDate date = startOfWeek; !date.isAfter(endOfWeek); date = date.plusDays(1)) {
+				int slotIndex = 1;
 
-			for (stages stage : stages.values()) {
-				VBox eventsToday = new VBox();
+				for (stages stage : stages.values()) {
+					VBox eventsToday = new VBox();
 
-				try {
-					ResultSet rs = getCalendarContent(today, dbh);
-					while (rs.next()) {
-
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
+                    //stop before rs.next() == false without moving too fast through the rs
+                    System.out.println("1. Date: "+date+" startDate: "+rs.getDate(2).toLocalDate().toString());
+                    while (rs.getDate(2).toLocalDate().equals(date) && rs.getString(7).equals(stage.toString())) {
+                        System.out.println("2. Date: "+date+" startDate: "+rs.getDate(2).toLocalDate().toString());
+                        eventsToday.getChildren().add(new Button(' ' + rs.getInt(1) + " fdfk"));
+                        rs.next();
+                    }
+                    VBox concert = new VBox();
+                    eventsToday.getChildren().add(concert);
+					calendar.add(eventsToday, date.getDayOfWeek().getValue(), slotIndex);
+					slotIndex++;
 				}
-				VBox concert = new VBox();
-				eventsToday.getChildren().add(concert);
-
-				calendar.add(eventsToday, date.getDayOfWeek().getValue(), slotIndex);
-				slotIndex++;
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+
+
 
 		//labels for dates (top) and stages (side)
 		DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("E\nMMM d");
@@ -88,21 +94,19 @@ public class Calendar extends Application {
 		primaryStage.show();
 	}
 
-	private static ResultSet getCalendarContent(LocalDate basis, DatabaseHandler dbh) throws SQLException {
-		//TODO change to semester view (instead of +-6 months)
-		LocalDate past = basis.plusWeeks(5);
-		LocalDate future = basis.minusWeeks(5);
+	private static ResultSet getCalendarContent(LocalDate basis, LocalDate startOfWeek,
+												LocalDate endOfWeek, DatabaseHandler dbh) throws SQLException {
 		String query = "SELECT concertID, startDate, artist.artistID, artist.name, genre, state, stage.name " +
 				"FROM concert, artist, offer, stage " +
 				"WHERE concert.artistID = artist.artistID " +
 				"AND concert.offerID = offer.offerID " +
 				"AND concert.stageID = stage.stageID " +
 				"AND startDate > ? " +
-				"AND startdate < ? " +
+				"AND startDate < ? " +
 				"ORDER BY startDate, stage.name";
 		PreparedStatement prepStatement = dbh.prepareQuery(query);
-		prepStatement.setObject(1, past);
-		prepStatement.setObject(2, future);
+		prepStatement.setObject(1, startOfWeek.minusDays(1));
+		prepStatement.setObject(2, endOfWeek.plusDays(1));
 		return prepStatement.executeQuery();
 	}
 
