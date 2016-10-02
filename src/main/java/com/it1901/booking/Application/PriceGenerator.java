@@ -54,19 +54,4 @@ public class PriceGenerator {
 		System.out.println("The artist fee is: " + artistPrice);
 		return artistPrice;
 	}
-	
-	
-//	public static void main(String[] args) throws SQLException {
-//		dtb = new DatabaseHandler("org.postgresql.Driver",
-//                "jdbc:postgresql://52.40.176.177:5432/booking",
-//                "team",
-//                "it1901");
-//		
-//		PriceGenerator pr = new PriceGenerator();
-//		System.out.println("heyu");
-//		pr.getArtistFee("Bob Marley", dtb);
-//		
-//		
-//		
-//	}
 }
