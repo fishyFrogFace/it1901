@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class PriceGenerator {
 	
 	int ticketPrice;
-	int artistPrice = 20000;
+	int artistPrice;
 	int scenePrice;
 	int capacity;
 		
@@ -15,14 +15,14 @@ public class PriceGenerator {
 	//7. Som bookingsjef ønsker jeg å kunne få generert et forslag til billettpris som tar høyde for markedsinformasjon
 	//og faktiske kostnader, og få forslag til billettpris på scener med ulik størrelse slik at konserter går i økonomisk balanse.
 	//artist pris. 
-	PriceGenerator(){
-		
-	}
-	public float computeTicketPrice(String scene) throws SQLException{
+	
+	public float computeTicketPrice(int fee, int scenePrice, int max) throws SQLException{
 		//Compute a ticketprice from a set of variables. 
-		getSceneCapacity(scene, dtb);
-		System.out.println("Kapasitet " + capacity);
+		System.out.println("Pris på artist " + fee);
 		System.out.println("Pris på scene: " + scenePrice);
+		System.out.println("Antall plasser: " + max);
+		int totalcost = fee + scenePrice;
+		int ticketPrice = totalcost/max;
 		
 		return ticketPrice;
 	}
@@ -46,21 +46,27 @@ public class PriceGenerator {
 		return scenePrice;
 	}
 	//Get price of artist. 
-	public int getArtistFee(String artist, DatabaseHandler dbh){
+	public int getArtistFee(String artist, DatabaseHandler dbh) throws SQLException{
+		ResultSet res = SearchHandler.getArtistKey(artist, dbh);
+		while (res.next()){
+			artistPrice = res.getInt(7);
+		}
+		System.out.println("The artist fee is: " + artistPrice);
 		return artistPrice;
 	}
 	
 	
-	public static void main(String[] args) throws SQLException {
-		dtb = new DatabaseHandler("org.postgresql.Driver",
-                "jdbc:postgresql://52.40.176.177:5432/booking",
-                "team",
-                "it1901");
-		
-		PriceGenerator pr = new PriceGenerator();
-		pr.getSceneCapacity("Storsalen", dtb);
-		
-		
-		
-	}
+//	public static void main(String[] args) throws SQLException {
+//		dtb = new DatabaseHandler("org.postgresql.Driver",
+//                "jdbc:postgresql://52.40.176.177:5432/booking",
+//                "team",
+//                "it1901");
+//		
+//		PriceGenerator pr = new PriceGenerator();
+//		System.out.println("heyu");
+//		pr.getArtistFee("Bob Marley", dtb);
+//		
+//		
+//		
+//	}
 }
