@@ -21,7 +21,7 @@ public class DashController extends Controller {
         //TODO Add appropriate elemets for this type of user
         switch (user.getUserType()) {
             case "administrator":
-                //createButton("Price calculator", event -> app.placeHolder());
+                createButton("Price calculator", event -> app.makePriceGenerator());
                 //createButton("Concert rapports", event -> app.placeHolder());
                 //createButton("View events", event -> app.placeHolder());
                 //createButton("Review offers", event -> app.placeHolder());

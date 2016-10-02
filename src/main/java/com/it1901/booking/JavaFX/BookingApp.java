@@ -53,6 +53,10 @@ public class BookingApp extends Application {
     public void makeSearchGenre(){
     	setScene(loadGeneric("/InformationByGenre.fxml", "Search by genre"));
     }
+    public void makePriceGenerator(){
+    	setScene(loadGeneric("/CalculatePrice.fxml", "Get ticketprice"));
+    }
+    
     public void makeTable(){
     	setScene(loadGeneric("/TableController.fxml", "Table"));
     }
