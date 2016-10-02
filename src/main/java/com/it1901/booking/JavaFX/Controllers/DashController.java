@@ -18,7 +18,7 @@ public class DashController extends Controller {
 
     public void addDashElements(User user) throws IOException {
         userType.setText(user.getUserType());
-        //TODO Add appropriate elemets for this type of user
+        //TODO Add appropriate elements for this type of user
         switch (user.getUserType()) {
             case "administrator":
                 //createButton("Price calculator", event -> app.placeHolder());

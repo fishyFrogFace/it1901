@@ -53,9 +53,11 @@ public class BookingApp extends Application {
     public void makeSearchGenre(){
     	setScene(loadGeneric("/InformationByGenre.fxml", "Search by genre"));
     }
+
     public void makeTable(){
     	setScene(loadGeneric("/TableController.fxml", "Table"));
     }
+
     public Parent loadGeneric(String path, String title) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path)); //need instantiated loader to get controller
         Parent parent = null; //Loads fxml
