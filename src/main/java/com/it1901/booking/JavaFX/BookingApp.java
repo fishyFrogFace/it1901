@@ -58,6 +58,10 @@ public class BookingApp extends Application {
     	setScene(loadGeneric("/TableController.fxml", "Table"));
     }
 
+    public void makeCalendar() {
+        setScene(loadGeneric("/Calendar.fxml", "Calendar"));
+    }
+
     public Parent loadGeneric(String path, String title) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path)); //need instantiated loader to get controller
         Parent parent = null; //Loads fxml

@@ -32,7 +32,7 @@ public class Calendar {
     }
 
     //returns a calendar GridPane loaded with this week's concerts
-	public GridPane createCalendar(DatabaseHandler dbh) {
+	public GridPane createCalendar(DatabaseHandler dbh) throws SQLException {
 
         calGrid.getStyleClass().addAll("pane", "grid");
 
@@ -43,8 +43,7 @@ public class Calendar {
 		return calGrid;
 	}
 
-	private void loadConcerts(DatabaseHandler dbh) {
-        try {
+	private void loadConcerts(DatabaseHandler dbh) throws SQLException {
             ResultSet rs = getCalendarContent(basis, startOfWeek, endOfWeek, dbh);
             rs.next();
             for (LocalDate date = startOfWeek; !date.isAfter(endOfWeek); date = date.plusDays(1)) {
@@ -59,7 +58,7 @@ public class Calendar {
                                     rs.getDate(2).toLocalDate().equals(date) &&
                                     rs.getString(7).equals(stage.toString())
                             ) {
-                        eventsToday.getChildren().add(concertButton(eventsToday, rs));
+                        eventsToday.getChildren().add(concertButton(rs));
                         rs.next();
                     }
 
@@ -67,9 +66,6 @@ public class Calendar {
                     slotIndex++;
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
 	private static ResultSet getCalendarContent(LocalDate basis, LocalDate startOfWeek,
@@ -88,7 +84,7 @@ public class Calendar {
 		return prepStatement.executeQuery();
 	}
 
-	private Button concertButton(VBox eventsToday, ResultSet rs) throws SQLException {
+	private Button concertButton(ResultSet rs) throws SQLException {
         String concertText = rs.getString(4) + '\n' + rs.getString(5) + '\n' + rs.getString(6);
         Button newBtn = new ConcertButton(concertText, rs.getInt(1));
 

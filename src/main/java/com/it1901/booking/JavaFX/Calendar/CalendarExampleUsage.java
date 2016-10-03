@@ -7,6 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class CalendarExampleUsage extends Application {
@@ -19,7 +20,12 @@ public class CalendarExampleUsage extends Application {
                 "it1901");
 
         Calendar calendar = new Calendar(LocalDate.now());
-        GridPane calGrid = calendar.createCalendar(dbh);
+        GridPane calGrid = null;
+        try {
+            calGrid = calendar.createCalendar(dbh);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         ScrollPane scroller = new ScrollPane(calGrid);
 
         Scene scene = new Scene(scroller);
