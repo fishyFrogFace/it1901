@@ -53,9 +53,12 @@ public class Calendar extends Application {
 					VBox eventsToday = new VBox();
                     eventsToday.getStyleClass().addAll("pane", "vbox");
 
-                    //stop before rs.next() == false without moving too fast through the rs
-                    System.out.println("1. Date: "+date+" startDate: "+rs.getDate(2).toLocalDate().toString());
-                    while (rs.getDate(2).toLocalDate().equals(date) && rs.getString(7).equals(stage.toString())) {
+                    //loop through grid works now
+                    while (
+                            !rs.isAfterLast() &&
+                            rs.getDate(2).toLocalDate().equals(date) &&
+                            rs.getString(7).equals(stage.toString())
+                            ) {
                         System.out.println("2. Date: "+date+" startDate: "+rs.getDate(2).toLocalDate().toString());
                         Button newBtn = new Button(' ' + rs.getInt(1) + " fdfk");
                         String state = rs.getString(6);
@@ -72,9 +75,7 @@ public class Calendar extends Application {
                             newBtn.setStyle("-fx-base: red");
                         }
                         eventsToday.getChildren().add(newBtn);
-                        if(!rs.next()) {
-                            break;
-                        }
+                        rs.next();
                     }
 
 					calendar.add(eventsToday, date.getDayOfWeek().getValue(), slotIndex);
