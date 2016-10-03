@@ -25,6 +25,9 @@ import com.it1901.booking.Application.Stage.stages;
 public class Calendar extends Application {
 
 	@Override
+    //TODO break into smaller methods and remove main
+    //is going to be changed to a method that returns the calendar GridPane
+    //so it can be embedded in other elements as child
 	public void start(Stage primaryStage) {
 		DatabaseHandler dbh = new DatabaseHandler(
 				"org.postgresql.Driver",
@@ -33,7 +36,9 @@ public class Calendar extends Application {
 				"it1901");
 
 		GridPane calendar = new GridPane();
+        calendar.getStyleClass().addAll("pane", "grid");
 
+        //FIXME remove adding of a day to today
 		LocalDate today = LocalDate.now().plusDays(1);
 		LocalDate startOfWeek = today.minusDays(today.getDayOfWeek().getValue() - 1);
 		LocalDate endOfWeek = startOfWeek.plusDays(6);
@@ -46,16 +51,32 @@ public class Calendar extends Application {
 
 				for (stages stage : stages.values()) {
 					VBox eventsToday = new VBox();
+                    eventsToday.getStyleClass().addAll("pane", "vbox");
 
                     //stop before rs.next() == false without moving too fast through the rs
                     System.out.println("1. Date: "+date+" startDate: "+rs.getDate(2).toLocalDate().toString());
                     while (rs.getDate(2).toLocalDate().equals(date) && rs.getString(7).equals(stage.toString())) {
                         System.out.println("2. Date: "+date+" startDate: "+rs.getDate(2).toLocalDate().toString());
-                        eventsToday.getChildren().add(new Button(' ' + rs.getInt(1) + " fdfk"));
-                        rs.next();
+                        Button newBtn = new Button(' ' + rs.getInt(1) + " fdfk");
+                        String state = rs.getString(6);
+                        if (state.equals("pending")) {
+                            newBtn.setStyle("-fx-base: blue"); //TODO move to css
+                        }
+                        else if (state.equals("accepted")) {
+                            newBtn.setStyle("-fx-base: green");
+                        }
+                        else if (state.equals("sent")) {
+                            newBtn.setStyle("-fx-base: yellow");
+                        }
+                        else if (state.equals("declined")) {
+                            newBtn.setStyle("-fx-base: red");
+                        }
+                        eventsToday.getChildren().add(newBtn);
+                        if(!rs.next()) {
+                            break;
+                        }
                     }
-                    VBox concert = new VBox();
-                    eventsToday.getChildren().add(concert);
+
 					calendar.add(eventsToday, date.getDayOfWeek().getValue(), slotIndex);
 					slotIndex++;
 				}
@@ -89,7 +110,7 @@ public class Calendar extends Application {
 		ScrollPane scroller = new ScrollPane(calendar);
 
 		Scene scene = new Scene(scroller);
-		scene.getStylesheets().add(getClass().getResource("/calendar-view.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/calendar.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

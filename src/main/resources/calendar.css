@@ -1,0 +1,9 @@
+.vbox {
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-background-color: white;
+}
+
+.grid {
+    -fx-padding: 5px;
+}
