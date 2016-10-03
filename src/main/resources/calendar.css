@@ -7,3 +7,23 @@
 .grid {
     -fx-padding: 5px;
 }
+
+.concert {
+    -fx-text-alignment: center;
+}
+
+.pending {
+    -fx-base: blue
+}
+
+.accepted {
+    -fx-base: green
+}
+
+.sent {
+    -fx-base: yellow
+}
+
+.declined {
+    -fx-base: red
+}
