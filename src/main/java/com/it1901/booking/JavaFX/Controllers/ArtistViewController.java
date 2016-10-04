@@ -60,6 +60,5 @@ public class ArtistViewController extends Controller {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //Need get___(artist) methods first
     }
 }
