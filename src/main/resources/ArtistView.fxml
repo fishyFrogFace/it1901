@@ -28,15 +28,7 @@
                         <Separator prefWidth="200.0" />
                      </children>
                   </VBox>
-                  <TableView fx:id="artistConcerts">
-                    <columns>
-                      <TableColumn prefWidth="30.0" text="ID" />
-                      <TableColumn prefWidth="75.0" text="Stage ID" />
-                        <TableColumn prefWidth="75.0" text="Ticket Price" />
-                        <TableColumn prefWidth="75.0" text="Tickets Sold" />
-                        <TableColumn prefWidth="75.0" text="Duration" />
-                    </columns>
-                  </TableView>
+                  <AnchorPane fx:id="tableAnchor" prefHeight="200.0" prefWidth="200.0" />
                </items>
             </SplitPane>
          </center>
