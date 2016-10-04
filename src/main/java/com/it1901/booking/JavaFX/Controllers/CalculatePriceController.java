@@ -22,6 +22,7 @@ public class CalculatePriceController extends Controller {
 	public void onComputeClicked() throws SQLException{
 		PriceGenerator price = new PriceGenerator();
 		tekst = tField.getText();
+		tekst.toLowerCase();
 		scene = choose.getValue().toString();
 		int fee = price.getArtistFee(tekst, app.getDatabaseHandler());
 		int scenePrice = price.getScenePrice(scene, app.getDatabaseHandler());
@@ -29,7 +30,7 @@ public class CalculatePriceController extends Controller {
 		float ticketPrice = price.computeTicketPrice(fee, scenePrice, maxAttendance);
 		System.out.println("ticketprice:" + ticketPrice);
 		ObservableList<String> tPrice = FXCollections.observableArrayList();
-		String thePrice = "Calculated ticketprice: " + ticketPrice;
+		String thePrice = "Calculated ticketprice: " + ticketPrice + "Kr";
 		tPrice.add(thePrice);
 		veiw.setItems(tPrice);
 
