@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
+import org.controlsfx.control.table.TableFilter;
 
 import java.sql.Array;
 import java.sql.ResultSet;
@@ -45,6 +46,7 @@ public class TableViewMaker {
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
+        TableFilter filter = new TableFilter(tableView);
         return tableView;
     }
 
