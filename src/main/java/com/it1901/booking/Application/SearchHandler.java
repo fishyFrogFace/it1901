@@ -79,8 +79,19 @@ public class SearchHandler {
 						"WHERE name = ?";
 		PreparedStatement prepStatement = dbh.prepareQuery(query);
 		prepStatement.setString(1, scene);
+		String text = "";
 		return prepStatement.executeQuery();
 		
+	}
+	
+	public static ResultSet getSentOffers(DatabaseHandler dbh) throws SQLException {
+		String query = "SELECT offer.offerID, concert.offerID, concert.artistID, artist.artistID, artist.name " +
+					   "FROM offer, concert, artist " + 
+					   "WHERE state = 'pending' " +
+					   "AND offer.offerID = concert.offerID " +
+					   "AND concert.artistID = artist.artistID";
+		PreparedStatement prepStatement = dbh.prepareQuery(query);
+		return prepStatement.executeQuery();
 	}
 	
 }
