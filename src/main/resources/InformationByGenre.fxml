@@ -35,9 +35,9 @@
     <AnchorPane fx:id="tableAnchor" minHeight="200.0" minWidth="200.0" prefHeight="400.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-    <AnchorPane minHeight="100.0" minWidth="120.0" prefHeight="100.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+    <AnchorPane minHeight="100.0" minWidth="120.0" prefHeight="140.0" prefWidth="160.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
