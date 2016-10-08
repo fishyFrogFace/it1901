@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import java.io.IOException;
+import java.time.LocalDate;
 
 
 public class DashController extends Controller {
@@ -18,16 +19,17 @@ public class DashController extends Controller {
 
     public void addDashElements(User user) throws IOException {
         userType.setText(user.getUserType());
-        //TODO Add appropriate elemets for this type of user
+        //TODO Add appropriate elements for this type of user
         switch (user.getUserType()) {
             case "administrator":
                 createButton("Price calculator", event -> app.makePriceGenerator());
+                createButton("Calendar", event -> app.makeCalendar(LocalDate.now()));
                 //createButton("Concert rapports", event -> app.placeHolder());
                 //createButton("View events", event -> app.placeHolder());
                 //createButton("Review offers", event -> app.placeHolder());
                 createButton("Example of artist view", event -> app.makeArtistView("Super Mario"));
             case "booker":
-                //createButton("Seach by concert", event -> app.placeHolder());
+                //createButton("Search by concert", event -> app.placeHolder());
                 createButton("Search by artist", event -> app.makeSearchArtist());
                 createButton("Opprett tilbud", event -> app.makeOffer());
                 createButton("Search by genre", event -> app.makeSearchGenre());
@@ -47,5 +49,4 @@ public class DashController extends Controller {
         btn.setPrefSize(160, 80); //FIXME flytt dette til css
         btnContainer.getChildren().add(btn);
     }
-
 }

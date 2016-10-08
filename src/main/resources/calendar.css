@@ -1,0 +1,31 @@
+.vbox {
+    -fx-background-color: white;
+}
+
+.grid {
+    -fx-padding: 5px;
+    -fx-background-color: f4f4f4;
+    -fx-padding: 2;
+    -fx-hgap: 2;
+    -fx-vgap: 2;
+}
+
+.concert {
+    -fx-text-alignment: center;
+}
+
+.pending {
+    -fx-base: #adadeb;
+}
+
+.accepted {
+    -fx-base: #b3ffcc;
+}
+
+.sent {
+    -fx-base: #ffff99;
+}
+
+.declined {
+    -fx-base: #ffb3b3;
+}
