@@ -17,9 +17,10 @@ public class CalendarContainer {
     private final BorderPane mainContainer;
     private final Calendar calendar;
     private final BookingApp app;
-    private final Button prev = new Button("<");
+    private final Button prev = new Button("<"); //unsure of these buttons
     private final Button next = new Button(">");
-    private final static Button goToDate = new Button("Go");
+    //maybe just add buttons to all events
+    //that need a status change
 
     public CalendarContainer(LocalDate basis, BookingApp app) {
         this.calendar = new Calendar(basis);
@@ -36,6 +37,7 @@ public class CalendarContainer {
         BorderPane.setAlignment(datePicker, Pos.CENTER);
         mainContainer.setTop(datePicker);
         //TODO add buttons to show all pending/sent event and change status to declined/sent
+        //should be added to sides of BorderPane
 
         return mainContainer;
     }
@@ -48,6 +50,7 @@ public class CalendarContainer {
             calGrid = new GridPane();
             Text errorMessage = new Text("Could not connect to the database");
             calGrid.getChildren().add(errorMessage);
+            e.printStackTrace();
         }
         return calGrid;
     }

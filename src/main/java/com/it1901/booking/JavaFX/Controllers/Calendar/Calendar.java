@@ -8,12 +8,14 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 import com.it1901.booking.Application.DatabaseHandler;
+import com.it1901.booking.JavaFX.BookingApp;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 import com.it1901.booking.Application.Stage.stages;
@@ -43,27 +45,37 @@ public class Calendar {
 
 	private void loadConcerts(DatabaseHandler dbh) throws SQLException {
             ResultSet rs = getCalendarContent(startOfWeek, endOfWeek, dbh);
-            rs.next();
+
+            Boolean noConcerts = rsIsEmpty(rs);
+
             for (LocalDate date = startOfWeek; !date.isAfter(endOfWeek); date = date.plusDays(1)) {
                 int slotIndex = 1;
 
                 for (stages stage : stages.values()) {
                     VBox eventsToday = addVBox();
-
-                    while (
-                            !rs.isAfterLast() &&
-                                    rs.getDate(2).toLocalDate().equals(date) &&
-                                    rs.getString(7).equals(stage.toString())
-                            ) {
-                        Button btn = concertButton(rs);
-                        eventsToday.getChildren().add(btn);
-                        rs.next();
+                    if (!noConcerts) {
+                        while (
+                                !rs.isAfterLast() &&
+                                        rs.getDate(2).toLocalDate().equals(date) &&
+                                        rs.getString(7).equals(stage.toString())
+                                ) {
+                            Button btn = concertButton(rs);
+                            eventsToday.getChildren().add(btn);
+                            rs.next();
+                        }
                     }
-
                     calGrid.add(eventsToday, date.getDayOfWeek().getValue(), slotIndex);
                     slotIndex++;
                 }
             }
+    }
+
+    private Boolean rsIsEmpty(ResultSet rs) throws SQLException {
+        if (rs.next()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 	private static ResultSet getCalendarContent(LocalDate startOfWeek, LocalDate endOfWeek,
@@ -111,7 +123,7 @@ public class Calendar {
         VBox eventsToday = new VBox();
         eventsToday.getStyleClass().addAll("pane", "vbox");
         eventsToday.setPrefWidth(110);
-        eventsToday.setPrefHeight(60);
+        eventsToday.setMinHeight(60);
         // TODO: add mouse click event -> new offer
         return eventsToday;
     }
@@ -120,11 +132,11 @@ public class Calendar {
         DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("E\nMMM d");
 
         for (LocalDate date = startOfWeek; !date.isAfter(endOfWeek); date = date.plusDays(1)) {
-            Label label = new Label(date.format(dayFormatter));
-            label.setPadding(new Insets(1));
-            label.setTextAlignment(TextAlignment.CENTER);
-            GridPane.setHalignment(label, HPos.CENTER);
-            calGrid.add(label, date.getDayOfWeek().getValue(), 0);
+            Text dateText = new Text(date.format(dayFormatter));
+            dateText.setTextAlignment(TextAlignment.CENTER);
+            dateText.getStyleClass().addAll("pane", "label");
+            GridPane.setHalignment(dateText, HPos.CENTER);
+            calGrid.add(dateText, date.getDayOfWeek().getValue(), 0);
         }
     }
 
@@ -133,7 +145,7 @@ public class Calendar {
         for (stages stage : stages.values()) {
             Label label = new Label(stage.toString());
             label.setPadding(new Insets(2));
-            GridPane.setHalignment(label, HPos.RIGHT);
+            GridPane.setHalignment(label, HPos.CENTER);
             calGrid.add(label, 0, slotIndex);
             slotIndex++;
         }
