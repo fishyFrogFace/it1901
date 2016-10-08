@@ -4,10 +4,10 @@ import com.it1901.booking.Application.DatabaseHandler;
 import com.it1901.booking.JavaFX.BookingApp;
 import com.it1901.booking.JavaFX.Controllers.Calendar.Calendar;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.sql.SQLException;
@@ -32,10 +32,10 @@ public class CalendarContainer {
         GridPane calGrid = getCalendar(dbh);
         mainContainer.setCenter(calGrid);
 
-        DatePicker datePicker = new DatePicker();
-        datePicker.setOnAction(event -> app.makeCalendar(datePicker.getValue()));
-        BorderPane.setAlignment(datePicker, Pos.CENTER);
-        mainContainer.setTop(datePicker);
+        VBox header = createHeader();
+
+        BorderPane.setAlignment(header, Pos.CENTER);
+        mainContainer.setTop(header);
         //TODO add buttons to show all pending/sent event and change status to declined/sent
         //should be added to sides of BorderPane
 
@@ -53,6 +53,28 @@ public class CalendarContainer {
             e.printStackTrace();
         }
         return calGrid;
+    }
+
+    private VBox createHeader() {
+        VBox header = new VBox();
+        header.setAlignment(Pos.CENTER);
+
+        MenuBar menuBar = createMenu();
+
+        DatePicker datePicker = new DatePicker();
+        datePicker.setOnAction(event -> app.makeCalendar(datePicker.getValue()));
+        header.getChildren().addAll(menuBar, datePicker);
+        return header;
+    }
+
+    private MenuBar createMenu() {
+        MenuBar menuBar = new MenuBar();
+        Menu menu = new Menu("Navigation");
+        MenuItem logout = new MenuItem("Dashboard");
+        logout.setOnAction(event ->  app.makeDash());
+        menu.getItems().add(logout);
+        menuBar.getMenus().add(menu);
+        return menuBar;
     }
 
 }
