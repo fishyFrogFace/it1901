@@ -108,4 +108,15 @@ public class SearchHandler {
 		return prepStatement.executeQuery();
 	}
 	
+	public static ResultSet getAllArtists(DatabaseHandler dbh) throws SQLException{
+		System.out.println("im in");
+		String query = "SELECT name " +
+                "FROM artist ";
+          
+		System.out.println("funker");
+        PreparedStatement prepStatement = dbh.prepareQuery(query);
+        return prepStatement.executeQuery();
+		
+		
+	}
 }

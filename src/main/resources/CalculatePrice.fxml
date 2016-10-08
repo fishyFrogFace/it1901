@@ -8,7 +8,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -18,7 +17,7 @@
       <VBox layoutY="14.0" prefHeight="140.0" prefWidth="168.0">
          <children>
             <VBox prefHeight="24.0" prefWidth="311.0" />
-            <Label text="Select scene:">
+            <Label text="Velg scene:">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
                </VBox.margin>
@@ -28,16 +27,16 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" />
                </VBox.margin>
             </ChoiceBox>
-            <Label text="Type in band/ artist name">
+            <Label text="Velg artist">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="tField" promptText="Artist">
+            <ChoiceBox fx:id="artist" prefWidth="150.0">
                <VBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" />
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
-            </TextField>
+            </ChoiceBox>
          </children>
       </VBox>
       <HBox layoutX="161.0" layoutY="70.0" prefHeight="55.0" prefWidth="200.0" />
@@ -57,6 +56,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="compute" layoutX="168.0" layoutY="125.0" mnemonicParsing="false" onAction="#onComputeClicked" text="Compute" />
+      <Button fx:id="compute" layoutX="175.0" layoutY="125.0" mnemonicParsing="false" onAction="#onComputeClicked" text="Regn ut bilettpris" />
+      <Button fx:id="knapp" layoutX="175.0" layoutY="58.0" mnemonicParsing="false" onAction="#generateSuggestion" text="Hent artister og scener" />
    </children>
 </AnchorPane>
