@@ -1,14 +1,14 @@
 package com.it1901.booking.JavaFX.Controllers;
 
-import com.it1901.booking.Application.DatabaseHandler;
 import com.it1901.booking.Application.SearchHandler;
+import com.it1901.booking.Application.TableViewMaker;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class ArtistViewController extends Controller {
 
@@ -34,7 +34,7 @@ public class ArtistViewController extends Controller {
     private Label artistSold;
 
     @FXML
-    private TableView<List<String>> artistConcerts;
+    private AnchorPane tableAnchor;
 
     public void displayArtist(String artist) {
 
@@ -51,21 +51,10 @@ public class ArtistViewController extends Controller {
             } else {
                 System.out.println("artist not found");
             }
-            /*ResultSet concertRS = SearchHandler.getPreviousConcerts(artist, dbh);
-            if (concertRS.next()) {
-                List row = new ArrayList();
-                row.add(concertRS.getString("concertID"));
-                row.add(concertRS.getString("stageID"));
-                row.add(concertRS.getString("ticketPrice"));
-                row.add(concertRS.getString("ticketsSold"));
-                row.add(concertRS.getString("duration"));
-                artistConcerts.getItems().add(row);
-            } else {
-                System.out.println("no concerts found");
-            }*/
+            ResultSet concertRS = SearchHandler.getPreviousConcerts(artist, app.getDatabaseHandler());
+            tableAnchor.getChildren().add(TableViewMaker.makeTable(concertRS, Arrays.asList("ID", "Duration", "Price", "Sold", "Stage")));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //Need get___(artist) methods first
     }
 }
