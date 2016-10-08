@@ -22,16 +22,30 @@ public class SearchHandler {
     //fetches stage and ticketsSold for concerts in a genre
     public static ResultSet eventsByGenre(String genre, DatabaseHandler dbh) throws SQLException {
         LocalDate today = LocalDate.now();
-        String query = "SELECT concert.concertID, genre, ticketsSold, stage.name, artist.name " +
-                "FROM concert, stage, artist " +
-                "WHERE genre = ?::musicgenre " +
-                "AND concert.artistID = artist.artistID " +
-                "AND concert.stageID = stage.stageID " +
-                "AND startDate < ? " +
-                "ORDER BY genre, ticketsSold";
-        PreparedStatement prepStatement = dbh.prepareQuery(query);
-        prepStatement.setString(1, genre);
-        prepStatement.setObject(2, today, Types.DATE);
+        String query;
+        PreparedStatement prepStatement;
+        if (genre.isEmpty()) {
+            System.out.println("yp");
+            query = "SELECT concert.concertID, genre, ticketsSold, stage.name, artist.name " +
+                    "FROM concert, stage, artist " +
+                    "WHERE concert.artistID = artist.artistID " +
+                    "AND concert.stageID = stage.stageID " +
+                    "AND startDate < ? " +
+                    "ORDER BY genre, ticketsSold";
+            prepStatement = dbh.prepareQuery(query);
+            prepStatement.setObject(1, today, Types.DATE);
+        } else {
+            query = "SELECT concert.concertID, genre, ticketsSold, stage.name, artist.name " +
+                    "FROM concert, stage, artist " +
+                    "WHERE genre = ?::musicgenre " +
+                    "AND concert.artistID = artist.artistID " +
+                    "AND concert.stageID = stage.stageID " +
+                    "AND startDate < ? " +
+                    "ORDER BY genre, ticketsSold";
+            prepStatement = dbh.prepareQuery(query);
+            prepStatement.setString(1, genre);
+            prepStatement.setObject(2, today, Types.DATE);
+        }
         return prepStatement.executeQuery();
     }
 
