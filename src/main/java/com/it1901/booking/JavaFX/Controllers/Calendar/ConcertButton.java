@@ -1,4 +1,4 @@
-package com.it1901.booking.JavaFX.Calendar;
+package com.it1901.booking.JavaFX.Controllers.Calendar;
 
 import javafx.scene.control.Button;
 

@@ -1,4 +1,4 @@
-package com.it1901.booking.JavaFX.Calendar;
+package com.it1901.booking.JavaFX.Controllers.Calendar;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,13 +20,11 @@ import com.it1901.booking.Application.Stage.stages;
 
 public class Calendar {
 
-    private final LocalDate basis;
     private final LocalDate startOfWeek;
     private final LocalDate endOfWeek;
-    private GridPane calGrid = new GridPane();
+    private final GridPane calGrid = new GridPane();
 
     public Calendar(LocalDate basis) {
-        this.basis = LocalDate.now();
         this.startOfWeek = basis.minusDays(basis.getDayOfWeek().getValue() - 1);
         this.endOfWeek = startOfWeek.plusDays(6);
     }
@@ -44,21 +42,21 @@ public class Calendar {
 	}
 
 	private void loadConcerts(DatabaseHandler dbh) throws SQLException {
-            ResultSet rs = getCalendarContent(basis, startOfWeek, endOfWeek, dbh);
+            ResultSet rs = getCalendarContent(startOfWeek, endOfWeek, dbh);
             rs.next();
             for (LocalDate date = startOfWeek; !date.isAfter(endOfWeek); date = date.plusDays(1)) {
                 int slotIndex = 1;
 
                 for (stages stage : stages.values()) {
-                    VBox eventsToday = new VBox();
-                    eventsToday.getStyleClass().addAll("pane", "vbox");
+                    VBox eventsToday = addVBox();
 
                     while (
                             !rs.isAfterLast() &&
                                     rs.getDate(2).toLocalDate().equals(date) &&
                                     rs.getString(7).equals(stage.toString())
                             ) {
-                        eventsToday.getChildren().add(concertButton(rs));
+                        Button btn = concertButton(rs);
+                        eventsToday.getChildren().add(btn);
                         rs.next();
                     }
 
@@ -68,8 +66,8 @@ public class Calendar {
             }
     }
 
-	private static ResultSet getCalendarContent(LocalDate basis, LocalDate startOfWeek,
-												LocalDate endOfWeek, DatabaseHandler dbh) throws SQLException {
+	private static ResultSet getCalendarContent(LocalDate startOfWeek, LocalDate endOfWeek,
+                                                DatabaseHandler dbh) throws SQLException {
 		String query = "SELECT concertID, startDate, artist.artistID, artist.name, genre, state, stage.name " +
 				"FROM concert, artist, offer, stage " +
 				"WHERE concert.artistID = artist.artistID " +
@@ -87,6 +85,9 @@ public class Calendar {
 	private Button concertButton(ResultSet rs) throws SQLException {
         String concertText = rs.getString(4) + '\n' + rs.getString(5) + '\n' + rs.getString(6);
         Button newBtn = new ConcertButton(concertText, rs.getInt(1));
+        //TODO on mouse click change status/view more information
+        newBtn.setPrefWidth(Double.MAX_VALUE);
+        newBtn.setMinHeight(60);
 
         //TODO modify states according to usecase
         switch (rs.getString(6)) {
@@ -104,6 +105,15 @@ public class Calendar {
                 break;
         }
         return newBtn;
+    }
+
+    public VBox addVBox() {
+        VBox eventsToday = new VBox();
+        eventsToday.getStyleClass().addAll("pane", "vbox");
+        eventsToday.setPrefWidth(110);
+        eventsToday.setPrefHeight(60);
+        // TODO: add mouse click event -> new offer
+        return eventsToday;
     }
 
 	private void setDateLabels() {

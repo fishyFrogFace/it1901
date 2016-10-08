@@ -1,11 +1,13 @@
 .vbox {
-    -fx-border-color: black;
-    -fx-border-width: 1px;
     -fx-background-color: white;
 }
 
 .grid {
     -fx-padding: 5px;
+    -fx-background-color: f4f4f4;
+    -fx-padding: 2;
+    -fx-hgap: 2;
+    -fx-vgap: 2;
 }
 
 .concert {
@@ -13,17 +15,17 @@
 }
 
 .pending {
-    -fx-base: blue
+    -fx-base: #adadeb;
 }
 
 .accepted {
-    -fx-base: green
+    -fx-base: #b3ffcc;
 }
 
 .sent {
-    -fx-base: yellow
+    -fx-base: #ffff99;
 }
 
 .declined {
-    -fx-base: red
+    -fx-base: #ffb3b3;
 }

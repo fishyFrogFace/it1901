@@ -3,16 +3,18 @@ package com.it1901.booking.JavaFX;
 import com.it1901.booking.Application.DatabaseHandler;
 import com.it1901.booking.Application.User;
 import com.it1901.booking.JavaFX.Controllers.ArtistViewController;
+import com.it1901.booking.JavaFX.Controllers.CalendarContainer;
 import com.it1901.booking.JavaFX.Controllers.Controller;
 import com.it1901.booking.JavaFX.Controllers.DashController;
-import com.it1901.booking.JavaFX.Controllers.OfferController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class BookingApp extends Application {
 
@@ -58,8 +60,11 @@ public class BookingApp extends Application {
     	setScene(loadGeneric("/TableController.fxml", "Table"));
     }
 
-    public void makeCalendar() {
-        setScene(loadGeneric("/Calendar.fxml", "Calendar"));
+    public void makeCalendar(LocalDate basis) {
+        CalendarContainer calendarContainer = new CalendarContainer(basis, this);
+        BorderPane parent =calendarContainer.getCalendarContainer(this.getDatabaseHandler());
+        parent.getStylesheets().add(getClass().getResource("/calendar.css").toExternalForm());
+        setScene(parent);
     }
 
     public Parent loadGeneric(String path, String title) {
