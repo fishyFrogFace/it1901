@@ -3,6 +3,7 @@ package com.it1901.booking.JavaFX.Controllers;
 import com.it1901.booking.Application.User;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -18,7 +19,7 @@ public class DashController extends Controller {
     private FlowPane btnContainer;
 
     public void addDashElements(User user) throws IOException {
-        userType.setText(user.getUserType());
+        setUserType(user.getUserType());
         //TODO Add appropriate elements for this type of user
         switch (user.getUserType()) {
             case "administrator":
@@ -31,7 +32,7 @@ public class DashController extends Controller {
             case "booker":
                 //createButton("Search by concert", event -> app.placeHolder());
                 createButton("Search by artist", event -> app.makeSearchArtist());
-                createButton("Opprett tilbud", event -> app.makeOffer());
+                createButton("Make new offer", event -> app.makeOffer());
                 createButton("Search by genre", event -> app.makeSearchGenre());
             case "organizer":
                 //createButton("Assign Techs", event -> app.placeHolder());
@@ -39,6 +40,23 @@ public class DashController extends Controller {
                 break;
             case "tech":
                 //TODO redirect to tech page
+                break;
+        }
+    }
+
+    private void setUserType(String type) {
+        switch (type) {
+            case "administrator":
+                userType.setText("Bookingsjef");
+                break;
+            case "booker":
+                userType.setText("Bookingansvarlig");
+                break;
+            case "organizer":
+                userType.setText("Arrangør");
+                break;
+            case "tech":
+                userType.setText("Tekniker");
                 break;
         }
     }
