@@ -21,7 +21,7 @@ public class OfferBuilder {
         return this;
     }
 
-    public OfferBuilder withOfferBody(Integer bookerID) {
+    public OfferBuilder withBookerID(Integer bookerID) {
         this.bookerID = bookerID;
         return this;
     }

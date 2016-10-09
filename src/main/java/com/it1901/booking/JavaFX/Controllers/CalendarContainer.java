@@ -59,22 +59,11 @@ public class CalendarContainer {
         VBox header = new VBox();
         header.setAlignment(Pos.CENTER);
 
-        MenuBar menuBar = createMenu();
+        MenuBar menuBar = NavBar.createMenu(app);
 
         DatePicker datePicker = new DatePicker();
         datePicker.setOnAction(event -> app.makeCalendar(datePicker.getValue()));
         header.getChildren().addAll(menuBar, datePicker);
         return header;
     }
-
-    private MenuBar createMenu() {
-        MenuBar menuBar = new MenuBar();
-        Menu menu = new Menu("Navigation");
-        MenuItem logout = new MenuItem("Dashboard");
-        logout.setOnAction(event ->  app.makeDash());
-        menu.getItems().add(logout);
-        menuBar.getMenus().add(menu);
-        return menuBar;
-    }
-
 }

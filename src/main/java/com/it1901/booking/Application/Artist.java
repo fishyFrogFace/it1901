@@ -23,4 +23,14 @@ public class Artist {
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         return prepStatement.executeQuery();
     }
+
+    public static Integer fetchArtistID(DatabaseHandler dbh, String name) throws SQLException {
+        String query = "SELECT artistID FROM artist " +
+                "WHERE name = ?";
+        PreparedStatement prepStatement = dbh.prepareQuery(query);
+        prepStatement.setString(1, name);
+        ResultSet rs = prepStatement.executeQuery();
+        rs.next();
+        return rs.getInt(1);
+    }
 }
