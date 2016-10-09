@@ -67,9 +67,11 @@ public class Event {
             Integer stageID,
             LocalDate date,
             DatabaseHandler dbh) throws SQLException {
-        String query = "SELECT * FROM CONCERT " +
+        String query = "SELECT concertID, offer.offerID FROM concert, offer " +
                 "WHERE startDate = ? " +
-                "AND stageID = ?";
+                "AND stageID = ? " +
+                "AND concert.offerID = offer.offerID " +
+                "AND state = 'accepted'";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         prepStatement.setObject(1, date);
         prepStatement.setInt(2, stageID);
