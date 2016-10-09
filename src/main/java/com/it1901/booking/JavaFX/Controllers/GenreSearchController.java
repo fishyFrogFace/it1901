@@ -37,20 +37,13 @@ public class GenreSearchController extends Controller {
 
         try {
             String searchText = searchField.getText();
-            ResultSet res;
-            if (searchText.equals("")) {
-                //TODO Does not currently work, need a enum wildcard (fint om Camilla ser på denne :))
-                res = SearchHandler.eventsByGenre("*", app.getDatabaseHandler()); // Show all if no keyword is specified
-            } else {
-                res = SearchHandler.eventsByGenre(searchField.getText(), app.getDatabaseHandler());
-            }
+            ResultSet res = SearchHandler.eventsByGenre(searchField.getText(), app.getDatabaseHandler());
             tableAnchor.getChildren().add(TableViewMaker.makeTable(res, Arrays.asList("ID", "Genre", "Sales", "Stage", "Artist"))); //Makes result set and displays to screen
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             errorLabel.setTextFill(Paint.valueOf("#ff3636"));
             errorLabel.setText("No genre of this type in database");
-
         }
     }
 }

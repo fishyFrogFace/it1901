@@ -29,3 +29,7 @@
 .declined {
     -fx-base: #ffb3b3;
 }
+
+.label {
+    -fx-font-weight: bold;
+}
