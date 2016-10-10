@@ -28,8 +28,8 @@ public class CalendarContainer {
         this.app = app;
     }
 
-    public BorderPane getCalendarContainer(DatabaseHandler dbh) {
-        GridPane calGrid = getCalendar(dbh);
+    public BorderPane getCalendarContainer() {
+        GridPane calGrid = getCalendar();
         mainContainer.setCenter(calGrid);
 
         VBox header = createHeader();
@@ -42,10 +42,10 @@ public class CalendarContainer {
         return mainContainer;
     }
 
-    private GridPane getCalendar(DatabaseHandler dbh) {
+    private GridPane getCalendar() {
         GridPane calGrid;
         try {
-            calGrid = calendar.createCalendar(dbh);
+            calGrid = calendar.createCalendar(app);
         } catch (SQLException e) {
             calGrid = new GridPane();
             Text errorMessage = new Text("Could not connect to the database");

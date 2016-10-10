@@ -25,15 +25,15 @@ public class OfferController {
     private final ChoiceBox<String> artists;
     private Text errorLabel;
 
-    public OfferController(BookingApp app) {
+    public OfferController(BookingApp app, LocalDate date, Stage.stages stage) {
         this.mainContainer = new BorderPane();
-        this.datePicker = new DatePicker(LocalDate.now());
+        this.datePicker = new DatePicker(date);
         datePicker.setPrefWidth(width);
         this.price = new TextField();
         price.setPrefWidth(width);
         this.app = app;
         this.errorLabel = new Text();
-        this.stages = fillStages();
+        this.stages = fillStages(stage);
         this.artists = fillArtists();
     }
 
@@ -64,12 +64,12 @@ public class OfferController {
         center.add(submit(), 1, 4);
         center.add(errorLabel, 1, 5);
 
-        //TODO add button -> calendar, calendar -> this, newArtist -> new artist
+        //TODO add button -> calendar, newArtist -> new artist
         Button newArtist = new Button("New Artist");
         center.add(newArtist, 2, 0);
 
         BorderPane.setMargin(center, new Insets(40));
-        center.setGridLinesVisible(true);
+        center.setGridLinesVisible(false); //for debugging set true
         return center;
     }
 
@@ -85,11 +85,11 @@ public class OfferController {
         return artists;
     }
 
-    private ChoiceBox<Stage.stages> fillStages() {
+    private ChoiceBox<Stage.stages> fillStages(Stage.stages stage) {
         ChoiceBox<Stage.stages> stagesChoiceBox = new ChoiceBox<>();
         stagesChoiceBox.setPrefWidth(160);
         stagesChoiceBox.getItems().setAll(Stage.stages.values());
-        stagesChoiceBox.getSelectionModel().selectFirst();
+        stagesChoiceBox.getSelectionModel().select(stage);
         return stagesChoiceBox;
     }
 

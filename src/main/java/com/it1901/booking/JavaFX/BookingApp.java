@@ -68,7 +68,7 @@ public class BookingApp extends Application {
 
     public void makeCalendar(LocalDate basis) {
         CalendarContainer calendarContainer = new CalendarContainer(basis, this);
-        BorderPane parent = calendarContainer.getCalendarContainer(this.getDatabaseHandler());
+        BorderPane parent = calendarContainer.getCalendarContainer();
         parent.getStylesheets().add(getClass().getResource("/calendar.css").toExternalForm());
         setScene(parent);
     }
@@ -93,8 +93,8 @@ public class BookingApp extends Application {
         setScene(parent);
     }
 
-    public void makeOffer() {
-        OfferController oc = new OfferController(this);
+    public void makeOffer(LocalDate date, com.it1901.booking.Application.Stage.stages stage) {
+        OfferController oc = new OfferController(this, date, stage);
         BorderPane parent = oc.createOfferContainer();
         setScene(parent);
     }
