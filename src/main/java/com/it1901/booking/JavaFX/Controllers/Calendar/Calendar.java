@@ -38,7 +38,7 @@ public class Calendar {
     }
 
     //returns a calendar GridPane loaded with this week's concerts
-	public GridPane createCalendar(BookingApp app) throws SQLException {
+	public GridPane createCalendar() throws SQLException {
 
         calGrid.getStyleClass().addAll("pane", "grid");
 
@@ -63,7 +63,7 @@ public class Calendar {
                         while (
                                 !rs.isAfterLast() &&
                                         rs.getDate(2).toLocalDate().equals(date) &&
-                                        rs.getString(7).equals(stage.toString())
+                                        rs.getString(6).equals(stage.toString())
                                 ) {
                             Button btn = concertButton(rs);
                             eventsToday.getChildren().add(btn);
@@ -86,7 +86,7 @@ public class Calendar {
 
 	private static ResultSet getCalendarContent(LocalDate startOfWeek, LocalDate endOfWeek,
                                                 DatabaseHandler dbh) throws SQLException {
-		String query = "SELECT concertID, startDate, artist.artistID, artist.name, genre, state, stage.name " +
+		String query = "SELECT concertID, startDate, artist.name, genre, state, stage.name " +
 				"FROM concert, artist, offer, stage " +
 				"WHERE concert.artistID = artist.artistID " +
 				"AND concert.offerID = offer.offerID " +
@@ -100,15 +100,15 @@ public class Calendar {
 		return prepStatement.executeQuery();
 	}
 
-	private Button concertButton(ResultSet rs) throws SQLException {
-        String concertText = rs.getString(4) + '\n' + rs.getString(5) + '\n' + rs.getString(6);
-        Button newBtn = new ConcertButton(concertText, rs.getInt(1));
-        newBtn.setOnAction(event -> app.makeOfferView());
+	private ConcertButton concertButton(ResultSet rs) throws SQLException {
+        String concertText = rs.getString(3) + '\n' + rs.getString(4) + '\n' + rs.getString(5);
+        ConcertButton newBtn = new ConcertButton(concertText, rs.getInt(1));
+        newBtn.setOnAction(event -> app.makeOfferView(newBtn.getConcertID()));
         newBtn.setPrefWidth(Double.MAX_VALUE);
         newBtn.setMinHeight(60);
 
         //TODO modify states according to usecase
-        switch (rs.getString(6)) {
+        switch (rs.getString(5)) {
             case "pending":
                 newBtn.getStyleClass().addAll("concert", "pending");
                 break;
