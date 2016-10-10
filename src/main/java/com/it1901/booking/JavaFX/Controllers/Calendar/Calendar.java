@@ -106,8 +106,7 @@ public class Calendar {
         newBtn.setOnAction(event -> app.makeOfferView(newBtn.getConcertID()));
         newBtn.setPrefWidth(Double.MAX_VALUE);
         newBtn.setMinHeight(60);
-
-        //TODO modify states according to usecase
+        
         switch (rs.getString(5)) {
             case "pending":
                 newBtn.getStyleClass().addAll("concert", "pending");
@@ -121,6 +120,8 @@ public class Calendar {
             case "declined":
                 newBtn.getStyleClass().addAll("concert", "declined");
                 break;
+            case "booked":
+                newBtn.getStyleClass().addAll("concert", "booked");
         }
         return newBtn;
     }

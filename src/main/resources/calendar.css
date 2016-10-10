@@ -19,7 +19,7 @@
 }
 
 .accepted {
-    -fx-base: #b3ffcc;
+    -fx-base: #df80ff;
 }
 
 .sent {
@@ -28,6 +28,10 @@
 
 .declined {
     -fx-base: #ffb3b3;
+}
+
+.booked {
+    -fx-base: #b3ffcc;
 }
 
 .label {

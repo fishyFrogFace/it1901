@@ -1,6 +1,7 @@
 package com.it1901.booking.JavaFX.Controllers;
 
 import com.it1901.booking.Application.DatabaseHandler;
+import com.it1901.booking.Application.Event.Offer.Offer;
 import com.it1901.booking.JavaFX.BookingApp;
 import javafx.geometry.*;
 import javafx.geometry.Insets;
@@ -20,6 +21,7 @@ public class OfferViewController {
     private final BookingApp app;
     private final Integer eventID;
     private final Text errorLabel;
+    private Integer offerID;
 
     public OfferViewController(BookingApp app, Integer eventID) {
         this.mainContainer = new BorderPane();
@@ -53,7 +55,7 @@ public class OfferViewController {
             ResultSet rs = getLeftContent(app.getDatabaseHandler(), eventID);
             rs.next();
             //offerID, startDate, artist.artistID, artist.name, genre, state, stage.name
-            Integer offerID = rs.getInt(1);
+            this.offerID = rs.getInt(1);
             Text artist = new Text("Artist: "+rs.getString(4));
             Text genre = new Text("Genre: "+rs.getObject(5).toString());
             Text state = new Text("State: "+rs.getObject(6).toString());
@@ -80,7 +82,12 @@ public class OfferViewController {
         accept.setOnAction(event -> {
             switch (userType) {
                 case "administrator":
-                    System.out.println("yo");
+                    try {
+                        Offer.changeStatus(Offer.offerState.accepted, offerID, app.getDatabaseHandler());
+                    } catch (SQLException e) {
+                        errorLabel.setText("Could not connect to database");
+                        e.printStackTrace();
+                    }
                     break;
                 default:
                     errorLabel.setText("You are not allowed to perform this action");
@@ -90,13 +97,37 @@ public class OfferViewController {
         Button decline = new Button("Decline");
         decline.setPrefWidth(Double.MAX_VALUE);
         decline.setOnAction(event -> {
-            System.out.println("2");
+            switch (userType) {
+                case "administrator":
+                case "booker":
+                    try {
+                        Offer.changeStatus(Offer.offerState.declined, offerID, app.getDatabaseHandler());
+                    } catch (SQLException e) {
+                        errorLabel.setText("Could not connect to database");
+                        e.printStackTrace();
+                    }
+                    break;
+                default:
+                    errorLabel.setText("You are not allowed to perform this action");
+            }
         });
 
         Button book = new Button("Book");
         book.setPrefWidth(Double.MAX_VALUE);
         book.setOnAction(event -> {
-            System.out.println("3");
+            switch (userType) {
+                case "administrator":
+                case "booker":
+                    try {
+                        Offer.changeStatus(Offer.offerState.booked, offerID, app.getDatabaseHandler());
+                    } catch (SQLException e) {
+                        errorLabel.setText("Could not connect to database");
+                        e.printStackTrace();
+                    }
+                    break;
+                default:
+                    errorLabel.setText("You are not allowed to perform this action");
+            }
         });
 
         right.getChildren().addAll(accept, decline, book);
