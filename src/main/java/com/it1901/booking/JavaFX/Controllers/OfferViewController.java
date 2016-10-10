@@ -28,6 +28,7 @@ public class OfferViewController {
         this.app = app;
         this.eventID = eventID;
         this.errorLabel = new Text();
+        BorderPane.setMargin(errorLabel, new Insets(0, 0, 20, 0));
     }
 
     public BorderPane createOfferViewContainer() {
@@ -35,6 +36,9 @@ public class OfferViewController {
 
         MenuBar header = NavBar.createMenu(app);
         mainContainer.setTop(header);
+
+        mainContainer.setBottom(errorLabel);
+        BorderPane.setAlignment(errorLabel, Pos.CENTER);
 
         return mainContainer;
     }
@@ -64,7 +68,7 @@ public class OfferViewController {
 
             left.getChildren().addAll(artist, genre, state, date, stage);
         } catch (SQLException e) {
-            //TODO errorlabel
+            errorLabel.setText("Could not connect to the database");
             e.printStackTrace();
         }
         return left;
@@ -84,6 +88,7 @@ public class OfferViewController {
                 case "administrator":
                     try {
                         Offer.changeStatus(Offer.offerState.accepted, offerID, app.getDatabaseHandler());
+                        errorLabel.setText("State changed");
                     } catch (SQLException e) {
                         errorLabel.setText("Could not connect to database");
                         e.printStackTrace();
@@ -102,6 +107,7 @@ public class OfferViewController {
                 case "booker":
                     try {
                         Offer.changeStatus(Offer.offerState.declined, offerID, app.getDatabaseHandler());
+                        errorLabel.setText("State changed");
                     } catch (SQLException e) {
                         errorLabel.setText("Could not connect to database");
                         e.printStackTrace();
@@ -119,7 +125,9 @@ public class OfferViewController {
                 case "administrator":
                 case "booker":
                     try {
+                        //TODO check if already booked on this date n stage
                         Offer.changeStatus(Offer.offerState.booked, offerID, app.getDatabaseHandler());
+                        errorLabel.setText("State changed");
                     } catch (SQLException e) {
                         errorLabel.setText("Could not connect to database");
                         e.printStackTrace();
