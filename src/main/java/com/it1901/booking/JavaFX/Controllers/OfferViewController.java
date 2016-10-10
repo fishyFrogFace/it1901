@@ -26,6 +26,7 @@ public class OfferViewController {
     private Integer offerID;
     private LocalDate date;
     private Integer stageID;
+    private Offer.offerState startingState;
 
     public OfferViewController(BookingApp app, Integer eventID) {
         this.mainContainer = new BorderPane();
@@ -62,10 +63,11 @@ public class OfferViewController {
         try {
             ResultSet rs = getLeftContent(app.getDatabaseHandler(), eventID);
             rs.next();
-            //offerID, startDate, artist.artistID, artist.name, genre, state, stage.name
+
             this.offerID = rs.getInt(1);
             this.date = rs.getDate(2).toLocalDate();
             this.stageID = rs.getInt(8);
+            this.startingState = Offer.offerState.valueOf(rs.getString(9));
             Text artist = new Text("Artist: "+rs.getString(4));
             Text genre = new Text("Genre: "+rs.getObject(5).toString());
             Text state = new Text("State: "+rs.getObject(6).toString());
@@ -96,6 +98,7 @@ public class OfferViewController {
                     try {
                         Offer.changeStatus(Offer.offerState.accepted, offerID, app.getDatabaseHandler());
                         errorLabel.setText("State changed");
+                        app.makeCalendar(this.date);
                     } catch (SQLException e) {
                         errorLabel.setText("Could not connect to database");
                         e.printStackTrace();
@@ -115,6 +118,7 @@ public class OfferViewController {
                     try {
                         Offer.changeStatus(Offer.offerState.declined, offerID, app.getDatabaseHandler());
                         errorLabel.setText("State changed");
+                        app.makeCalendar(this.date);
                     } catch (SQLException e) {
                         errorLabel.setText("Could not connect to database");
                         e.printStackTrace();
@@ -135,6 +139,7 @@ public class OfferViewController {
                         if (Event.checkAvailable(stageID, this.date, app.getDatabaseHandler())) {
                             Offer.changeStatus(Offer.offerState.booked, offerID, app.getDatabaseHandler());
                             errorLabel.setText("State changed");
+                            app.makeCalendar(this.date);
                         } else {
                             errorLabel.setText("Stage not available on this date");
                         }
@@ -148,13 +153,21 @@ public class OfferViewController {
             }
         });
 
+        if (startingState.equals(Offer.offerState.accepted) &&
+                userType.equals("booker")) {
+            Button sendEmail = new Button("Send email");
+            sendEmail.setPrefWidth(Double.MAX_VALUE);
+            sendEmail.setOnAction(event -> System.out.println("Send email"));
+            right.getChildren().add(sendEmail);
+        }
+
         right.getChildren().addAll(accept, decline, book);
         return right;
     }
 
     private static ResultSet getLeftContent(DatabaseHandler dbh, Integer concertID) throws SQLException {
         String query = "SELECT offer.offerID, startDate, artist.artistID, artist.name, " +
-                "genre, state, stage.name, concert.stageID " +
+                "genre, state, stage.name, concert.stageID, offer.state " +
                 "FROM concert, artist, offer, stage " +
                 "WHERE concert.artistID = artist.artistID " +
                 "AND concert.offerID = offer.offerID " +
