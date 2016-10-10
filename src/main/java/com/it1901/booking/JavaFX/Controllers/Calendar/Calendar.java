@@ -29,10 +29,12 @@ public class Calendar {
     private final LocalDate startOfWeek;
     private final LocalDate endOfWeek;
     private final GridPane calGrid = new GridPane();
+    private final BookingApp app;
 
-    public Calendar(LocalDate basis) {
+    public Calendar(LocalDate basis, BookingApp app) {
         this.startOfWeek = basis.minusDays(basis.getDayOfWeek().getValue() - 1);
         this.endOfWeek = startOfWeek.plusDays(6);
+        this.app = app;
     }
 
     //returns a calendar GridPane loaded with this week's concerts
@@ -40,14 +42,14 @@ public class Calendar {
 
         calGrid.getStyleClass().addAll("pane", "grid");
 
-        this.loadConcerts(app);
+        this.loadConcerts();
         this.setDateLabels();
         this.setStageLabels();
 
 		return calGrid;
 	}
 
-	private void loadConcerts(BookingApp app) throws SQLException {
+	private void loadConcerts() throws SQLException {
             ResultSet rs = getCalendarContent(startOfWeek, endOfWeek, app.getDatabaseHandler());
 
             Boolean noConcerts = rsIsEmpty(rs);
@@ -101,7 +103,7 @@ public class Calendar {
 	private Button concertButton(ResultSet rs) throws SQLException {
         String concertText = rs.getString(4) + '\n' + rs.getString(5) + '\n' + rs.getString(6);
         Button newBtn = new ConcertButton(concertText, rs.getInt(1));
-        //TODO on mouse click change status/view more information
+        newBtn.setOnAction(event -> app.makeOfferView());
         newBtn.setPrefWidth(Double.MAX_VALUE);
         newBtn.setMinHeight(60);
 

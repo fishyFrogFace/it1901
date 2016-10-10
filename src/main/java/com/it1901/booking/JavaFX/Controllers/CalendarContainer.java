@@ -23,9 +23,9 @@ public class CalendarContainer {
     //that need a status change
 
     public CalendarContainer(LocalDate basis, BookingApp app) {
-        this.calendar = new Calendar(basis);
         this.mainContainer = new BorderPane();
         this.app = app;
+        this.calendar = new Calendar(basis, app);
     }
 
     public BorderPane getCalendarContainer() {
