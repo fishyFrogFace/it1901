@@ -22,16 +22,30 @@ public class SearchHandler {
     //fetches stage and ticketsSold for concerts in a genre
     public static ResultSet eventsByGenre(String genre, DatabaseHandler dbh) throws SQLException {
         LocalDate today = LocalDate.now();
-        String query = "SELECT concert.concertID, genre, ticketsSold, stage.name, artist.name " +
-                "FROM concert, stage, artist " +
-                "WHERE genre = ?::musicgenre " +
-                "AND concert.artistID = artist.artistID " +
-                "AND concert.stageID = stage.stageID " +
-                "AND startDate < ? " +
-                "ORDER BY genre, ticketsSold";
-        PreparedStatement prepStatement = dbh.prepareQuery(query);
-        prepStatement.setString(1, genre);
-        prepStatement.setObject(2, today, Types.DATE);
+        String query;
+        PreparedStatement prepStatement;
+        if (genre.isEmpty()) {
+            System.out.println("yp");
+            query = "SELECT concert.concertID, genre, ticketsSold, stage.name, artist.name " +
+                    "FROM concert, stage, artist " +
+                    "WHERE concert.artistID = artist.artistID " +
+                    "AND concert.stageID = stage.stageID " +
+                    "AND startDate < ? " +
+                    "ORDER BY genre, ticketsSold";
+            prepStatement = dbh.prepareQuery(query);
+            prepStatement.setObject(1, today, Types.DATE);
+        } else {
+            query = "SELECT concert.concertID, genre, ticketsSold, stage.name, artist.name " +
+                    "FROM concert, stage, artist " +
+                    "WHERE genre = ?::musicgenre " +
+                    "AND concert.artistID = artist.artistID " +
+                    "AND concert.stageID = stage.stageID " +
+                    "AND startDate < ? " +
+                    "ORDER BY genre, ticketsSold";
+            prepStatement = dbh.prepareQuery(query);
+            prepStatement.setString(1, genre);
+            prepStatement.setObject(2, today, Types.DATE);
+        }
         return prepStatement.executeQuery();
     }
 
@@ -73,14 +87,37 @@ public class SearchHandler {
 		prepStatement.setString(1, artist);
 		return prepStatement.executeQuery();
 	}
+
 	public static ResultSet getSceneCapacity(String scene, DatabaseHandler dbh) throws SQLException {
 		String query = "SELECT maxAudience ,price " + 
 						"FROM stage " +
 						"WHERE name = ?";
 		PreparedStatement prepStatement = dbh.prepareQuery(query);
 		prepStatement.setString(1, scene);
+		String text = "";
 		return prepStatement.executeQuery();
 		
 	}
 	
+	public static ResultSet getSentOffers(DatabaseHandler dbh) throws SQLException {
+		String query = "SELECT offer.offerID, concert.offerID, concert.artistID, artist.artistID, artist.name " +
+					   "FROM offer, concert, artist " + 
+					   "WHERE state = 'pending' " +
+					   "AND offer.offerID = concert.offerID " +
+					   "AND concert.artistID = artist.artistID";
+		PreparedStatement prepStatement = dbh.prepareQuery(query);
+		return prepStatement.executeQuery();
+	}
+	
+	public static ResultSet getAllArtists(DatabaseHandler dbh) throws SQLException{
+		System.out.println("im in");
+		String query = "SELECT name " +
+                "FROM artist ";
+          
+		System.out.println("funker");
+        PreparedStatement prepStatement = dbh.prepareQuery(query);
+        return prepStatement.executeQuery();
+		
+		
+	}
 }

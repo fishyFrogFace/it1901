@@ -23,13 +23,14 @@ public class Email {
     }
 
     //inserts a new email into the database
-    private void saveEmail(String subject, String body, int offerID, DatabaseHandler dbh) throws SQLException {
+    private void saveEmail(DatabaseHandler dbh) throws SQLException {
         String query =
                 "INSERT INTO email VALUES " +
-                "(DEFAULT, ?, ?, ?)";
+                "(DEFAULT, ?, ?, ?)" +
+                "RETURNING id";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
-        prepStatement.setString(1, subject);
-        prepStatement.setString(2, body);
+        prepStatement.setString(1, this.emailSubject);
+        prepStatement.setString(2, this.emailBody);
         prepStatement.setInt(3, offerID);
         prepStatement.executeUpdate();
     }

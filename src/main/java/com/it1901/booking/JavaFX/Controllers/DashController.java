@@ -1,12 +1,15 @@
 package com.it1901.booking.JavaFX.Controllers;
 
+import com.it1901.booking.Application.Stage;
 import com.it1901.booking.Application.User;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import java.io.IOException;
+import java.time.LocalDate;
 
 
 public class DashController extends Controller {
@@ -17,19 +20,20 @@ public class DashController extends Controller {
     private FlowPane btnContainer;
 
     public void addDashElements(User user) throws IOException {
-        userType.setText(user.getUserType());
-        //TODO Add appropriate elemets for this type of user
+        setUserType(user.getUserType());
+        //TODO Add appropriate elements for this type of user
         switch (user.getUserType()) {
             case "administrator":
                 createButton("Price calculator", event -> app.makePriceGenerator());
+                createButton("Calendar", event -> app.makeCalendar(LocalDate.now()));
                 //createButton("Concert rapports", event -> app.placeHolder());
                 //createButton("View events", event -> app.placeHolder());
                 //createButton("Review offers", event -> app.placeHolder());
                 createButton("Example of artist view", event -> app.makeArtistView("Super Mario"));
             case "booker":
-                //createButton("Seach by concert", event -> app.placeHolder());
+                //createButton("Search by concert", event -> app.placeHolder());
                 createButton("Search by artist", event -> app.makeSearchArtist());
-                createButton("Opprett tilbud", event -> app.makeOffer());
+                createButton("Make new offer", event -> app.makeOffer(LocalDate.now(), Stage.stages.Storsalen));
                 createButton("Search by genre", event -> app.makeSearchGenre());
             case "organizer":
                 //createButton("Assign Techs", event -> app.placeHolder());
@@ -41,11 +45,27 @@ public class DashController extends Controller {
         }
     }
 
+    private void setUserType(String type) {
+        switch (type) {
+            case "administrator":
+                userType.setText("Bookingsjef");
+                break;
+            case "booker":
+                userType.setText("Bookingansvarlig");
+                break;
+            case "organizer":
+                userType.setText("Arrangør");
+                break;
+            case "tech":
+                userType.setText("Tekniker");
+                break;
+        }
+    }
+
     private void createButton(String label, EventHandler eventHandler) throws IOException {
         Button btn = new Button(label);
         btn.setOnAction(eventHandler);
         btn.setPrefSize(160, 80); //FIXME flytt dette til css
         btnContainer.getChildren().add(btn);
     }
-
 }

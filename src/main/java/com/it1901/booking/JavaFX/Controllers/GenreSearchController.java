@@ -3,10 +3,13 @@ package com.it1901.booking.JavaFX.Controllers;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import com.it1901.booking.Application.SearchHandler;
 
+import com.it1901.booking.Application.TableViewMaker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,74 +17,33 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 
-public class GenreSearchController extends Controller implements Initializable {
-	
-	@FXML private TextField searchField;
-	@FXML private Label errorLabel;
-	@FXML private ListView<String> list;
+public class GenreSearchController extends Controller {
 
-	private String tekst;
-	
-	//When searchbutton clicked. 
-	@FXML
-	public void onSearchClicked() throws SQLException{
-		System.out.println("serr");
-		errorLabel.setText("");
-		list.getItems().clear();
-		
-		try{
-			tekst = searchField.getText();
-			System.out.println("searchword: " + tekst);
-			ResultSet res = SearchHandler.eventsByGenre(tekst, app.getDatabaseHandler());
-			displayToScreen(res);
-			
-		}catch(SQLException e){
-			System.out.println(e.getMessage());
-			errorLabel.setTextFill(Paint.valueOf("#ff3636"));
-			errorLabel.setText("No genre of this type in database");
-			
-		}
-	}
-	
-	//Making list veiw for displaying concerts by genre. 
-	public void displayToScreen(ResultSet res) throws SQLException{
-		ObservableList<String> genres = FXCollections.observableArrayList();
-		String genreSearch = "";
-		String id = "";
-		String genre = "";
-		String ticketSales = "";
-		String scene = "";
-		String artistName = "";
-		int check = 0;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private Label errorLabel;
+    @FXML
+    private AnchorPane tableAnchor;
 
-		//if more concerts by this genre.
-		while (res.next()){
-				check ++;
-				System.out.println("search");
-				id = res.getString(1);
-				genre = res.getString(2);
-				ticketSales = res.getString(3);
-				scene = res.getString(4);
-				artistName = res.getString(5);
-				genreSearch = "ID: " + id + "	Artist: " + artistName + "	Genre: " + genre + "	Ticket-Sales: " + ticketSales + " 	Scene: " + scene;
-				genres.add(genreSearch);
-				list.setItems(genres);
-				
-				
-			}
-		//If no values in database for this genre
-		if (check == 0){
-			genres.add("No concert in database of this genre");
-			list.setItems(genres);
-		}
-		}
-	
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		//app.getDatabaseHandler();
-		
-	}
+    //When search button clicked.
+    @FXML
+    public void onSearchClicked() throws SQLException {
+        errorLabel.setText("");
+        tableAnchor.getChildren().clear();
+
+        try {
+            String searchText = searchField.getText();
+            ResultSet res = SearchHandler.eventsByGenre(searchField.getText(), app.getDatabaseHandler());
+            tableAnchor.getChildren().add(TableViewMaker.makeTable(res, Arrays.asList("ID", "Genre", "Sales", "Stage", "Artist"))); //Makes result set and displays to screen
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            errorLabel.setTextFill(Paint.valueOf("#ff3636"));
+            errorLabel.setText("No genre of this type in database");
+        }
+    }
 }

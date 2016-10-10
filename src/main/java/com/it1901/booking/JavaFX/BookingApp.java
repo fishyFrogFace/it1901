@@ -1,18 +1,22 @@
 package com.it1901.booking.JavaFX;
 
 import com.it1901.booking.Application.DatabaseHandler;
+import com.it1901.booking.Application.Event.Offer.Offer;
+import com.it1901.booking.Application.Event.Offer.OfferBuilder;
+import com.it1901.booking.Application.SearchHandler;
 import com.it1901.booking.Application.User;
-import com.it1901.booking.JavaFX.Controllers.ArtistViewController;
-import com.it1901.booking.JavaFX.Controllers.Controller;
-import com.it1901.booking.JavaFX.Controllers.DashController;
-import com.it1901.booking.JavaFX.Controllers.OfferController;
+import com.it1901.booking.JavaFX.Controllers.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class BookingApp extends Application {
 
@@ -53,13 +57,22 @@ public class BookingApp extends Application {
     public void makeSearchGenre(){
     	setScene(loadGeneric("/InformationByGenre.fxml", "Search by genre"));
     }
+
     public void makePriceGenerator(){
     	setScene(loadGeneric("/CalculatePrice.fxml", "Get ticketprice"));
     }
-    
+
     public void makeTable(){
     	setScene(loadGeneric("/TableController.fxml", "Table"));
     }
+
+    public void makeCalendar(LocalDate basis) {
+        CalendarContainer calendarContainer = new CalendarContainer(basis, this);
+        BorderPane parent = calendarContainer.getCalendarContainer();
+        parent.getStylesheets().add(getClass().getResource("/calendar.css").toExternalForm());
+        setScene(parent);
+    }
+
     public Parent loadGeneric(String path, String title) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path)); //need instantiated loader to get controller
         Parent parent = null; //Loads fxml
@@ -80,8 +93,10 @@ public class BookingApp extends Application {
         setScene(parent);
     }
 
-    public void makeOffer() {
-        Parent parent = loadGeneric("/OfferView.fxml", "Make an offer");
+    public void makeOffer(LocalDate date, com.it1901.booking.Application.Stage.stages stage) {
+        OfferController oc = new OfferController(this, date, stage);
+        BorderPane parent = oc.createOfferContainer();
+        parent.getStylesheets().add(getClass().getResource("/standard.css").toExternalForm());
         setScene(parent);
     }
 
