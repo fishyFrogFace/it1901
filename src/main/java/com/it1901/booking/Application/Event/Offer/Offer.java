@@ -4,6 +4,7 @@ import com.it1901.booking.Application.DatabaseHandler;
 import com.it1901.booking.Application.User;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Offer {
@@ -17,11 +18,11 @@ public class Offer {
     private final Integer bookerID;
     private Integer managerID;
 
-    public Offer(Integer offerID, offerState state, Integer bookerID, Integer managerID) {
-        this.offerID = offerID;
-        this.state = state;
-        this.bookerID = bookerID;
-        this.managerID = managerID;
+    public Offer(OfferBuilder builder) {
+        this.offerID = builder.offerID;
+        this.state = builder.state;
+        this.bookerID = builder.bookerID;
+        this.managerID = builder.managerID;
     }
     
     private boolean setManager(Integer managerID) {
@@ -39,13 +40,21 @@ public class Offer {
     }
 
     //inserts a new offer into the database
-    public void newOffer(Integer userID, DatabaseHandler dbh) throws SQLException {
+    public static Integer newOffer(Integer userID, DatabaseHandler dbh) throws SQLException {
         String query = "INSERT INTO offer VALUES " +
-                "(DEFAULT, ?::offerState, ?, ?)";
+                "(DEFAULT, ?::offerState, ?, ?)" +
+                "RETURNING offerID";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         prepStatement.setString(1, offerState.pending.toString());
         prepStatement.setInt(2, userID);
         prepStatement.setNull(3, java.sql.Types.INTEGER);
-        prepStatement.executeUpdate();
+        ResultSet rs = prepStatement.executeQuery();
+        rs.next();
+        return rs.getInt(1);
     }
+
+/*    //fetch offer from database and create offer
+    public Offer fetchOffer() {
+        return null;
+    }*/
 }

@@ -12,6 +12,4 @@ public class ConcertButton extends Button {
         super(text);
         this.concertID = concertID;
     }
-
-
 }

@@ -8,11 +8,15 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 import com.it1901.booking.Application.DatabaseHandler;
+import com.it1901.booking.Application.Stage;
 import com.it1901.booking.JavaFX.BookingApp;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -32,19 +36,19 @@ public class Calendar {
     }
 
     //returns a calendar GridPane loaded with this week's concerts
-	public GridPane createCalendar(DatabaseHandler dbh) throws SQLException {
+	public GridPane createCalendar(BookingApp app) throws SQLException {
 
         calGrid.getStyleClass().addAll("pane", "grid");
 
-        this.loadConcerts(dbh);
+        this.loadConcerts(app);
         this.setDateLabels();
         this.setStageLabels();
 
 		return calGrid;
 	}
 
-	private void loadConcerts(DatabaseHandler dbh) throws SQLException {
-            ResultSet rs = getCalendarContent(startOfWeek, endOfWeek, dbh);
+	private void loadConcerts(BookingApp app) throws SQLException {
+            ResultSet rs = getCalendarContent(startOfWeek, endOfWeek, app.getDatabaseHandler());
 
             Boolean noConcerts = rsIsEmpty(rs);
 
@@ -52,7 +56,7 @@ public class Calendar {
                 int slotIndex = 1;
 
                 for (stages stage : stages.values()) {
-                    VBox eventsToday = addVBox();
+                    VBox eventsToday = addGridBox(date, stage, app);
                     if (!noConcerts) {
                         while (
                                 !rs.isAfterLast() &&
@@ -119,12 +123,13 @@ public class Calendar {
         return newBtn;
     }
 
-    public VBox addVBox() {
-        VBox eventsToday = new VBox();
+    public GridBox addGridBox(LocalDate date, Stage.stages stage, BookingApp app) {
+        GridBox eventsToday = new GridBox(date, stage);
         eventsToday.getStyleClass().addAll("pane", "vbox");
         eventsToday.setPrefWidth(110);
         eventsToday.setMinHeight(60);
-        // TODO: add mouse click event -> new offer
+        eventsToday.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
+                app.makeOffer(date, stage));
         return eventsToday;
     }
 

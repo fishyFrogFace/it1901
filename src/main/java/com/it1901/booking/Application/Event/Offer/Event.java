@@ -34,14 +34,13 @@ public class Event {
 	//inserts a new event into the database
 	public void newEvent(DatabaseHandler dbh) throws SQLException {
 		String query = "INSERT INTO concert VALUES " +
-				"(DEFAULT, ?, ?, ?, 0, ?, ?, ?)";
+				"(DEFAULT, ?, 5, ?, 0, ?, ?, ?)";
 		PreparedStatement prepStatement = dbh.prepareQuery(query);
 		prepStatement.setObject(1, this.startDate);
-		prepStatement.setInt(2, this.duration);
-		prepStatement.setInt(3, this.ticketPrice);
-		prepStatement.setInt(4, this.artistID);
-		prepStatement.setInt(5, this.offerID);
-		prepStatement.setInt(6, this.stageID);
+		prepStatement.setInt(2, this.ticketPrice);
+		prepStatement.setInt(3, this.artistID);
+		prepStatement.setInt(4, this.offerID);
+		prepStatement.setInt(5, this.stageID);
 		prepStatement.executeUpdate();
 	}
 
@@ -62,6 +61,26 @@ public class Event {
                 .withOfferID(rs.getInt(7))
                 .withStageID(rs.getInt(8))
                 .build();
+    }
+
+    public static Boolean checkAvailable(
+            Integer stageID,
+            LocalDate date,
+            DatabaseHandler dbh) throws SQLException {
+        String query = "SELECT concertID, offer.offerID FROM concert, offer " +
+                "WHERE startDate = ? " +
+                "AND stageID = ? " +
+                "AND concert.offerID = offer.offerID " +
+                "AND state = 'accepted'";
+        PreparedStatement prepStatement = dbh.prepareQuery(query);
+        prepStatement.setObject(1, date);
+        prepStatement.setInt(2, stageID);
+        ResultSet rs = prepStatement.executeQuery();
+        if (rs.next()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
 

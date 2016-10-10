@@ -1,5 +1,6 @@
 package com.it1901.booking.JavaFX.Controllers;
 
+import com.it1901.booking.Application.Stage;
 import com.it1901.booking.Application.User;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -32,7 +33,7 @@ public class DashController extends Controller {
             case "booker":
                 //createButton("Search by concert", event -> app.placeHolder());
                 createButton("Search by artist", event -> app.makeSearchArtist());
-                createButton("Make new offer", event -> app.makeOffer());
+                createButton("Make new offer", event -> app.makeOffer(LocalDate.now(), Stage.stages.Storsalen));
                 createButton("Search by genre", event -> app.makeSearchGenre());
             case "organizer":
                 //createButton("Assign Techs", event -> app.placeHolder());
