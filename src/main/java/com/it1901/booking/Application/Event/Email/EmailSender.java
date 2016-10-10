@@ -7,13 +7,13 @@ import java.util.Properties;
 
 public class EmailSender {
 
-    private final String from = "samfundet@fireman.net";
+    private static final String from = "samfundet@fireman.net";
 
-    private final String host = "smtp.mail.com";
-    private final String password = "12345678";
-    private final String port = "587"; //587, 465, 25
+    private static final String host = "smtp.mail.com";
+    private static final String password = "12345678";
+    private static final String port = "587"; //587, 465, 25
 
-    public void sendEmail(Email email, String managerEmail) {
+    public static void sendEmail(Email email, String managerEmail) {
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host", host);
         properties.setProperty("mail.smtp.port", port);
