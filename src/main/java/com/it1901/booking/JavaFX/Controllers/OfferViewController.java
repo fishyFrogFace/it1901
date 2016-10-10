@@ -1,6 +1,7 @@
 package com.it1901.booking.JavaFX.Controllers;
 
 import com.it1901.booking.Application.DatabaseHandler;
+import com.it1901.booking.Application.Event.Offer.Event;
 import com.it1901.booking.Application.Event.Offer.Offer;
 import com.it1901.booking.JavaFX.BookingApp;
 import javafx.geometry.*;
@@ -15,6 +16,7 @@ import javafx.scene.text.Text;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class OfferViewController {
     private final BorderPane mainContainer;
@@ -22,6 +24,8 @@ public class OfferViewController {
     private final Integer eventID;
     private final Text errorLabel;
     private Integer offerID;
+    private LocalDate date;
+    private Integer stageID;
 
     public OfferViewController(BookingApp app, Integer eventID) {
         this.mainContainer = new BorderPane();
@@ -60,10 +64,12 @@ public class OfferViewController {
             rs.next();
             //offerID, startDate, artist.artistID, artist.name, genre, state, stage.name
             this.offerID = rs.getInt(1);
+            this.date = rs.getDate(2).toLocalDate();
+            this.stageID = rs.getInt(8);
             Text artist = new Text("Artist: "+rs.getString(4));
             Text genre = new Text("Genre: "+rs.getObject(5).toString());
             Text state = new Text("State: "+rs.getObject(6).toString());
-            Text date = new Text("Date: "+rs.getObject(2).toString());
+            Text date = new Text("Date: "+this.date.toString());
             Text stage = new Text("Stage: "+rs.getString(7));
 
             left.getChildren().addAll(artist, genre, state, date, stage);
@@ -81,6 +87,7 @@ public class OfferViewController {
 
         String userType = app.getUser().getUserType();
 
+        //TODO make pretty/generic
         Button accept = new Button("Accept");
         accept.setPrefWidth(Double.MAX_VALUE);
         accept.setOnAction(event -> {
@@ -125,9 +132,12 @@ public class OfferViewController {
                 case "administrator":
                 case "booker":
                     try {
-                        //TODO check if already booked on this date n stage
-                        Offer.changeStatus(Offer.offerState.booked, offerID, app.getDatabaseHandler());
-                        errorLabel.setText("State changed");
+                        if (Event.checkAvailable(stageID, this.date, app.getDatabaseHandler())) {
+                            Offer.changeStatus(Offer.offerState.booked, offerID, app.getDatabaseHandler());
+                            errorLabel.setText("State changed");
+                        } else {
+                            errorLabel.setText("Stage not available on this date");
+                        }
                     } catch (SQLException e) {
                         errorLabel.setText("Could not connect to database");
                         e.printStackTrace();
@@ -143,7 +153,8 @@ public class OfferViewController {
     }
 
     private static ResultSet getLeftContent(DatabaseHandler dbh, Integer concertID) throws SQLException {
-        String query = "SELECT offer.offerID, startDate, artist.artistID, artist.name, genre, state, stage.name " +
+        String query = "SELECT offer.offerID, startDate, artist.artistID, artist.name, " +
+                "genre, state, stage.name, concert.stageID " +
                 "FROM concert, artist, offer, stage " +
                 "WHERE concert.artistID = artist.artistID " +
                 "AND concert.offerID = offer.offerID " +
