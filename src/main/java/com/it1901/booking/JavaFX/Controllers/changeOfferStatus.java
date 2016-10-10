@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 
-public class BookingsjefOfferResponseController extends Controller implements Initializable{
+public class changeOfferStatus extends Controller implements Initializable{
 	@FXML
     private Label title;
 	@FXML 
