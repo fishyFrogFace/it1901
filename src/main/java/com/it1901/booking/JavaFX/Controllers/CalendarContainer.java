@@ -1,6 +1,5 @@
 package com.it1901.booking.JavaFX.Controllers;
 
-import com.it1901.booking.Application.DatabaseHandler;
 import com.it1901.booking.JavaFX.BookingApp;
 import com.it1901.booking.JavaFX.Controllers.Calendar.Calendar;
 import javafx.geometry.Pos;
@@ -17,15 +16,11 @@ public class CalendarContainer {
     private final BorderPane mainContainer;
     private final Calendar calendar;
     private final BookingApp app;
-    private final Button prev = new Button("<"); //unsure of these buttons
-    private final Button next = new Button(">");
-    //maybe just add buttons to all events
-    //that need a status change
 
     public CalendarContainer(LocalDate basis, BookingApp app) {
-        this.calendar = new Calendar(basis);
         this.mainContainer = new BorderPane();
         this.app = app;
+        this.calendar = new Calendar(basis, app);
     }
 
     public BorderPane getCalendarContainer() {
@@ -45,7 +40,7 @@ public class CalendarContainer {
     private GridPane getCalendar() {
         GridPane calGrid;
         try {
-            calGrid = calendar.createCalendar(app);
+            calGrid = calendar.createCalendar();
         } catch (SQLException e) {
             calGrid = new GridPane();
             Text errorMessage = new Text("Could not connect to the database");

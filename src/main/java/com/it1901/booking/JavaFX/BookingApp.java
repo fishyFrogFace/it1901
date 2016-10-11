@@ -100,6 +100,12 @@ public class BookingApp extends Application {
         setScene(parent);
     }
 
+    public void makeOfferView(Integer eventID) {
+        OfferViewController ovc = new OfferViewController(this, eventID);
+        BorderPane parent = ovc.createOfferViewContainer();
+        setScene(parent);
+    }
+
     public void placeHolder() {
         System.out.println("PlaceHolder, change method to your make___() method!");
     }

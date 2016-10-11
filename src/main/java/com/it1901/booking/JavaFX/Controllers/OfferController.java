@@ -1,6 +1,8 @@
 package com.it1901.booking.JavaFX.Controllers;
 
 import com.it1901.booking.Application.Artist;
+import com.it1901.booking.Application.Event.Email.Email;
+import com.it1901.booking.Application.Event.Email.EmailBuilder;
 import com.it1901.booking.Application.Event.Offer.Event;
 import com.it1901.booking.Application.Event.Offer.EventBuilder;
 import com.it1901.booking.Application.Event.Offer.Offer;
@@ -24,6 +26,8 @@ public class OfferController {
     private final TextField price;
     private final ChoiceBox<Stage.stages> stages;
     private final ChoiceBox<String> artists;
+    private final TextField subject;
+    private final TextArea body;
     private Text errorLabel;
 
     public OfferController(BookingApp app, LocalDate date, Stage.stages stage) {
@@ -36,6 +40,8 @@ public class OfferController {
         this.errorLabel = createLabel();
         this.stages = fillStages(stage);
         this.artists = fillArtists();
+        this.subject = new TextField();
+        this.body = new TextArea();
     }
 
     public BorderPane createOfferContainer() {
@@ -56,18 +62,22 @@ public class OfferController {
         center.add(new Text("Stage: "), 0, 1);
         center.add(new Text("Date: "), 0, 2);
         center.add(new Text("Ticket price: "), 0, 3);
+        center.add(new Text("E-mail subject: "), 0, 4);
+        center.add(new Text("E-mail body: "), 0, 5);
 
         //TODO make prettier
         center.add(artists, 1, 0);
         center.add(stages, 1, 1);
         center.add(datePicker, 1, 2);
         center.add(price, 1, 3);
-        center.add(submit(), 1, 4);
-        center.add(errorLabel, 1, 5);
+        center.add(subject, 1, 4);
+        center.add(body, 1, 5);
+        center.add(submit(), 1, 6);
+        center.add(errorLabel, 1, 7);
 
         //TODO add button -> calendar, newArtist -> new artist
         Button newArtist = new Button("New Artist"); //comment out if no time
-        center.add(newArtist, 2, 0);
+        //center.add(newArtist, 2, 0);
 
         BorderPane.setMargin(center, new Insets(40));
         center.setGridLinesVisible(false); //for debugging set true
@@ -111,6 +121,12 @@ public class OfferController {
                                 .withTicketPrice(Integer.valueOf(priceVal)) //fails for numbers larger than an int
                                 .withStartDate(datePicker.getValue())
                                 .build();
+                        Email email = EmailBuilder.email()
+                                .withEmailSubject(subject.getText())
+                                .withEmailBody(body.getText())
+                                .withOfferID(offerID)
+                                .build();
+                        email.saveEmail(app.getDatabaseHandler());
                         newEvent.newEvent(app.getDatabaseHandler());
                         errorLabel.setText("Offer created");
                         errorLabel.setFill(Paint.valueOf("black"));
