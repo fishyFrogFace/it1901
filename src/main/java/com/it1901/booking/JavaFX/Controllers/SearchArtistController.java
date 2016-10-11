@@ -41,11 +41,11 @@ public class SearchArtistController extends Controller implements Initializable 
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
-        try {
+/*        try {
             //todo input some stuff here
         }
         catch(SQLException e){
             e.printStackTrace();
-        }
+        }*/
     }
 }
