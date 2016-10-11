@@ -6,6 +6,7 @@ import com.it1901.booking.Application.DatabaseHandler;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.time.LocalDate;
 
 import static com.it1901.booking.Application.Event.Offer.EventBuilder.event;
@@ -73,7 +74,7 @@ public class Event {
                 "AND concert.offerID = offer.offerID " +
                 "AND state = 'booked'";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
-        prepStatement.setObject(1, date);
+        prepStatement.setObject(1, date, Types.DATE);
         prepStatement.setInt(2, stageID);
         ResultSet rs = prepStatement.executeQuery();
         if (rs.next()) {
