@@ -29,7 +29,7 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="searchArtistButton" mnemonicParsing="false" onAction="#getAuto" text="Search">
+                              <Button fx:id="searchArtistButton" mnemonicParsing="false" onAction="#searchArtist" text="Search">
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>

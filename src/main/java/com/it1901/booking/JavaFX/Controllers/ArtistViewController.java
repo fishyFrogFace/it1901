@@ -3,17 +3,20 @@ package com.it1901.booking.JavaFX.Controllers;
 import com.it1901.booking.Application.SearchHandler;
 import com.it1901.booking.Application.TableViewMaker;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.TextFields;
 
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
-public class ArtistViewController extends Controller {
+public class ArtistViewController extends Controller{
 
     @FXML
     private Label artistName;
@@ -45,8 +48,18 @@ public class ArtistViewController extends Controller {
     @FXML
     private Button searchArtistButton;
 
-    public void displayArtist(String artist) {
 
+    public void displayArtist(String artist) {
+        try {
+            TextFields.bindAutoCompletion(searchArtistField, SearchHandler.getCollection("name", "artist", app.getDatabaseHandler()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (artist.equals("init")) {
+            clearLabels();
+            artistName.setText("Search for an artist.");
+            return;
+        }
         try {
             ResultSet artistRS = SearchHandler.getArtistKey(artist, app.getDatabaseHandler());
             if (artistRS.next()) {
@@ -58,16 +71,28 @@ public class ArtistViewController extends Controller {
                 artistSold.setText("AlbumsSold: " + artistRS.getString("albumsSold"));
                 artistSpotify.setText("Spotify ID: " + artistRS.getString("spotify"));
             } else {
-                System.out.println("artist not found");
+                clearLabels();
+                artistName.setText("artist not found");
             }
             ResultSet concertRS = SearchHandler.getPreviousConcerts(artist, app.getDatabaseHandler());
-            tableAnchor.getChildren().add(TableViewMaker.makeTable(concertRS, Arrays.asList("ID", "Duration", "Price", "Sold", "Stage")));
+            tableAnchor.getChildren().add(TableViewMaker.makeTable(concertRS, Arrays.asList("ID", "Date", "Duration", "Price", "Sold", "Stage")));
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void getAuto() throws SQLException {
-        // TextFields.bindAutoCompletion(searchArtistField, SearchHandler.getCollection("artist", "name", app.getDatabaseHandler()));
+    public void searchArtist() {
+        displayArtist(searchArtistField.getText());
     }
+
+    public void clearLabels() {
+        artistName.setText("");
+        artistMail.setText("Email: ");
+        artistFee.setText("Fee: ");
+        artistGenre.setText("Genre: ");
+        artistCost.setText("Cost: ");
+        artistSold.setText("AlbumsSold: ");
+        artistSpotify.setText("Spotify ID: ");
+    }
+
 }
