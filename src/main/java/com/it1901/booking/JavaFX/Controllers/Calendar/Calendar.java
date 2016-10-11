@@ -3,6 +3,7 @@ package com.it1901.booking.JavaFX.Controllers.Calendar;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.time.*;
 
 import java.time.format.DateTimeFormatter;
@@ -93,8 +94,8 @@ public class Calendar {
 				"AND startDate < ? " +
 				"ORDER BY startDate, stage.name";
 		PreparedStatement prepStatement = dbh.prepareQuery(query);
-		prepStatement.setObject(1, startOfWeek.minusDays(1));
-		prepStatement.setObject(2, endOfWeek.plusDays(1));
+		prepStatement.setObject(1, startOfWeek.minusDays(1), Types.DATE);
+		prepStatement.setObject(2, endOfWeek.plusDays(1), Types.DATE);
 		return prepStatement.executeQuery();
 	}
 
