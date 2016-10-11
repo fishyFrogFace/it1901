@@ -50,11 +50,6 @@ public class ArtistViewController extends Controller{
 
 
     public void displayArtist(String artist) {
-        try {
-            TextFields.bindAutoCompletion(searchArtistField, SearchHandler.getCollection("name", "artist", app.getDatabaseHandler()));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         if (artist.equals("init")) {
             clearLabels();
             artistName.setText("Search for an artist.");
@@ -93,6 +88,15 @@ public class ArtistViewController extends Controller{
         artistCost.setText("Cost: ");
         artistSold.setText("AlbumsSold: ");
         artistSpotify.setText("Spotify ID: ");
+    }
+
+    @Override
+    public void onLoad(){
+        try {
+            TextFields.bindAutoCompletion(searchArtistField, SearchHandler.getCollection("name", "artist", app.getDatabaseHandler()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
