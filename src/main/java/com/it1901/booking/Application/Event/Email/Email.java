@@ -35,13 +35,14 @@ public class Email {
     }
 
     //fetches an email stored in the database
-    public Email fetchEmail(Integer emailID, DatabaseHandler dbh) throws SQLException {
+    public static Email fetchEmail(Integer offerID, DatabaseHandler dbh) throws SQLException {
         String query =
                 "SELECT * FROM email " +
-                "WHERE emailID = ?";
+                "WHERE offerID = ?";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
-        prepStatement.setInt(1, emailID);
+        prepStatement.setInt(1, offerID);
         ResultSet rs = prepStatement.executeQuery();
+        rs.next();
         return email()
                 .withEmailID(rs.getInt(1))
                 .withEmailSubject(rs.getString(2))
@@ -61,8 +62,8 @@ public class Email {
     }
 
     private String getManagerEmail(DatabaseHandler dbh) throws SQLException {
-        String query = "SELECT email " +
-                "FROM artist, offer, concert " +
+        String query = "SELECT artist.email " +
+                "FROM artist, offer, concert, email " +
                 "WHERE artist.artistID = concert.artistID " +
                 "AND offer.offerID = ? " +
                 "AND offer.offerID = email.offerID";

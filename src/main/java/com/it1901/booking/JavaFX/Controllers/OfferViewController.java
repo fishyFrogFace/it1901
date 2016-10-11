@@ -1,6 +1,7 @@
 package com.it1901.booking.JavaFX.Controllers;
 
 import com.it1901.booking.Application.DatabaseHandler;
+import com.it1901.booking.Application.Event.Email.Email;
 import com.it1901.booking.Application.Event.Offer.Event;
 import com.it1901.booking.Application.Event.Offer.Offer;
 import com.it1901.booking.JavaFX.BookingApp;
@@ -157,7 +158,21 @@ public class OfferViewController {
                 userType.equals("booker")) {
             Button sendEmail = new Button("Send email");
             sendEmail.setPrefWidth(Double.MAX_VALUE);
-            sendEmail.setOnAction(event -> System.out.println("Send email"));
+            sendEmail.setOnAction(event -> {
+                try {
+                    Email thisEmail = Email.fetchEmail(offerID, app.getDatabaseHandler());
+                    Boolean sent = thisEmail.sendThisEmail(app.getDatabaseHandler());
+                    if (sent) {
+                        errorLabel.setText("Email was sent successfully");
+                        Offer.changeStatus(Offer.offerState.sent, offerID, app.getDatabaseHandler());
+                    } else {
+                        errorLabel.setText("Could not find any email for this artist");
+                    }
+                } catch (SQLException e) {
+                    errorLabel.setText("Could not find any emails for this event");
+                    e.printStackTrace();
+                }
+            });
             right.getChildren().add(sendEmail);
         }
 
