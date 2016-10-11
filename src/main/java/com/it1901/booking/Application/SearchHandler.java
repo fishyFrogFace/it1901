@@ -119,8 +119,7 @@ public class SearchHandler {
 		System.out.println("funker");
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         return prepStatement.executeQuery();
-		
-		
+
 	}
 
     public Collection<String> getCollection(String parameter, String table, DatabaseHandler dbh) throws SQLException{

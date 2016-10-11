@@ -33,25 +33,7 @@ public class SearchArtistController extends Controller implements Initializable 
         result1.setText(ainfo.getPrevConcerts(nameString.getText())); //TODO cleanup, use methods in Search handler instead
     }
 
-    public void autoComplete () throws SQLException{
-        DatabaseHandler dbh = new DatabaseHandler("org.postgresql.Driver", "jdbc:postgresql://52.40.176.177:5432/booking",
-                "team", "it1901");
-        try {
-            String query = "SELECT name " +  //TODO cleanup, make generic
-                    "FROM artist ";
-            PreparedStatement prepStatement = dbh.prepareQuery(query);
-            ResultSet rs = prepStatement.executeQuery();
-            ObservableList<String> output = FXCollections.observableArrayList();
-            while(rs.next()){
-                output.add(rs.getString(1));
-            }
-            TextFields.bindAutoCompletion(nameString, output);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public void openArtistView() {
         app.makeArtistView(nameString.getText()); //TODO verify string
@@ -60,7 +42,7 @@ public class SearchArtistController extends Controller implements Initializable 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
         try {
-            this.autoComplete();
+            //todo input some stuff here
         }
         catch(SQLException e){
             e.printStackTrace();
