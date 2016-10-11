@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class SearchHandler {
 
@@ -120,4 +122,23 @@ public class SearchHandler {
 		
 		
 	}
+
+    public Collection<String> getCollection(String parameter, String table, DatabaseHandler dbh) throws SQLException{
+        try {
+            String query = "SELECT " + parameter +
+                    " FROM " + table;
+            PreparedStatement prepStatement = dbh.prepareQuery(query);
+            ResultSet rs = prepStatement.executeQuery();
+            ArrayList<String> output = new ArrayList<>();
+            while(rs.next()){
+                output.add(rs.getString(1));
+            }
+
+            return output;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }return null;
+
+    }
 }
