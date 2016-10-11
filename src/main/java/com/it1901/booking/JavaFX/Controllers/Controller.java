@@ -25,4 +25,6 @@ public abstract class Controller {
         app.setUser(null);
         app.makeLogin();
     }
+
+    //public void onLoad(){} //for loading autocomplete etc. TODO make usable and clean up in BookingApp
 }

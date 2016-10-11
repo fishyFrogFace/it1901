@@ -19,6 +19,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import org.controlsfx.control.textfield.TextFields;
 
 public class GenreSearchController extends Controller {
 
@@ -45,5 +46,9 @@ public class GenreSearchController extends Controller {
             errorLabel.setTextFill(Paint.valueOf("#ff3636"));
             errorLabel.setText("No genre of this type in database");
         }
+    }
+    
+    public void getAutoComplete() {
+        TextFields.bindAutoCompletion(searchField, Arrays.asList("rap", "pop", "rock", "blues", "alternative", "country", "electronic", "dance", "classical", "r&b/soul", "reggae", "jazz", "metal"));
     }
 }
