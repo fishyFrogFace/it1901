@@ -82,6 +82,7 @@ public class OfferController {
         Button newArtist = new Button("New Artist"); //comment out if no time
         //center.add(newArtist, 2, 0);
 
+        //TODO make this automated
         Button calcPrice = new Button("Calculate price");
         calcPrice.setOnAction(event -> {
             try{
