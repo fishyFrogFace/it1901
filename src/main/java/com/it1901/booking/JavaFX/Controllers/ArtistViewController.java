@@ -61,7 +61,7 @@ public class ArtistViewController extends Controller {
                 System.out.println("artist not found");
             }
             ResultSet concertRS = SearchHandler.getPreviousConcerts(artist, app.getDatabaseHandler());
-            tableAnchor.getChildren().add(TableViewMaker.makeTable(concertRS, Arrays.asList("ID", "Duration", "Price", "Sold", "Stage, Stage name")));
+            tableAnchor.getChildren().add(TableViewMaker.makeTable(concertRS, Arrays.asList("ID", "Duration", "Price", "Sold", "Stage")));
         } catch (SQLException e) {
             e.printStackTrace();
         }

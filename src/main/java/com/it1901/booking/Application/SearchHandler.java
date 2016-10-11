@@ -79,9 +79,10 @@ public class SearchHandler {
     }
 
 	public static ResultSet getPreviousConcerts(String artist, DatabaseHandler dbh) throws SQLException {
-		String query = "SELECT concertID, duration, ticketPrice, ticketsSold, stageID " +
-					   "FROM concert, artist " + 
+		String query = "SELECT concertID, duration, ticketPrice, ticketsSold, stage.name " +
+					   "FROM concert, artist, stage " +
 					   "WHERE concert.artistID = artist.artistID " + 
+					   "AND concert.stageID = stage.stageID " +
 					   "AND UPPER(artist.name) = UPPER(?)";
 		PreparedStatement prepStatement = dbh.prepareQuery(query);
 		prepStatement.setString(1, artist);
