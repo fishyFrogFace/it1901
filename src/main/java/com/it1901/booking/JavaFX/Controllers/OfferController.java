@@ -6,8 +6,11 @@ import com.it1901.booking.Application.Event.Email.EmailBuilder;
 import com.it1901.booking.Application.Event.Offer.Event;
 import com.it1901.booking.Application.Event.Offer.EventBuilder;
 import com.it1901.booking.Application.Event.Offer.Offer;
+import com.it1901.booking.Application.PriceGenerator;
 import com.it1901.booking.Application.Stage;
 import com.it1901.booking.JavaFX.BookingApp;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -23,7 +26,7 @@ public class OfferController {
     private final BorderPane mainContainer;
     private final BookingApp app;
     private final DatePicker datePicker;
-    private final TextField price;
+    private final TextField priceField;
     private final ChoiceBox<Stage.stages> stages;
     private final ChoiceBox<String> artists;
     private final TextField subject;
@@ -34,8 +37,8 @@ public class OfferController {
         this.mainContainer = new BorderPane();
         this.datePicker = new DatePicker(date);
         datePicker.setPrefWidth(width);
-        this.price = new TextField();
-        price.setPrefWidth(width);
+        this.priceField = new TextField();
+        priceField.setPrefWidth(width);
         this.app = app;
         this.errorLabel = createLabel();
         this.stages = fillStages(stage);
@@ -69,7 +72,7 @@ public class OfferController {
         center.add(artists, 1, 0);
         center.add(stages, 1, 1);
         center.add(datePicker, 1, 2);
-        center.add(price, 1, 3);
+        center.add(priceField, 1, 3);
         center.add(subject, 1, 4);
         center.add(body, 1, 5);
         center.add(submit(), 1, 6);
@@ -78,6 +81,26 @@ public class OfferController {
         //TODO add button -> calendar, newArtist -> new artist
         Button newArtist = new Button("New Artist"); //comment out if no time
         //center.add(newArtist, 2, 0);
+
+        Button calcPrice = new Button("Calculate price");
+        calcPrice.setOnAction(event -> {
+            try{
+                PriceGenerator price = new PriceGenerator();
+                String artist = artists.getValue().toString();
+                artist.toLowerCase();
+                int fee = price.getArtistFee(artist, app.getDatabaseHandler());
+                int scenePrice = price.getScenePrice(stages.getValue().toString(), app.getDatabaseHandler());
+                int maxAttendance = price.getSceneCapacity(stages.getValue().toString(), app.getDatabaseHandler());
+                float ticketPrice = price.computeTicketPrice(fee, scenePrice, maxAttendance);
+                System.out.println("ticketprice:" + ticketPrice);
+                priceField.setText(""+Math.round(ticketPrice));
+            }
+            catch(Exception e){
+                System.out.println("Not all values given");
+                errorLabel.setText("Må ha noe i begge felter for å kunne gjennomføre søk");
+            }
+        });
+        center.add(calcPrice, 2, 3);
 
         BorderPane.setMargin(center, new Insets(40));
         center.setGridLinesVisible(false); //for debugging set true
@@ -110,7 +133,7 @@ public class OfferController {
             try {
                 Integer stageID = Stage.fetchStageID(app.getDatabaseHandler(), stages.getValue().toString());
                 Integer artistID = Artist.fetchArtistID(app.getDatabaseHandler(), artists.getValue());
-                String priceVal = price.getText();
+                String priceVal = priceField.getText();
                 if (Event.checkAvailable(stageID, datePicker.getValue(), app.getDatabaseHandler())) {
                     if (priceVal.matches("\\d+")) { //check for integer
                         Integer offerID = Offer.newOffer(app.getUser().getUserID(), app.getDatabaseHandler());
