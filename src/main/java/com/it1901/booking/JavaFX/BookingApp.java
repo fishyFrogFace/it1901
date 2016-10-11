@@ -96,6 +96,13 @@ public class BookingApp extends Application {
     public void makeOffer(LocalDate date, com.it1901.booking.Application.Stage.stages stage) {
         OfferController oc = new OfferController(this, date, stage);
         BorderPane parent = oc.createOfferContainer();
+        parent.getStylesheets().add(getClass().getResource("/standard.css").toExternalForm());
+        setScene(parent);
+    }
+
+    public void makeOfferView(Integer eventID) {
+        OfferViewController ovc = new OfferViewController(this, eventID);
+        BorderPane parent = ovc.createOfferViewContainer();
         setScene(parent);
     }
 

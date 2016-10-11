@@ -21,8 +21,13 @@ public class EmailBuilder {
         return this;
     }
 
+    private String parseBody(String emailBody) {
+        String htmlBody = emailBody.replaceAll("(\r\n|\n)", "<br />");
+        return htmlBody;
+    }
+
     public EmailBuilder withEmailBody(String emailBody) {
-        this.emailBody = emailBody;
+        this.emailBody = parseBody(emailBody);
         return this;
     }
 

@@ -53,8 +53,13 @@ public class Offer {
         return rs.getInt(1);
     }
 
-/*    //fetch offer from database and create offer
-    public Offer fetchOffer() {
-        return null;
-    }*/
+    public static void changeStatus(offerState state, Integer offerID, DatabaseHandler dbh) throws SQLException {
+        String query = "UPDATE offer " +
+                "SET state = ?::offerState " +
+                "WHERE offerID = ?";
+        PreparedStatement prepStatement = dbh.prepareQuery(query);
+        prepStatement.setString(1, state.toString());
+        prepStatement.setInt(2, offerID);
+        prepStatement.executeUpdate();
+    }
 }

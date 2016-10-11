@@ -71,7 +71,7 @@ public class Event {
                 "WHERE startDate = ? " +
                 "AND stageID = ? " +
                 "AND concert.offerID = offer.offerID " +
-                "AND state = 'accepted'";
+                "AND state = 'booked'";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         prepStatement.setObject(1, date);
         prepStatement.setInt(2, stageID);

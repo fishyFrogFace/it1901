@@ -30,25 +30,27 @@ public class Calendar {
     private final LocalDate startOfWeek;
     private final LocalDate endOfWeek;
     private final GridPane calGrid = new GridPane();
+    private final BookingApp app;
 
-    public Calendar(LocalDate basis) {
+    public Calendar(LocalDate basis, BookingApp app) {
         this.startOfWeek = basis.minusDays(basis.getDayOfWeek().getValue() - 1);
         this.endOfWeek = startOfWeek.plusDays(6);
+        this.app = app;
     }
 
     //returns a calendar GridPane loaded with this week's concerts
-	public GridPane createCalendar(BookingApp app) throws SQLException {
+	public GridPane createCalendar() throws SQLException {
 
         calGrid.getStyleClass().addAll("pane", "grid");
 
-        this.loadConcerts(app);
+        this.loadConcerts();
         this.setDateLabels();
         this.setStageLabels();
 
 		return calGrid;
 	}
 
-	private void loadConcerts(BookingApp app) throws SQLException {
+	private void loadConcerts() throws SQLException {
             ResultSet rs = getCalendarContent(startOfWeek, endOfWeek, app.getDatabaseHandler());
 
             Boolean noConcerts = rsIsEmpty(rs);
@@ -62,7 +64,7 @@ public class Calendar {
                         while (
                                 !rs.isAfterLast() &&
                                         rs.getDate(2).toLocalDate().equals(date) &&
-                                        rs.getString(7).equals(stage.toString())
+                                        rs.getString(6).equals(stage.toString())
                                 ) {
                             Button btn = concertButton(rs);
                             eventsToday.getChildren().add(btn);
@@ -85,7 +87,7 @@ public class Calendar {
 
 	private static ResultSet getCalendarContent(LocalDate startOfWeek, LocalDate endOfWeek,
                                                 DatabaseHandler dbh) throws SQLException {
-		String query = "SELECT concertID, startDate, artist.artistID, artist.name, genre, state, stage.name " +
+		String query = "SELECT concertID, startDate, artist.name, genre, state, stage.name " +
 				"FROM concert, artist, offer, stage " +
 				"WHERE concert.artistID = artist.artistID " +
 				"AND concert.offerID = offer.offerID " +
@@ -99,15 +101,14 @@ public class Calendar {
 		return prepStatement.executeQuery();
 	}
 
-	private Button concertButton(ResultSet rs) throws SQLException {
-        String concertText = rs.getString(4) + '\n' + rs.getString(5) + '\n' + rs.getString(6);
-        Button newBtn = new ConcertButton(concertText, rs.getInt(1));
-        //TODO on mouse click change status/view more information
+	private ConcertButton concertButton(ResultSet rs) throws SQLException {
+        String concertText = rs.getString(3) + '\n' + rs.getString(4) + '\n' + rs.getString(5);
+        ConcertButton newBtn = new ConcertButton(concertText, rs.getInt(1));
+        newBtn.setOnAction(event -> app.makeOfferView(newBtn.getConcertID()));
         newBtn.setPrefWidth(Double.MAX_VALUE);
         newBtn.setMinHeight(60);
-
-        //TODO modify states according to usecase
-        switch (rs.getString(6)) {
+        
+        switch (rs.getString(5)) {
             case "pending":
                 newBtn.getStyleClass().addAll("concert", "pending");
                 break;
@@ -120,6 +121,8 @@ public class Calendar {
             case "declined":
                 newBtn.getStyleClass().addAll("concert", "declined");
                 break;
+            case "booked":
+                newBtn.getStyleClass().addAll("concert", "booked");
         }
         return newBtn;
     }
