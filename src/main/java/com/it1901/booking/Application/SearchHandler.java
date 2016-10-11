@@ -81,7 +81,7 @@ public class SearchHandler {
     }
 
 	public static ResultSet getPreviousConcerts(String artist, DatabaseHandler dbh) throws SQLException {
-		String query = "SELECT concertID, duration, ticketPrice, ticketsSold, stage.name " +
+		String query = "SELECT concertID, startDate, duration, ticketPrice, ticketsSold, stage.name " +
 					   "FROM concert, artist, stage " +
 					   "WHERE concert.artistID = artist.artistID " + 
 					   "AND concert.stageID = stage.stageID " +
@@ -111,7 +111,7 @@ public class SearchHandler {
 		PreparedStatement prepStatement = dbh.prepareQuery(query);
 		return prepStatement.executeQuery();
 	}
-	
+
 	public static ResultSet getAllArtists(DatabaseHandler dbh) throws SQLException{
 		System.out.println("im in");
 		String query = "SELECT name " +
@@ -123,10 +123,9 @@ public class SearchHandler {
 
 	}
 
-    public Collection<String> getCollection(String parameter, String table, DatabaseHandler dbh) throws SQLException{
+    public static Collection<String> getCollection(String parameter, String table, DatabaseHandler dbh) throws SQLException{
         try {
-            String query = "SELECT " + parameter +
-                    " FROM " + table;
+            String query = "SELECT " + parameter + " FROM " + table;
             PreparedStatement prepStatement = dbh.prepareQuery(query);
             ResultSet rs = prepStatement.executeQuery();
             ArrayList<String> output = new ArrayList<>();
