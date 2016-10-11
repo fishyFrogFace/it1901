@@ -26,12 +26,12 @@ public class DashController extends Controller {
             case "administrator":
                 createButton("Price calculator", event -> app.makePriceGenerator());
                 //createButton("Concert rapports", event -> app.placeHolder());
-                createButton("Artist view", event -> app.makeArtistView("init"));
+                createButton("Artists", event -> app.makeArtistView("init"));
             case "booker":
 
                 createButton("Calendar", event -> app.makeCalendar(LocalDate.now()));
                 //createButton("Search by concert", event -> app.placeHolder());
-                createButton("Search by artist", event -> app.makeSearchArtist());
+                //createButton("Search by artist", event -> app.makeSearchArtist());
                 createButton("Make new offer", event -> app.makeOffer(LocalDate.now(), Stage.stages.Storsalen));
                 createButton("Search by genre", event -> app.makeSearchGenre());
             case "organizer":
