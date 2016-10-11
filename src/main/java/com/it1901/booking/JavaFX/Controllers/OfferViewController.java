@@ -154,8 +154,8 @@ public class OfferViewController {
             }
         });
 
-        if (startingState.equals(Offer.offerState.accepted) &&
-                userType.equals("booker")) {
+        if (startingState.equals(Offer.offerState.accepted) ||
+                userType.equals("administrator")) {
             Button sendEmail = new Button("Send email");
             sendEmail.setPrefWidth(Double.MAX_VALUE);
             sendEmail.setOnAction(event -> {
