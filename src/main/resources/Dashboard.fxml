@@ -8,16 +8,16 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.it1901.booking.JavaFX.Controllers.DashController">
    <children>
-      <BorderPane layoutX="187.0" layoutY="100.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <FlowPane fx:id="btnContainer" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <FlowPane fx:id="btnContainer" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" alignment="CENTER">
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
             </FlowPane>
          </center>
          <top>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox prefWidth="100.0" alignment="CENTER">
                <children>
                   <MenuBar>
                     <menus>
@@ -33,7 +33,7 @@
                       </Menu>
                     </menus>
                   </MenuBar>
-                  <Label fx:id="userType" alignment="CENTER" contentDisplay="CENTER" text="role_name">
+                  <Label fx:id="userType" prefHeight="100" text="role_name">
                      <font>
                         <Font size="32.0" />
                      </font>
