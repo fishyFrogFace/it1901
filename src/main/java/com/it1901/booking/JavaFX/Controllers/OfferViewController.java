@@ -5,6 +5,7 @@ import com.it1901.booking.Application.Event.Email.Email;
 import com.it1901.booking.Application.Event.Offer.Event;
 import com.it1901.booking.Application.Event.Offer.Offer;
 import com.it1901.booking.JavaFX.BookingApp;
+import com.it1901.booking.JavaFX.Controllers.Elements.NavBar;
 import javafx.geometry.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;

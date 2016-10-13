@@ -2,6 +2,7 @@ package com.it1901.booking.JavaFX.Controllers;
 
 import com.it1901.booking.JavaFX.BookingApp;
 import com.it1901.booking.JavaFX.Controllers.Calendar.Calendar;
+import com.it1901.booking.JavaFX.Controllers.Elements.NavBar;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -29,7 +30,6 @@ public class CalendarContainer {
 
         VBox header = createHeader();
 
-        BorderPane.setAlignment(header, Pos.CENTER);
         mainContainer.setTop(header);
         //TODO add buttons to show all pending/sent event and change status to declined/sent
         //should be added to sides of BorderPane

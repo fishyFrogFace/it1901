@@ -1,4 +1,4 @@
-package com.it1901.booking.JavaFX.Controllers;
+package com.it1901.booking.JavaFX.Controllers.Elements;
 
 import com.it1901.booking.JavaFX.BookingApp;
 import javafx.scene.control.Menu;
