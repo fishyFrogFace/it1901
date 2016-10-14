@@ -40,14 +40,7 @@ public class BookingApp extends Application {
     }
 
     public void makeDash() {
-        Parent parent = loadGeneric("/Dashboard.fxml", "Dashboard");
-        try {
-            ((DashController)currentController).addDashElements(user);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Could not add dashboard elements.");
-        }
-        setScene(parent);
+        setScene(loadGeneric("/Dashboard.fxml", "Dashboard"));
     }
 
     public void makeSearchArtist() {
