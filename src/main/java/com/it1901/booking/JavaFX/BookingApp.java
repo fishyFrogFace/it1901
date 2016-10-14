@@ -55,9 +55,7 @@ public class BookingApp extends Application {
     }
 
     public void makeSearchGenre(){
-    	Parent parent = loadGeneric("/InformationByGenre.fxml", "Search by genre");
-        ((GenreSearchController) currentController).getAutoComplete();
-        setScene(parent);
+        setScene(loadGeneric("/InformationByGenre.fxml", "Search by genre"));
     }
 
     public void makePriceGenerator(){
@@ -85,6 +83,7 @@ public class BookingApp extends Application {
         }
         currentController = loader.getController(); //Set current controller
         currentController.setApp(this); //register app in controller
+        currentController.onLoad();
         primarystage.setTitle(title);
         return parent;
     }
