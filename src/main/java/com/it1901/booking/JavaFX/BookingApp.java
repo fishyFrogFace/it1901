@@ -1,9 +1,6 @@
 package com.it1901.booking.JavaFX;
 
 import com.it1901.booking.Application.DatabaseHandler;
-import com.it1901.booking.Application.Event.Offer.Offer;
-import com.it1901.booking.Application.Event.Offer.OfferBuilder;
-import com.it1901.booking.Application.SearchHandler;
 import com.it1901.booking.Application.User;
 import com.it1901.booking.JavaFX.Controllers.*;
 import javafx.application.Application;
@@ -14,8 +11,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class BookingApp extends Application {
@@ -80,10 +75,12 @@ public class BookingApp extends Application {
         Parent parent = null; //Loads fxml
         try {
             parent = loader.load();
+            System.out.println("Loaded: "+path);
         } catch (IOException e) {
             e.printStackTrace();
         }
         currentController = loader.getController(); //Set current controller
+        System.out.println(" "+ this + currentController);
         currentController.setApp(this); //register app in controller
         primarystage.setTitle(title);
         return parent;
@@ -102,10 +99,8 @@ public class BookingApp extends Application {
         setScene(parent);
     }
 
-    public void makeOfferView(Integer eventID) {
-        OfferViewController ovc = new OfferViewController(this, eventID);
-        BorderPane parent = ovc.createOfferViewContainer();
-        setScene(parent);
+    public void makeConcertView(Integer eventID) {
+        setScene(loadGeneric("/ConcertView.fxml", "Concert"));
     }
 
     public void placeHolder() {

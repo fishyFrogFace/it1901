@@ -104,7 +104,7 @@ public class Calendar {
 	private ConcertButton concertButton(ResultSet rs) throws SQLException {
         String concertText = rs.getString(3) + '\n' + rs.getString(4) + '\n' + rs.getString(5);
         ConcertButton newBtn = new ConcertButton(concertText, rs.getInt(1));
-        newBtn.setOnAction(event -> app.makeOfferView(newBtn.getConcertID()));
+        newBtn.setOnAction(event -> app.makeConcertView(newBtn.getConcertID()));
         newBtn.setPrefWidth(Double.MAX_VALUE);
         newBtn.setMinHeight(60);
         

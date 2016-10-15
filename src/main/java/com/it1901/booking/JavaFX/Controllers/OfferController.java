@@ -86,8 +86,7 @@ public class OfferController {
         calcPrice.setOnAction(event -> {
             try{
                 PriceGenerator price = new PriceGenerator();
-                String artist = artists.getValue().toString();
-                artist.toLowerCase();
+                String artist = artists.getValue().toLowerCase();
                 int fee = price.getArtistFee(artist, app.getDatabaseHandler());
                 int scenePrice = price.getScenePrice(stages.getValue().toString(), app.getDatabaseHandler());
                 int maxAttendance = price.getSceneCapacity(stages.getValue().toString(), app.getDatabaseHandler());
