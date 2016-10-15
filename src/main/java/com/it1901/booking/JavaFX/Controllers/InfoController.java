@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 public class InfoController extends VBox {
 
     @FXML
-    private Text artist = new Text("test");
+    private Text artist;
 
     @FXML
     private Text genre;
