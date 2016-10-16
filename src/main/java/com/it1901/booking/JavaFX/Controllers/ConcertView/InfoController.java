@@ -4,7 +4,7 @@ import com.it1901.booking.JavaFX.Controllers.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
-public class InfoController extends Controller {
+public class InfoController extends ConcertViewController {
 
     @FXML
     private Text artist;

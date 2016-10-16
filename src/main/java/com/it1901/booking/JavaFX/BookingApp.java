@@ -100,8 +100,8 @@ public class BookingApp extends Application {
         setScene(parent);
     }
 
-    public void makeConcertView(Integer concertID) {
-        ConcertViewController concertView = new ConcertViewController(concertID);
+    public void makeConcertView(Integer eventID) {
+        ConcertViewController concertView = new ConcertViewController();
         setScene(loadGeneric("/ConcertView/ConcertView.fxml", "Concert"));
     }
 
