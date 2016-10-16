@@ -16,12 +16,12 @@
                   <tabs>
                       <Tab text="Information">
                      <content>
-                        <fx:include source="Info.fxml" />
+                        <fx:include fx:id="info" source="Info.fxml" />
                      </content>
                       </Tab>
                       <Tab text="Change status">
                      <content>
-                        <fx:include source="Status.fxml" />
+                        <fx:include fx:id="status" source="Status.fxml" />
                      </content>
                   </Tab>
                       <Tab text="Technicians" />

@@ -52,7 +52,8 @@ public class InfoController extends ConcertViewController {
     }
 */
 
-    public void load() {
+    @Override
+    public void onLoad() {
         System.out.println("Info onload");
         artist.setText("Artist: " + "dkfk");
     }
