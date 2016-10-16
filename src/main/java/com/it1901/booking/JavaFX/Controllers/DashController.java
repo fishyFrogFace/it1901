@@ -66,4 +66,15 @@ public class DashController extends Controller {
         btn.setPrefSize(160, 80); //FIXME flytt dette til css
         btnContainer.getChildren().add(btn);
     }
+
+
+    @Override
+    public void onLoad(){
+        try {
+            addDashElements(app.getUser());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Could not add dashboard elements.");
+        }
+    }
 }

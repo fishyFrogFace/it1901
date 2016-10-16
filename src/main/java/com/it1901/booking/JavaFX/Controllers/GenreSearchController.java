@@ -47,8 +47,9 @@ public class GenreSearchController extends Controller {
             errorLabel.setText("No genre of this type in database");
         }
     }
-    
-    public void getAutoComplete() {
+
+    @Override
+    public void onLoad() {
         TextFields.bindAutoCompletion(searchField, Arrays.asList("rap", "pop", "rock", "blues", "alternative", "country", "electronic", "dance", "classical", "r&b/soul", "reggae", "jazz", "metal"));
     }
 }

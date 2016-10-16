@@ -26,5 +26,5 @@ public abstract class Controller {
         app.makeLogin();
     }
 
-    public void onLoad(){} //for loading autocomplete etc. TODO make usable and clean up in BookingApp
+    public void onLoad(){} //for loading autocomplete, data, etc. Override method to use
 }
