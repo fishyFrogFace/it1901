@@ -4,6 +4,7 @@ import com.it1901.booking.Application.DatabaseHandler;
 import com.it1901.booking.Application.Event.Email.Email;
 import com.it1901.booking.Application.Event.Offer.Event;
 import com.it1901.booking.Application.Event.Offer.Offer;
+import com.it1901.booking.Application.SearchHandler;
 import com.it1901.booking.JavaFX.BookingApp;
 import com.it1901.booking.JavaFX.Controllers.Elements.NavBar;
 import javafx.geometry.*;
@@ -63,7 +64,7 @@ public class OfferViewController {
         left.setSpacing(10);
 
         try {
-            ResultSet rs = getLeftContent(app.getDatabaseHandler(), eventID);
+            ResultSet rs = SearchHandler.getConcertInformation(app.getDatabaseHandler(), eventID);
             rs.next();
 
             this.offerID = rs.getInt(1);
@@ -179,18 +180,5 @@ public class OfferViewController {
 
         right.getChildren().addAll(accept, decline, book);
         return right;
-    }
-
-    private static ResultSet getLeftContent(DatabaseHandler dbh, Integer concertID) throws SQLException {
-        String query = "SELECT offer.offerID, startDate, artist.artistID, artist.name, " +
-                "genre, state, stage.name, concert.stageID, offer.state " +
-                "FROM concert, artist, offer, stage " +
-                "WHERE concert.artistID = artist.artistID " +
-                "AND concert.offerID = offer.offerID " +
-                "AND concert.stageID = stage.stageID " +
-                "AND concertID = ? ";
-        PreparedStatement prepStatement = dbh.prepareQuery(query);
-        prepStatement.setInt(1, concertID);
-        return prepStatement.executeQuery();
     }
 }

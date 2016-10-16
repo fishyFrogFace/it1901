@@ -3,6 +3,7 @@ package com.it1901.booking.JavaFX;
 import com.it1901.booking.Application.DatabaseHandler;
 import com.it1901.booking.Application.User;
 import com.it1901.booking.JavaFX.Controllers.*;
+import com.it1901.booking.JavaFX.Controllers.ConcertView.ConcertViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -80,7 +81,7 @@ public class BookingApp extends Application {
             e.printStackTrace();
         }
         currentController = loader.getController(); //Set current controller
-        System.out.println(" "+ this + currentController);
+        System.out.println("Booking app: "+ this + " Controller: " + currentController);
         currentController.setApp(this); //register app in controller
         primarystage.setTitle(title);
         return parent;
@@ -99,8 +100,9 @@ public class BookingApp extends Application {
         setScene(parent);
     }
 
-    public void makeConcertView(Integer eventID) {
-        setScene(loadGeneric("/ConcertView.fxml", "Concert"));
+    public void makeConcertView(Integer concertID) {
+        ConcertViewController concertView = new ConcertViewController(concertID);
+        setScene(loadGeneric("/ConcertView/ConcertView.fxml", "Concert"));
     }
 
     public void placeHolder() {

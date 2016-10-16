@@ -1,13 +1,10 @@
-package com.it1901.booking.JavaFX.Controllers;
+package com.it1901.booking.JavaFX.Controllers.ConcertView;
 
-import java.io.IOException;
-
+import com.it1901.booking.JavaFX.Controllers.Controller;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class InfoController extends VBox {
+public class InfoController extends Controller {
 
     @FXML
     private Text artist;
@@ -24,6 +21,7 @@ public class InfoController extends VBox {
     @FXML
     private Text stage;
 
+    //from the old view
 /*
     private VBox createLeft() {
         VBox left = new VBox();
@@ -31,7 +29,7 @@ public class InfoController extends VBox {
         left.setSpacing(10);
 
         try {
-            ResultSet rs = getLeftContent(app.getDatabaseHandler(), eventID);
+            ResultSet rs = SearchHandler.getConcertInformation(app.getDatabaseHandler(), eventID);
             rs.next();
 
             this.offerID = rs.getInt(1);
@@ -53,22 +51,8 @@ public class InfoController extends VBox {
     }
 */
 
-    public InfoController() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "/Info.fxml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
+    @Override
+    public void onLoad() {
 
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            System.out.print("goddammit");
-            throw new RuntimeException(exception);
-        }
-    }
-
-    @FXML
-    protected void doSomething() {
-        System.out.println("The button was clicked!");
     }
 }
