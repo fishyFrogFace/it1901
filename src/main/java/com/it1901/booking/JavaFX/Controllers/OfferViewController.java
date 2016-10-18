@@ -100,45 +100,11 @@ public class OfferViewController {
         Button decline = new Button("Decline");
         decline.setPrefWidth(Double.MAX_VALUE);
         decline.setOnAction(event -> {
-            switch (userType) {
-                case "administrator":
-                case "booker":
-                    try {
-                        //Offer.changeStatus(Offer.offerState.declined, offerID, app.getDatabaseHandler());
-                        errorLabel.setText("State changed");
-                        app.makeCalendar(this.date);
-                    } catch (Exception e) {
-                        errorLabel.setText("Could not connect to database");
-                        e.printStackTrace();
-                    }
-                    break;
-                default:
-                    errorLabel.setText("You are not allowed to perform this action");
-            }
         });
 
         Button book = new Button("Book");
         book.setPrefWidth(Double.MAX_VALUE);
         book.setOnAction(event -> {
-            switch (userType) {
-                case "administrator":
-                case "booker":
-                    try {
-                        if (ConcertHandler.checkAvailable(stageID, this.date, app.getDatabaseHandler())) {
-                            //Offer.changeStatus(Offer.offerState.booked, offerID, app.getDatabaseHandler());
-                            errorLabel.setText("State changed");
-                            app.makeCalendar(this.date);
-                        } else {
-                            errorLabel.setText("Stage not available on this date");
-                        }
-                    } catch (SQLException e) {
-                        errorLabel.setText("Could not connect to database");
-                        e.printStackTrace();
-                    }
-                    break;
-                default:
-                    errorLabel.setText("You are not allowed to perform this action");
-            }
         });
 
         if (startingState.equals(Offer.offerState.accepted) ||

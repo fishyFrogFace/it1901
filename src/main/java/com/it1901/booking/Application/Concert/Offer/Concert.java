@@ -6,10 +6,7 @@ import com.it1901.booking.Application.DatabaseHandler;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.time.LocalDate;
-
-import static com.it1901.booking.Application.Concert.Offer.ConcertBuilder.event;
 
 public class Concert {
 	
@@ -51,6 +48,21 @@ public class Concert {
 
     public LocalDate getStartDate() {
         return this.startDate;
+    }
+
+    public Integer getStageID() {
+        return this.stageID;
+    }
+
+    public String getStageName(DatabaseHandler dbh) throws SQLException {
+        String query = "SELECT stage.name " +
+                "FROM stage, concert " +
+                "WHERE stage.stageID = ?";
+        PreparedStatement prepStatement = dbh.prepareQuery(query);
+        prepStatement.setInt(1, this.stageID);
+        ResultSet rs = prepStatement.executeQuery();
+        rs.next();
+        return rs.getString(1);
     }
 }
 
