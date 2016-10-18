@@ -13,6 +13,7 @@ import java.sql.SQLException;
 public class ConcertViewController extends Controller {
     Concert concert;
     Offer offer;
+    Integer ConcertID;
 
     @FXML
     private InfoController infoController;
@@ -22,6 +23,7 @@ public class ConcertViewController extends Controller {
 
     @Override
     public void onLoad(Integer concertID) {
+    	this.ConcertID = concertID;
         try {
             this.concert = ConcertHandler.fetchConcert(concertID, app.getDatabaseHandler());
             this.offer = OfferHandler.instanceFromConcert(concertID, app.getDatabaseHandler());
@@ -30,12 +32,21 @@ public class ConcertViewController extends Controller {
             //TODO add message to user here
             e.printStackTrace();
         }
-        infoController.load(this);
+        try {
+			infoController.load(this);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         statusController.load(this);
         //add rest of nested controllers
     }
 
     public void goBack(ActionEvent actionEvent) {
         app.makeCalendar(concert.getStartDate());
+    }
+    
+    int getConcertID(){
+    	return ConcertID;
     }
 }
