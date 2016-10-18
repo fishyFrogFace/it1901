@@ -76,9 +76,13 @@ CREATE TABLE concert (
     ON DELETE CASCADE,
     PRIMARY KEY(concertID));
 
+CREATE TYPE techType AS ENUM
+('lyd', 'lys', 'rigging');
+
 CREATE TABLE assigned (
     assignedID SERIAL,
     hours INT,
+    type techType NOT NULL ,
     employeeID INT REFERENCES employee(employeeID)
     ON DELETE CASCADE,
     concertID INT REFERENCES concert(concertID)
@@ -89,6 +93,6 @@ CREATE TABLE budgetPost (
     budgetPostID SERIAL,
     description TEXT NOT NULL,
     price INT NOT NULL,
-	expense BOOLEAN NOT NULL,
+	  expense BOOLEAN NOT NULL,
     concertID INT REFERENCES concert(concertID),
     PRIMARY KEY(budgetPostID));

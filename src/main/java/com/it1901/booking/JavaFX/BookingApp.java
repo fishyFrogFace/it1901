@@ -1,9 +1,6 @@
 package com.it1901.booking.JavaFX;
 
 import com.it1901.booking.Application.DatabaseHandler;
-import com.it1901.booking.Application.Event.Offer.Offer;
-import com.it1901.booking.Application.Event.Offer.OfferBuilder;
-import com.it1901.booking.Application.SearchHandler;
 import com.it1901.booking.Application.User;
 import com.it1901.booking.JavaFX.Controllers.*;
 import javafx.application.Application;
@@ -14,8 +11,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class BookingApp extends Application {
@@ -121,5 +116,9 @@ public class BookingApp extends Application {
 
     public DatabaseHandler getDatabaseHandler() {
         return this.dbh;
+    }
+
+    public void makeTechView() {
+        setScene(loadGeneric("/TechView.fxml", user.getUserName() + "s work hours"));
     }
 }

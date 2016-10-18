@@ -112,6 +112,19 @@ public class SearchHandler {
 		return prepStatement.executeQuery();
 	}
 
+	public static ResultSet getAssignedConcerts(int userID, DatabaseHandler dbh) throws SQLException {
+        //add assigned.type,
+		String query = "SELECT assigned.hours, artist.name, stage.name, concert.startDate " +
+					   "FROM assigned, concert, artist, stage " +
+					   "WHERE concert.concertID = assigned.concertID " +
+                       "AND stage.stageID = concert.stageID " +
+					   "AND assigned.assignedID = ? " +
+					   "AND concert.artistID = artist.artistID";
+		PreparedStatement prepStatement = dbh.prepareQuery(query);
+        prepStatement.setInt(1, userID);
+		return prepStatement.executeQuery();
+	}
+
 	public static ResultSet getAllArtists(DatabaseHandler dbh) throws SQLException{
 		System.out.println("im in");
 		String query = "SELECT name " +

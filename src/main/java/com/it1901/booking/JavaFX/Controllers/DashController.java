@@ -27,7 +27,6 @@ public class DashController extends Controller {
                 createButton("Price calculator", event -> app.makePriceGenerator());
                 //createButton("Concert rapports", event -> app.placeHolder());
             case "booker":
-                createButton("Artists", event -> app.makeArtistView("init"));
                 createButton("Calendar", event -> app.makeCalendar(LocalDate.now()));
                 //createButton("Search by concert", event -> app.placeHolder());
                 //createButton("Search by artist", event -> app.makeSearchArtist());
@@ -36,9 +35,9 @@ public class DashController extends Controller {
             case "organizer":
                 //createButton("Assign Techs", event -> app.placeHolder());
                 //createButton("Concert view", event -> app.placeHolder());
-                break;
             case "tech":
-                //TODO redirect to tech page
+                createButton("Artists", event -> app.makeArtistView("init"));
+                createButton("View work hours", event -> app.makeTechView());
                 break;
         }
     }
