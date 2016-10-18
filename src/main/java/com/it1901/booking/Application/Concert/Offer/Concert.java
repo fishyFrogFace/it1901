@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 public class Concert {
 	
-	private final Integer concertID;
+	private final Integer eventID;
 	private LocalDate startDate;
 	private Integer duration;
 	private Integer ticketPrice;
@@ -20,7 +20,7 @@ public class Concert {
 	private Integer stageID;
 
 	public Concert(ConcertBuilder builder){
-		this.concertID = builder.eventID;
+		this.eventID = builder.eventID;
 		this.startDate = builder.startDate;
 		this.duration = builder.duration;
 		this.ticketPrice = builder.ticketPrice;
@@ -42,8 +42,8 @@ public class Concert {
 		prepStatement.executeUpdate();
 	}
 
-    public Integer getConcertID() {
-        return this.concertID;
+    public Integer getEventID() {
+        return this.eventID;
     }
 
     public LocalDate getStartDate() {
