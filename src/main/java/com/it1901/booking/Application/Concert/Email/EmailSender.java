@@ -1,4 +1,4 @@
-package com.it1901.booking.Application.Event.Email;
+package com.it1901.booking.Application.Concert.Email;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

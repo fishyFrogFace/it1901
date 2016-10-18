@@ -1,7 +1,7 @@
 package com.it1901.booking.JavaFX;
 
 import com.it1901.booking.Application.DatabaseHandler;
-import com.it1901.booking.Application.User;
+import com.it1901.booking.Application.User.User;
 import com.it1901.booking.JavaFX.Controllers.*;
 import com.it1901.booking.JavaFX.Controllers.ConcertView.ConcertViewController;
 import javafx.application.Application;
@@ -62,7 +62,7 @@ public class BookingApp extends Application {
         setScene(parent);
     }
 
-    public Parent loadGeneric(String path, String title) {
+    private Parent loadGeneric(String path, String title) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path)); //need instantiated loader to get controller
         Parent parent = null; //Loads fxml
         try {
@@ -72,9 +72,10 @@ public class BookingApp extends Application {
             e.printStackTrace();
         }
         currentController = loader.getController(); //Set current controller
-        System.out.println("Booking app: "+ this + " Controller: " + currentController);
         currentController.setApp(this); //register app in controller
-        currentController.onLoad();
+        if (!title.equals("Concert")) {
+            currentController.onLoad();
+        }
         primarystage.setTitle(title);
         return parent;
     }
@@ -93,7 +94,9 @@ public class BookingApp extends Application {
     }
 
     public void makeConcertView(Integer concertID) {
-        setScene(loadGeneric("/ConcertView/ConcertView.fxml", "Concert"));
+        Parent parent = loadGeneric("/ConcertView/ConcertView.fxml", "Concert");
+        currentController.onLoad(concertID);
+        setScene(parent);
     }
 
     public void placeHolder() {

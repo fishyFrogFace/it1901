@@ -1,11 +1,10 @@
 package Application;
 
-import com.it1901.booking.Application.LoginHandler;
+import com.it1901.booking.Application.User.LoginHandler;
 import static Application.TestController.dbh;
-import com.it1901.booking.Application.User;
+import com.it1901.booking.Application.User.User;
 import org.junit.Test;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static org.junit.Assert.assertEquals;

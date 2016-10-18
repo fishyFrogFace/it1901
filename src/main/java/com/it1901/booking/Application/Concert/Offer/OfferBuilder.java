@@ -1,4 +1,4 @@
-package com.it1901.booking.Application.Event.Offer;
+package com.it1901.booking.Application.Concert.Offer;
 
 public class OfferBuilder {
 

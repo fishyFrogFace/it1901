@@ -1,8 +1,8 @@
-package com.it1901.booking.Application.Event.Offer;
+package com.it1901.booking.Application.Concert.Offer;
 
 import java.time.LocalDate;
 
-public class EventBuilder {
+public class ConcertBuilder {
 
     protected Integer eventID;
     protected LocalDate startDate;
@@ -13,51 +13,51 @@ public class EventBuilder {
     protected Integer offerID;
     protected Integer stageID;
 
-    public static EventBuilder event() {
-        return new EventBuilder();
+    public static ConcertBuilder event() {
+        return new ConcertBuilder();
     }
 
-    public EventBuilder withEventID(Integer eventID) {
+    public ConcertBuilder withEventID(Integer eventID) {
         this.eventID = eventID;
         return this;
     }
 
-    public EventBuilder withStartDate(LocalDate startDate) {
+    public ConcertBuilder withStartDate(LocalDate startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public EventBuilder withDuration(Integer duration) {
+    public ConcertBuilder withDuration(Integer duration) {
         this.duration = duration;
         return this;
     }
 
-    public EventBuilder withTicketPrice(Integer ticketPrice) {
+    public ConcertBuilder withTicketPrice(Integer ticketPrice) {
         this.ticketPrice = ticketPrice;
         return this;
     }
 
-    public EventBuilder withTicketsSold(Integer ticketsSold) {
+    public ConcertBuilder withTicketsSold(Integer ticketsSold) {
         this.ticketsSold = ticketsSold;
         return this;
     }
 
-    public EventBuilder withArtistID(Integer artistID) {
+    public ConcertBuilder withArtistID(Integer artistID) {
         this.artistID = artistID;
         return this;
     }
 
-    public EventBuilder withOfferID(Integer offerID) {
+    public ConcertBuilder withOfferID(Integer offerID) {
         this.offerID = offerID;
         return this;
     }
 
-    public EventBuilder withStageID(Integer stageID) {
+    public ConcertBuilder withStageID(Integer stageID) {
         this.stageID = stageID;
         return this;
     }
 
-    public Event build() {
-        return new Event(this);
+    public Concert build() {
+        return new Concert(this);
     }
 }

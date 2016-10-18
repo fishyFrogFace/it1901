@@ -1,8 +1,8 @@
 package com.it1901.booking.JavaFX.Controllers;
 
 import com.it1901.booking.Application.DatabaseHandler;
-import com.it1901.booking.Application.LoginHandler;
-import com.it1901.booking.Application.User;
+import com.it1901.booking.Application.User.LoginHandler;
+import com.it1901.booking.Application.User.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;

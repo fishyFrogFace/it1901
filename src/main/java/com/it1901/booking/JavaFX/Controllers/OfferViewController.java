@@ -1,9 +1,9 @@
 package com.it1901.booking.JavaFX.Controllers;
 
-import com.it1901.booking.Application.DatabaseHandler;
-import com.it1901.booking.Application.Event.Email.Email;
-import com.it1901.booking.Application.Event.Offer.Event;
-import com.it1901.booking.Application.Event.Offer.Offer;
+import com.it1901.booking.Application.Concert.Email.Email;
+import com.it1901.booking.Application.Concert.Offer.Concert;
+import com.it1901.booking.Application.Concert.Offer.ConcertHandler;
+import com.it1901.booking.Application.Concert.Offer.Offer;
 import com.it1901.booking.Application.SearchHandler;
 import com.it1901.booking.JavaFX.BookingApp;
 import com.it1901.booking.JavaFX.Controllers.Elements.NavBar;
@@ -16,7 +16,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -96,20 +95,6 @@ public class OfferViewController {
         Button accept = new Button("Accept");
         accept.setPrefWidth(Double.MAX_VALUE);
         accept.setOnAction(event -> {
-            switch (userType) {
-                case "administrator":
-                    try {
-                        Offer.changeStatus(Offer.offerState.accepted, offerID, app.getDatabaseHandler());
-                        errorLabel.setText("State changed");
-                        app.makeCalendar(this.date);
-                    } catch (SQLException e) {
-                        errorLabel.setText("Could not connect to database");
-                        e.printStackTrace();
-                    }
-                    break;
-                default:
-                    errorLabel.setText("You are not allowed to perform this action");
-            }
         });
 
         Button decline = new Button("Decline");
@@ -119,10 +104,10 @@ public class OfferViewController {
                 case "administrator":
                 case "booker":
                     try {
-                        Offer.changeStatus(Offer.offerState.declined, offerID, app.getDatabaseHandler());
+                        //Offer.changeStatus(Offer.offerState.declined, offerID, app.getDatabaseHandler());
                         errorLabel.setText("State changed");
                         app.makeCalendar(this.date);
-                    } catch (SQLException e) {
+                    } catch (Exception e) {
                         errorLabel.setText("Could not connect to database");
                         e.printStackTrace();
                     }
@@ -139,8 +124,8 @@ public class OfferViewController {
                 case "administrator":
                 case "booker":
                     try {
-                        if (Event.checkAvailable(stageID, this.date, app.getDatabaseHandler())) {
-                            Offer.changeStatus(Offer.offerState.booked, offerID, app.getDatabaseHandler());
+                        if (ConcertHandler.checkAvailable(stageID, this.date, app.getDatabaseHandler())) {
+                            //Offer.changeStatus(Offer.offerState.booked, offerID, app.getDatabaseHandler());
                             errorLabel.setText("State changed");
                             app.makeCalendar(this.date);
                         } else {
@@ -166,7 +151,7 @@ public class OfferViewController {
                     Boolean sent = thisEmail.sendThisEmail(app.getDatabaseHandler());
                     if (sent) {
                         errorLabel.setText("Email was sent successfully");
-                        Offer.changeStatus(Offer.offerState.sent, offerID, app.getDatabaseHandler());
+                        //Offer.changeStatus(Offer.offerState.sent, offerID, app.getDatabaseHandler());
                     } else {
                         errorLabel.setText("Could not find any email for this artist");
                     }

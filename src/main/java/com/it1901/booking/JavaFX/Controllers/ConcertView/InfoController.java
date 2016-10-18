@@ -1,11 +1,11 @@
 package com.it1901.booking.JavaFX.Controllers.ConcertView;
 
-import com.it1901.booking.JavaFX.Controllers.Controller;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
-public class InfoController extends ConcertViewController {
+public class InfoController {
+
+    ConcertViewController cvc;
 
     @FXML
     private Text artist;
@@ -52,9 +52,8 @@ public class InfoController extends ConcertViewController {
     }
 */
 
-    @Override
-    public void onLoad() {
-        System.out.println("Info onload");
+    public void load(ConcertViewController concertViewController) {
+        this.cvc = concertViewController;
         artist.setText("Artist: " + "dkfk");
     }
 }

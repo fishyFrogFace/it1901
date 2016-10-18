@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 
 public abstract class Controller {
-    protected BookingApp app;
+    public BookingApp app;
 
     public void setApp(BookingApp app) {
         this.app = app;
@@ -27,4 +27,6 @@ public abstract class Controller {
     }
 
     public void onLoad(){} //for loading autocomplete, data, etc. Override method to use
+
+    public void onLoad(Integer id){}
 }
