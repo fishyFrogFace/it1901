@@ -83,6 +83,7 @@ public class StatusController {
                 if (sent) {
                     messageLabel.setText("Email was sent successfully");
                     cvc.offer.saveState(Offer.offerState.sent, cvc.app.getDatabaseHandler());
+                    cvc.updateInfoTab();
                 } else {
                     messageLabel.setText("Could not find any email for this artist");
                 }
