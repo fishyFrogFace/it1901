@@ -1,4 +1,4 @@
-package com.it1901.booking.Application.User;
+package com.it1901.booking.Application.Employee;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

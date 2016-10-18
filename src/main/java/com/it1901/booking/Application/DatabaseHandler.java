@@ -1,7 +1,6 @@
 package com.it1901.booking.Application;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 public class DatabaseHandler {
 

@@ -1,8 +1,8 @@
 package Application;
 
-import com.it1901.booking.Application.User.LoginHandler;
+import com.it1901.booking.Application.Employee.LoginHandler;
 import static Application.TestController.dbh;
-import com.it1901.booking.Application.User.User;
+import com.it1901.booking.Application.Employee.User;
 import org.junit.Test;
 
 import java.sql.SQLException;

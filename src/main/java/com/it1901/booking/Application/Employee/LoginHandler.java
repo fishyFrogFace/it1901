@@ -1,11 +1,10 @@
-package com.it1901.booking.Application.User;
+package com.it1901.booking.Application.Employee;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.it1901.booking.Application.DatabaseHandler;
-import com.it1901.booking.Application.User.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginHandler {

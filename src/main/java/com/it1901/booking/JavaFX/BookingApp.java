@@ -1,9 +1,8 @@
 package com.it1901.booking.JavaFX;
 
 import com.it1901.booking.Application.DatabaseHandler;
-import com.it1901.booking.Application.User.User;
+import com.it1901.booking.Application.Employee.User;
 import com.it1901.booking.JavaFX.Controllers.*;
-import com.it1901.booking.JavaFX.Controllers.ConcertView.ConcertViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -120,5 +119,9 @@ public class BookingApp extends Application {
 
     public DatabaseHandler getDatabaseHandler() {
         return this.dbh;
+    }
+
+    public void makeTechView() {
+        setScene(loadGeneric("/TechView.fxml", user.getName() + "'s work hours"));
     }
 }
