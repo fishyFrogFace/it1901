@@ -13,7 +13,6 @@ import java.sql.SQLException;
 public class ConcertViewController extends Controller {
     Concert concert;
     Offer offer;
-    Integer ConcertID;
 
     @FXML
     private InfoController infoController;
@@ -23,7 +22,6 @@ public class ConcertViewController extends Controller {
 
     @Override
     public void onLoad(Integer concertID) {
-    	this.ConcertID = concertID;
         try {
             this.concert = ConcertHandler.fetchConcert(concertID, app.getDatabaseHandler());
             this.offer = OfferHandler.instanceFromConcert(concertID, app.getDatabaseHandler());
@@ -45,11 +43,8 @@ public class ConcertViewController extends Controller {
     public void goBack(ActionEvent actionEvent) {
         app.makeCalendar(concert.getStartDate());
     }
-    //Update inormation when clicking on infotab.
+    //Update information when clicking on infotab.
     public void updateInfoTab(){
-    	infoController.updateConcertInfo();
-    }
-    int getConcertID(){
-    	return ConcertID;
+    	infoController.updateConcertInfo(this.concert.getConcertID());
     }
 }
