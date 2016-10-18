@@ -61,7 +61,11 @@ public class InfoController {
     public void load(ConcertViewController concertViewController) throws SQLException {
         this.cvc = concertViewController;
         //Get event ID. 
-        try{
+        updateConcertInfo();
+        
+    }
+    public void updateConcertInfo(){
+    	try{
         	ResultSet rs = SearchHandler.getConcertInformation(cvc.app.getDatabaseHandler(), cvc.getConcertID());
             rs.next();
             

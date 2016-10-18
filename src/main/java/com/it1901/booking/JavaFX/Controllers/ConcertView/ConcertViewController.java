@@ -45,7 +45,10 @@ public class ConcertViewController extends Controller {
     public void goBack(ActionEvent actionEvent) {
         app.makeCalendar(concert.getStartDate());
     }
-    
+    //Update inormation when clicking on infotab.
+    public void updateInfoTab(){
+    	infoController.updateConcertInfo();
+    }
     int getConcertID(){
     	return ConcertID;
     }

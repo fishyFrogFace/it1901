@@ -43,6 +43,7 @@ public class StatusController {
                     cvc.offer.setManager(cvc.app.getUser().getUserID(), cvc.app.getDatabaseHandler());
                     cvc.offer.saveState(Offer.offerState.accepted, cvc.app.getDatabaseHandler());
                     messageLabel.setText("State changed");
+                    cvc.updateInfoTab();
                 } catch (SQLException e) {
                     messageLabel.setText("Could not connect to database");
                     e.printStackTrace();
@@ -60,6 +61,7 @@ public class StatusController {
                 try {
                     cvc.offer.saveState(Offer.offerState.declined, cvc.app.getDatabaseHandler());
                     messageLabel.setText("State changed");
+                    cvc.updateInfoTab();
                 } catch (SQLException e) {
                     messageLabel.setText("Could not connect to database");
                     e.printStackTrace();
@@ -102,6 +104,7 @@ public class StatusController {
                         cvc.app.getDatabaseHandler())) {
                     cvc.offer.saveState(Offer.offerState.booked, cvc.app.getDatabaseHandler());
                     messageLabel.setText("State changed");
+                    cvc.updateInfoTab();
                 } else {
                     messageLabel.setText("Stage not available on this date");
                 }
