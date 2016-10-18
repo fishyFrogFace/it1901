@@ -77,12 +77,12 @@ CREATE TABLE concert (
     PRIMARY KEY(concertID));
 
 CREATE TYPE techType AS ENUM
-('lyd', 'lys', 'rigging');
+    ('lyd', 'lys', 'rigging');
 
 CREATE TABLE assigned (
     assignedID SERIAL,
     hours INT,
-    type techType NOT NULL ,
+    type techType NOT NULL,
     employeeID INT REFERENCES employee(employeeID)
     ON DELETE CASCADE,
     concertID INT REFERENCES concert(concertID)

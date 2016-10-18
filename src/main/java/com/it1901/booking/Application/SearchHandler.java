@@ -97,7 +97,6 @@ public class SearchHandler {
 						"WHERE name = ?";
 		PreparedStatement prepStatement = dbh.prepareQuery(query);
 		prepStatement.setString(1, scene);
-		String text = "";
 		return prepStatement.executeQuery();
 		
 	}
@@ -114,26 +113,21 @@ public class SearchHandler {
 
 	public static ResultSet getAssignedConcerts(int userID, DatabaseHandler dbh) throws SQLException {
         //add assigned.type,
-		String query = "SELECT assigned.hours, artist.name, stage.name, concert.startDate " +
-					   "FROM assigned, concert, artist, stage " +
-					   "WHERE concert.concertID = assigned.concertID " +
-                       "AND stage.stageID = concert.stageID " +
-					   "AND assigned.assignedID = ? " +
-					   "AND concert.artistID = artist.artistID";
+		String query = "SELECT concert.startDate, assigned.hours, artist.name, stage.name " +
+                "FROM assigned, concert, artist, stage " +
+                "WHERE assigned.assignedID = ? " +
+                "AND concert.concertID = assigned.concertID " +
+                "AND artist.artistID = concert.artistID " +
+                "AND stage.stageID = concert.stageID";
 		PreparedStatement prepStatement = dbh.prepareQuery(query);
         prepStatement.setInt(1, userID);
 		return prepStatement.executeQuery();
 	}
 
 	public static ResultSet getAllArtists(DatabaseHandler dbh) throws SQLException{
-		System.out.println("im in");
-		String query = "SELECT name " +
-                "FROM artist ";
-          
-		System.out.println("funker");
+		String query = "SELECT name FROM artist ";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         return prepStatement.executeQuery();
-
 	}
 
     public static Collection<String> getCollection(String parameter, String table, DatabaseHandler dbh) throws SQLException{

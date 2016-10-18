@@ -90,6 +90,9 @@ INSERT INTO assigned VALUES
 	(DEFAULT, 7, 'lyd', 4, 1),
 	(DEFAULT, 5, 'rigging', 3, 1),
 	(DEFAULT, 5, 'lys', 4, 2),
+	(DEFAULT, 5, 'lyd' 4, 3),
+	(DEFAULT, 5, 'lyd', 4, 4),
+	(DEFAULT, 5, 'rigging', 4, 7),
 	(DEFAULT, 8, 'lyd', 3, 2),
 	(DEFAULT, 2, 'rigging', 2, 2);
 
