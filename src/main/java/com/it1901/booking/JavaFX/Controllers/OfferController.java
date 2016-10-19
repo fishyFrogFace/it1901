@@ -155,7 +155,7 @@ public class OfferController {
                                 .withOfferID(offerID)
                                 .build();
                         email.saveEmail(app.getDatabaseHandler());
-                        newConcert.newEvent(app.getDatabaseHandler());
+                        newConcert.newConcert(app.getDatabaseHandler());
                         errorLabel.setText("Offer created");
                         errorLabel.setFill(Paint.valueOf("black"));
                     } else {
