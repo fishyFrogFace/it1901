@@ -142,7 +142,7 @@ public class OfferController {
                                         app.getDatabaseHandler()
                                 )
                                         .getOfferID();
-                        Concert newConcert = ConcertBuilder.event()
+                        Concert newConcert = ConcertBuilder.concert()
                                 .withOfferID(offerID)
                                 .withStageID(stageID)
                                 .withArtistID(artistID)

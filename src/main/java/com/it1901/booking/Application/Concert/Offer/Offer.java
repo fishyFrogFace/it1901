@@ -1,40 +1,38 @@
 package com.it1901.booking.Application.Concert.Offer;
 
 import com.it1901.booking.Application.DatabaseHandler;
+import com.sun.deploy.security.ValidationState;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
+import java.time.LocalDateTime;
 
 public class Offer {
 
     public enum offerState {
-        unfinished, pending, accepted, declined,
+        unfinished, pending, declined, accepted,
         sent, cancelled, booked
     }
     private final Integer offerID;
     private offerState state;
     private final Integer bookerID;
-    private Integer managerID;
 
     public Offer(OfferBuilder builder) {
         this.offerID = builder.offerID;
         this.state = builder.state;
         this.bookerID = builder.bookerID;
-        this.managerID = builder.managerID;
     }
-    
-    public void setManager(Integer managerID, DatabaseHandler dbh) throws SQLException {
-        if (this.managerID == null) {
+
+    public void setStatusChange(Integer employeeID, DatabaseHandler dbh) throws SQLException {
             String query =
-                    "UPDATE offer " +
-                            "SET state = ?::offerState," +
-                            "WHERE offerID = ?";
+                    "INSERT INTO changedBy VALUES " +
+                            "(?, ?, ?)";
             PreparedStatement prepStatement = dbh.prepareQuery(query);
-            prepStatement.setString(1, state.toString());
+            prepStatement.setObject(1, LocalDateTime.now(), Types.TIMESTAMP);
             prepStatement.setInt(2, this.offerID);
+            prepStatement.setInt(3, employeeID);
             prepStatement.executeUpdate();
-            this.managerID = managerID;
-        }
     }
 
     public void saveState(offerState state, DatabaseHandler dbh) throws SQLException {

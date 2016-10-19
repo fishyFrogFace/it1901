@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class ConcertBuilder {
 
-    protected Integer eventID;
+    protected Integer concertID;
     protected LocalDate startDate;
     protected Integer duration;
     protected Integer ticketPrice;
@@ -13,12 +13,12 @@ public class ConcertBuilder {
     protected Integer offerID;
     protected Integer stageID;
 
-    public static ConcertBuilder event() {
+    public static ConcertBuilder concert() {
         return new ConcertBuilder();
     }
 
-    public ConcertBuilder withEventID(Integer eventID) {
-        this.eventID = eventID;
+    public ConcertBuilder withConcertID(Integer concertID) {
+        this.concertID = concertID;
         return this;
     }
 

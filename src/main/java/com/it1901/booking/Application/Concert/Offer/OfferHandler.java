@@ -38,7 +38,6 @@ public class OfferHandler {
                 .withOfferID(rs.getInt(1))
                 .withOfferSubject(Offer.offerState.valueOf(rs.getString(2)))
                 .withBookerID(rs.getInt(3))
-                .withManagerID(rs.getInt(4))
                 .build();
     }
 }

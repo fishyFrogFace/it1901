@@ -26,11 +26,6 @@ public class OfferBuilder {
         return this;
     }
 
-    public OfferBuilder withManagerID(Integer managerID) {
-        this.managerID = managerID;
-        return this;
-    }
-
     public Offer build() {
         return new Offer(this);
     }

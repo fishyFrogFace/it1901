@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.time.LocalDate;
 
-import static com.it1901.booking.Application.Concert.Offer.ConcertBuilder.event;
+import static com.it1901.booking.Application.Concert.Offer.ConcertBuilder.concert;
 
 public class ConcertHandler {
     //fetches an event from the database and creates an event instance
@@ -19,8 +19,8 @@ public class ConcertHandler {
         prepStatement.setInt(1, concertID);
         ResultSet rs = prepStatement.executeQuery();
         rs.next();
-        return event()
-                .withEventID(rs.getInt(1))
+        return concert()
+                .withConcertID(rs.getInt(1))
                 .withStartDate(rs.getDate(2).toLocalDate())
                 .withDuration(rs.getInt(3))
                 .withTicketPrice(rs.getInt(4))

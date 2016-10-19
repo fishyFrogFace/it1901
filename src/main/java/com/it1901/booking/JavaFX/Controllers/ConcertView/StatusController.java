@@ -40,7 +40,7 @@ public class StatusController {
                 try {
                     //TODO store all state changes in a separate table so you can show them
                     //TODO load concert view information again if state is changed
-                    cvc.offer.setManager(cvc.app.getUser().getUserID(), cvc.app.getDatabaseHandler());
+                    cvc.offer.setStatusChange(cvc.app.getUser().getUserID(), cvc.app.getDatabaseHandler());
                     cvc.offer.saveState(Offer.offerState.accepted, cvc.app.getDatabaseHandler());
                     messageLabel.setText("State changed");
                     cvc.updateInfoTab();
