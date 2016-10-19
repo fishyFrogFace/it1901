@@ -26,7 +26,8 @@ public class CalendarContainer {
 
     public BorderPane getCalendarContainer() {
         GridPane calGrid = getCalendar();
-        mainContainer.setCenter(calGrid);
+        ScrollPane scrollPane = new ScrollPane(calGrid);
+        mainContainer.setCenter(scrollPane);
 
         VBox header = createHeader();
 

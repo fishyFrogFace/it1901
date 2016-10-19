@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Stage {
 
     public enum stages {
-        Storsalen, Klubben, Knaus, Selskapssiden, Strossa
+        Klubben, Knaus, Selskapssiden, Storsalen, Strossa
     }
 
     private final int stageID;
