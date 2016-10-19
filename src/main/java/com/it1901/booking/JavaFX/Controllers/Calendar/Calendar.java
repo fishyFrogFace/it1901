@@ -53,10 +53,6 @@ public class Calendar {
     private void loadConcerts() throws SQLException {
         ResultSet rs = getCalendarContent(startOfWeek, endOfWeek, app.getDatabaseHandler());
 
-        //for debugging
-        Integer columnCount = rs.getMetaData().getColumnCount();
-        System.out.println("\nColumnCount: "+columnCount);
-
         Boolean noConcerts = rsIsEmpty(rs);
 
         for (LocalDate date = startOfWeek; !date.isAfter(endOfWeek); date = date.plusDays(1)) {
@@ -71,7 +67,6 @@ public class Calendar {
                                     rs.getString(6).equals(stage.toString())
                             ) {
                         Button btn = concertButton(rs);
-                        System.out.println("new btn: ");
                         eventsToday.getChildren().add(btn);
                         rs.next();
                     }
