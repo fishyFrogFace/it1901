@@ -11,12 +11,11 @@ public class OfferHandler {
     //inserts a new offer into the database
     public static Offer newOffer(Integer userID, DatabaseHandler dbh) throws SQLException {
         String query = "INSERT INTO offer VALUES " +
-                "(DEFAULT, ?::offerState, ?, ?)" +
+                "(DEFAULT, ?::offerState, ?)" +
                 "RETURNING *";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         prepStatement.setString(1, Offer.offerState.pending.toString());
         prepStatement.setInt(2, userID);
-        prepStatement.setNull(3, java.sql.Types.INTEGER);
         ResultSet rs = prepStatement.executeQuery();
         return newInstance(rs);
     }
