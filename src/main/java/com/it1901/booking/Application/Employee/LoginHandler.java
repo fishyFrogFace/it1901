@@ -1,9 +1,10 @@
-package com.it1901.booking.Application;
+package com.it1901.booking.Application.Employee;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.it1901.booking.Application.DatabaseHandler;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginHandler {
@@ -19,8 +20,8 @@ public class LoginHandler {
         return null;
     }
 
-    private static ResultSet getUser(String userName, DatabaseHandler dbh) throws SQLException {
-        String query = "SELECT * FROM employee WHERE username = ?";
+    public static ResultSet getUser(String userName, DatabaseHandler dbh) throws SQLException {
+        String query = "SELECT employeeID, name, accountType, password FROM employee WHERE username = ?";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         prepStatement.setString(1, userName);
         return prepStatement.executeQuery();

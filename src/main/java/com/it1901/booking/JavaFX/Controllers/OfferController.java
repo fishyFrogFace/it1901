@@ -1,16 +1,16 @@
 package com.it1901.booking.JavaFX.Controllers;
 
 import com.it1901.booking.Application.Artist;
-import com.it1901.booking.Application.Event.Email.Email;
-import com.it1901.booking.Application.Event.Email.EmailBuilder;
-import com.it1901.booking.Application.Event.Offer.Event;
-import com.it1901.booking.Application.Event.Offer.EventBuilder;
-import com.it1901.booking.Application.Event.Offer.Offer;
+import com.it1901.booking.Application.Concert.Email.Email;
+import com.it1901.booking.Application.Concert.Email.EmailBuilder;
+import com.it1901.booking.Application.Concert.Offer.Concert;
+import com.it1901.booking.Application.Concert.Offer.ConcertBuilder;
+import com.it1901.booking.Application.Concert.Offer.ConcertHandler;
+import com.it1901.booking.Application.Concert.Offer.OfferHandler;
 import com.it1901.booking.Application.PriceGenerator;
 import com.it1901.booking.Application.Stage;
 import com.it1901.booking.JavaFX.BookingApp;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.it1901.booking.JavaFX.Controllers.Elements.NavBar;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -87,8 +87,7 @@ public class OfferController {
         calcPrice.setOnAction(event -> {
             try{
                 PriceGenerator price = new PriceGenerator();
-                String artist = artists.getValue().toString();
-                artist.toLowerCase();
+                String artist = artists.getValue().toLowerCase();
                 int fee = price.getArtistFee(artist, app.getDatabaseHandler());
                 int scenePrice = price.getScenePrice(stages.getValue().toString(), app.getDatabaseHandler());
                 int maxAttendance = price.getSceneCapacity(stages.getValue().toString(), app.getDatabaseHandler());
@@ -135,10 +134,15 @@ public class OfferController {
                 Integer stageID = Stage.fetchStageID(app.getDatabaseHandler(), stages.getValue().toString());
                 Integer artistID = Artist.fetchArtistID(app.getDatabaseHandler(), artists.getValue());
                 String priceVal = priceField.getText();
-                if (Event.checkAvailable(stageID, datePicker.getValue(), app.getDatabaseHandler())) {
+                if (ConcertHandler.checkAvailable(stageID, datePicker.getValue(), app.getDatabaseHandler())) {
                     if (priceVal.matches("\\d+")) { //check for integer
-                        Integer offerID = Offer.newOffer(app.getUser().getUserID(), app.getDatabaseHandler());
-                        Event newEvent = EventBuilder.event()
+                        Integer offerID =
+                                OfferHandler.newOffer(
+                                        app.getUser().getUserID(),
+                                        app.getDatabaseHandler()
+                                )
+                                        .getOfferID();
+                        Concert newConcert = ConcertBuilder.concert()
                                 .withOfferID(offerID)
                                 .withStageID(stageID)
                                 .withArtistID(artistID)
@@ -151,7 +155,7 @@ public class OfferController {
                                 .withOfferID(offerID)
                                 .build();
                         email.saveEmail(app.getDatabaseHandler());
-                        newEvent.newEvent(app.getDatabaseHandler());
+                        newConcert.newEvent(app.getDatabaseHandler());
                         errorLabel.setText("Offer created");
                         errorLabel.setFill(Paint.valueOf("black"));
                     } else {

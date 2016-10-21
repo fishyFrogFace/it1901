@@ -21,8 +21,8 @@ public class SearchArtistController extends Controller implements Initializable 
 
 
     public void onSearchClick() throws SQLException {
-        result.setText(ainfo.getArtistInfo(nameString.getText())); //TODO cleanup, use methods in Search handler instead
-        result1.setText(ainfo.getPrevConcerts(nameString.getText())); //TODO cleanup, use methods in Search handler instead
+        result.setText(ainfo.getArtistInfo(nameString.getText(), app.getDatabaseHandler())); //TODO cleanup, use methods in Search handler instead
+        result1.setText(ainfo.getPrevConcerts(nameString.getText(), app.getDatabaseHandler())); //TODO cleanup, use methods in Search handler instead
     }
 
 

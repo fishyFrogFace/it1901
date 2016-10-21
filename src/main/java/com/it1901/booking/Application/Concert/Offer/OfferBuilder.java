@@ -1,4 +1,4 @@
-package com.it1901.booking.Application.Event.Offer;
+package com.it1901.booking.Application.Concert.Offer;
 
 public class OfferBuilder {
 
@@ -23,11 +23,6 @@ public class OfferBuilder {
 
     public OfferBuilder withBookerID(Integer bookerID) {
         this.bookerID = bookerID;
-        return this;
-    }
-
-    public OfferBuilder withManagerID(Integer managerID) {
-        this.managerID = managerID;
         return this;
     }
 

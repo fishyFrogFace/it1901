@@ -39,7 +39,7 @@ public class Calendar {
     }
 
     //returns a calendar GridPane loaded with this week's concerts
-	public GridPane createCalendar() throws SQLException {
+    public GridPane createCalendar() throws SQLException {
 
         calGrid.getStyleClass().addAll("pane", "grid");
 
@@ -47,34 +47,34 @@ public class Calendar {
         this.setDateLabels();
         this.setStageLabels();
 
-		return calGrid;
-	}
+        return calGrid;
+    }
 
-	private void loadConcerts() throws SQLException {
-            ResultSet rs = getCalendarContent(startOfWeek, endOfWeek, app.getDatabaseHandler());
+    private void loadConcerts() throws SQLException {
+        ResultSet rs = getCalendarContent(startOfWeek, endOfWeek, app.getDatabaseHandler());
 
-            Boolean noConcerts = rsIsEmpty(rs);
+        Boolean noConcerts = rsIsEmpty(rs);
 
-            for (LocalDate date = startOfWeek; !date.isAfter(endOfWeek); date = date.plusDays(1)) {
-                int slotIndex = 1;
+        for (LocalDate date = startOfWeek; !date.isAfter(endOfWeek); date = date.plusDays(1)) {
+            int slotIndex = 1;
 
-                for (stages stage : stages.values()) {
-                    VBox eventsToday = addGridBox(date, stage, app);
-                    if (!noConcerts) {
-                        while (
-                                !rs.isAfterLast() &&
-                                        rs.getDate(2).toLocalDate().equals(date) &&
-                                        rs.getString(6).equals(stage.toString())
-                                ) {
-                            Button btn = concertButton(rs);
-                            eventsToday.getChildren().add(btn);
-                            rs.next();
-                        }
+            for (stages stage : stages.values()) {
+                VBox eventsToday = addGridBox(date, stage, app);
+                if (!noConcerts) {
+                    while (
+                            !rs.isAfterLast() &&
+                                    rs.getDate(2).toLocalDate().equals(date) &&
+                                    rs.getString(6).equals(stage.toString())
+                            ) {
+                        Button btn = concertButton(rs);
+                        eventsToday.getChildren().add(btn);
+                        rs.next();
                     }
-                    calGrid.add(eventsToday, date.getDayOfWeek().getValue(), slotIndex);
-                    slotIndex++;
                 }
+                calGrid.add(eventsToday, date.getDayOfWeek().getValue(), slotIndex);
+                slotIndex++;
             }
+        }
     }
 
     private Boolean rsIsEmpty(ResultSet rs) throws SQLException {
@@ -85,29 +85,30 @@ public class Calendar {
         }
     }
 
-	private static ResultSet getCalendarContent(LocalDate startOfWeek, LocalDate endOfWeek,
+    private static ResultSet getCalendarContent(LocalDate startOfWeek, LocalDate endOfWeek,
                                                 DatabaseHandler dbh) throws SQLException {
-		String query = "SELECT concertID, startDate, artist.name, genre, state, stage.name " +
-				"FROM concert, artist, offer, stage " +
-				"WHERE concert.artistID = artist.artistID " +
-				"AND concert.offerID = offer.offerID " +
-				"AND concert.stageID = stage.stageID " +
-				"AND startDate > ? " +
-				"AND startDate < ? " +
-				"ORDER BY startDate, stage.name";
-		PreparedStatement prepStatement = dbh.prepareQuery(query);
-		prepStatement.setObject(1, startOfWeek.minusDays(1), Types.DATE);
-		prepStatement.setObject(2, endOfWeek.plusDays(1), Types.DATE);
-		return prepStatement.executeQuery();
-	}
+        String query = "SELECT concertID, startDate, artist.name, genre, state, stage.name " +
+                "FROM concert, artist, offer, stage " +
+                "WHERE concert.artistID = artist.artistID " +
+                "AND concert.offerID = offer.offerID " +
+                "AND concert.stageID = stage.stageID " +
+                "AND startDate > ? " +
+                "AND startDate < ? " +
+                "ORDER BY startDate, stage.name";
+        PreparedStatement prepStatement = dbh.prepareQuery(query);
+        prepStatement.setObject(1, startOfWeek.minusDays(1), Types.DATE);
+        prepStatement.setObject(2, endOfWeek.plusDays(1), Types.DATE);
+        System.out.println("Startdate: "+startOfWeek+" Enddate: "+endOfWeek);
+        return prepStatement.executeQuery();
+    }
 
-	private ConcertButton concertButton(ResultSet rs) throws SQLException {
+    private ConcertButton concertButton(ResultSet rs) throws SQLException {
         String concertText = rs.getString(3) + '\n' + rs.getString(4) + '\n' + rs.getString(5);
         ConcertButton newBtn = new ConcertButton(concertText, rs.getInt(1));
-        newBtn.setOnAction(event -> app.makeOfferView(newBtn.getConcertID()));
+        newBtn.setOnAction(event -> app.makeConcertView(newBtn.getConcertID()));
         newBtn.setPrefWidth(Double.MAX_VALUE);
         newBtn.setMinHeight(60);
-        
+
         switch (rs.getString(5)) {
             case "pending":
                 newBtn.getStyleClass().addAll("concert", "pending");
@@ -137,7 +138,7 @@ public class Calendar {
         return eventsToday;
     }
 
-	private void setDateLabels() {
+    private void setDateLabels() {
         DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("E\nMMM d");
 
         for (LocalDate date = startOfWeek; !date.isAfter(endOfWeek); date = date.plusDays(1)) {

@@ -1,10 +1,9 @@
 package com.it1901.booking.JavaFX.Controllers;
 
 import com.it1901.booking.Application.Stage;
-import com.it1901.booking.Application.User;
+import com.it1901.booking.Application.Employee.User;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;

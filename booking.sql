@@ -12,7 +12,8 @@ CREATE TABLE employee (
     name TEXT NOT NULL,
     password TEXT NOT NULL,
     accountType ROLE NOT NULL,
-    paygradeID INT REFERENCES paygrade(paygradeID),
+    paygradeID INT REFERENCES paygrade(paygradeID)
+	ON DELETE SET NULL,
     PRIMARY KEY(employeeID));
 
 CREATE TABLE stage (
@@ -35,25 +36,45 @@ CREATE TABLE artist (
     genre musicGenre NOT NULL,
     accomodationCost INT,
     PRIMARY KEY(artistID));
+
+CREATE TABLE requirement (
+    requirementID SERIAL,
+    item TEXT NOT NULL,
+    description TEXT NOT NULL,
+    comment TEXT NOT NULL,
+    PRIMARY KEY(requirementID));
+	
+CREATE TABLE neededby (
+	artistID INT NOT NULL REFERENCES artist(artistID)
+	ON DELETE CASCADE,
+    requirementID INT REFERENCES requirement(requirementID)
+	ON DELETE CASCADE);
     
 CREATE TABLE artistinfo (
     infoID SERIAL,
     spotify INT,
     albumsSold INT,
     concerts TEXT,
-    artistID INT NOT NULL REFERENCES artist(artistID),
+    artistID INT NOT NULL REFERENCES artist(artistID)
+    ON DELETE CASCADE,
     PRIMARY KEY(infoID));
 
 CREATE TYPE offerState AS ENUM
-    ('unfinished', 'pending', 'accepted', 
-    'declined', 'sent', 'returned', 'booked');
+    ('unfinished', 'pending', 'declined',
+    'accepted', 'sent', 'cancelled', 'booked');
 
 CREATE TABLE offer (
     offerID SERIAL,
     state offerState NOT NULL,
     bookerID INT NOT NULL REFERENCES employee(employeeID),
-    managerID INT REFERENCES employee(employeeID),
     PRIMARY KEY(offerID));
+
+CREATE TABLE changedby (
+	timeChanged TIMESTAMP NOT NULL,
+    offerID INT NOT NULL REFERENCES offer(offerID)
+	ON DELETE CASCADE,
+    employeeID INT REFERENCES employee(employeeID)
+	ON DELETE CASCADE);
 
 CREATE TABLE email (
     emailID SERIAL,
@@ -89,10 +110,11 @@ CREATE TABLE assigned (
     ON DELETE CASCADE,
     PRIMARY KEY(assignedID));
     
-CREATE TABLE budgetPost (
+CREATE TABLE budgetpost (
     budgetPostID SERIAL,
     description TEXT NOT NULL,
     price INT NOT NULL,
-	  expense BOOLEAN NOT NULL,
-    concertID INT REFERENCES concert(concertID),
+	expense BOOLEAN NOT NULL,
+    concertID INT REFERENCES concert(concertID)
+	ON DELETE CASCADE,
     PRIMARY KEY(budgetPostID));

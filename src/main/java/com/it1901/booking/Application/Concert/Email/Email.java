@@ -1,13 +1,12 @@
-package com.it1901.booking.Application.Event.Email;
+package com.it1901.booking.Application.Concert.Email;
 
 import com.it1901.booking.Application.DatabaseHandler;
-import com.it1901.booking.Application.Event.Offer.Event;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static com.it1901.booking.Application.Event.Email.EmailBuilder.email;
+import static com.it1901.booking.Application.Concert.Email.EmailBuilder.email;
 
 public class Email {
     private final Integer emailID;

@@ -1,7 +1,7 @@
 package com.it1901.booking.JavaFX;
 
 import com.it1901.booking.Application.DatabaseHandler;
-import com.it1901.booking.Application.User;
+import com.it1901.booking.Application.Employee.User;
 import com.it1901.booking.JavaFX.Controllers.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -61,17 +61,20 @@ public class BookingApp extends Application {
         setScene(parent);
     }
 
-    public Parent loadGeneric(String path, String title) {
+    private Parent loadGeneric(String path, String title) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path)); //need instantiated loader to get controller
         Parent parent = null; //Loads fxml
         try {
             parent = loader.load();
+            System.out.println("Loaded: "+path);
         } catch (IOException e) {
             e.printStackTrace();
         }
         currentController = loader.getController(); //Set current controller
         currentController.setApp(this); //register app in controller
-        currentController.onLoad();
+        if (!title.equals("Concert")) {
+            currentController.onLoad();
+        }
         primarystage.setTitle(title);
         return parent;
     }
@@ -89,9 +92,9 @@ public class BookingApp extends Application {
         setScene(parent);
     }
 
-    public void makeOfferView(Integer eventID) {
-        OfferViewController ovc = new OfferViewController(this, eventID);
-        BorderPane parent = ovc.createOfferViewContainer();
+    public void makeConcertView(Integer concertID) {
+        Parent parent = loadGeneric("/ConcertView/ConcertView.fxml", "Concert");
+        currentController.onLoad(concertID);
         setScene(parent);
     }
 
@@ -119,6 +122,6 @@ public class BookingApp extends Application {
     }
 
     public void makeTechView() {
-        setScene(loadGeneric("/TechView.fxml", user.getUserName() + "s work hours"));
+        setScene(loadGeneric("/TechView.fxml", user.getName() + "'s work hours"));
     }
 }

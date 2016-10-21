@@ -5,11 +5,10 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 
 public class ArtistInfo {
-	DatabaseHandler dbh = new DatabaseHandler("org.postgresql.Driver", "jdbc:postgresql://52.40.176.177:5432/booking",
-			"team", "it1901");
+
 	private DecimalFormat formatter = new DecimalFormat("#,###");
 
-	public String getArtistInfo(String artist) throws SQLException {
+	public String getArtistInfo(String artist, DatabaseHandler dbh) throws SQLException {
 		ResultSet rs = SearchHandler.getArtistKey(artist, dbh);
 		if (rs.next()) {
 			String genre = rs.getString("genre").substring(0, 1).toUpperCase() + rs.getString("genre").substring(1);
@@ -23,7 +22,7 @@ public class ArtistInfo {
 		}
 	}
 	
-	public String getPrevConcerts(String artist) throws SQLException {
+	public String getPrevConcerts(String artist, DatabaseHandler dbh) throws SQLException {
 		ResultSet rs = SearchHandler.getPreviousConcerts(artist, dbh);
 		if (rs.next()) {
 			int amount = rs.getRow();
