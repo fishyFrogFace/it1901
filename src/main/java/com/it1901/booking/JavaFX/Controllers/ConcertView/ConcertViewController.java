@@ -20,6 +20,9 @@ public class ConcertViewController extends Controller {
     @FXML
     private StatusController statusController;
 
+    @FXML
+    private TechController techController;
+
     @Override
     public void onLoad(Integer concertID) {
         try {
@@ -37,6 +40,11 @@ public class ConcertViewController extends Controller {
 			e.printStackTrace();
 		}
         statusController.load(this);
+        try {
+            techController.load(this);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         //add rest of nested controllers
     }
 

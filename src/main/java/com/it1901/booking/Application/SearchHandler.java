@@ -160,4 +160,18 @@ public class SearchHandler {
         prepStatement.setInt(1, concertID);
         return prepStatement.executeQuery();
     }
+
+    public static ResultSet getAssignedTechs(int concertID, DatabaseHandler dbh) throws SQLException {
+        String query = "SELECT employee.name, assigned.type, assigned.hours " +
+                "FROM assigned, employee " +
+                "WHERE assigned.concertID = ? " +
+                "AND assigned.employeeID = employee.employeeID ";
+        PreparedStatement prepStatement = dbh.prepareQuery(query);
+        prepStatement.setInt(1, concertID);
+        ResultSet rs = prepStatement.executeQuery();
+        if (rs == null) {
+            System.out.println("waddafak");
+        }
+        return rs;
+    }
 }
