@@ -115,7 +115,7 @@ public class SearchHandler {
         //add assigned.type,
 		String query = "SELECT concert.startDate, assigned.hours, assigned.type, artist.name, stage.name " +
                 "FROM assigned, concert, artist, stage " +
-                "WHERE assigned.assignedID = ? " +
+                "WHERE assigned.employeeID = ? " +
                 "AND concert.concertID = assigned.concertID " +
                 "AND artist.artistID = concert.artistID " +
                 "AND stage.stageID = concert.stageID";
