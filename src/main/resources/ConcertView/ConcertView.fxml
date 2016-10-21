@@ -45,7 +45,11 @@
                         <fx:include fx:id="status" source="Status.fxml" />
                      </content>
                   </Tab>
-                      <Tab text="Technicians" />
+                      <Tab text="Technicians">
+                          <content>
+                              <fx:include fx:id="tech" source="Tech.fxml" />
+                          </content>
+                      </Tab>
                       <Tab text="Assign technician" />
                       <Tab text="Results" />
                   </tabs>
