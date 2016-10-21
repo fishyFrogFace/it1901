@@ -113,7 +113,7 @@ public class SearchHandler {
 
 	public static ResultSet getAssignedConcerts(int userID, DatabaseHandler dbh) throws SQLException {
         //add assigned.type,
-		String query = "SELECT concert.startDate, assigned.hours, artist.name, stage.name " +
+		String query = "SELECT concert.startDate, assigned.hours, assigned.type, artist.name, stage.name " +
                 "FROM assigned, concert, artist, stage " +
                 "WHERE assigned.assignedID = ? " +
                 "AND concert.concertID = assigned.concertID " +

@@ -22,7 +22,7 @@ public class TechViewController extends Controller{
                             SearchHandler.getAssignedConcerts(
                                     app.getUser().getUserID(),
                                     app.getDatabaseHandler()),
-                            Arrays.asList("Date", "Hours", "Artist", "Stage")));
+                            Arrays.asList("Date", "Hours", "Role", "Artist", "Stage")));
         } catch (SQLException e) {
             e.printStackTrace();
         }
