@@ -18,12 +18,8 @@ public class PriceGenerator {
 	
 	public float computeTicketPrice(int fee, int scenePrice, int max) throws SQLException{
 		//Compute a ticketprice from a set of variables. 
-		System.out.println("Pris på artist " + fee);
-		System.out.println("Pris på scene: " + scenePrice);
-		System.out.println("Antall plasser: " + max);
 		int totalcost = fee + scenePrice;
 		int ticketPrice = totalcost/max;
-		
 		return ticketPrice;
 	}
 	public int getArtistPrice(){
@@ -39,7 +35,6 @@ public class PriceGenerator {
 	//Get capacity of scene, and totalcost from a scene. 
 	public int getSceneCapacity(String scene, DatabaseHandler dbh) throws SQLException{
 		ResultSet res = SearchHandler.getSceneCapacity(scene, dbh);
-		System.out.println(res);
 		while (res.next()){
 			capacity = res.getInt(1);
 			}
@@ -59,7 +54,6 @@ public class PriceGenerator {
 		while (res.next()){
 			artistPrice = res.getInt(7);
 		}
-		System.out.println("The artist fee is: " + artistPrice);
 		return artistPrice;
 	}
 }

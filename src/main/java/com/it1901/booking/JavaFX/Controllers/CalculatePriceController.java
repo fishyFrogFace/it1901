@@ -38,7 +38,7 @@ public class CalculatePriceController extends Controller {
 			int scenePrice = price.getScenePrice(scene, app.getDatabaseHandler());
 			int maxAttendance = price.getSceneCapacity(scene, app.getDatabaseHandler());
 			float ticketPrice = price.computeTicketPrice(fee, scenePrice, maxAttendance);
-			System.out.println("ticketprice:" + ticketPrice);
+			
 			ObservableList<String> tPrice = FXCollections.observableArrayList();
 			String costsArtist = "Pris på artist: " + fee + " kr";
 			String costScene = "Pris for konsert på gitt scene: " + scenePrice + " kr";
@@ -61,7 +61,6 @@ public class CalculatePriceController extends Controller {
 		//get all artists friom database
 		
 		if(i == 0){
-			System.out.println("ill generate suggestion for you:");
 			i++;
 			ResultSet res = SearchHandler.getAllArtists(app.getDatabaseHandler());
 			
@@ -75,10 +74,6 @@ public class CalculatePriceController extends Controller {
 	@FXML
 	public void initialize(){
 		choose.getItems().addAll("Storsalen", "Klubben", "Knaus", "Selskapssiden", "Strossa");
-		System.out.println("init");
-		
-		
-		
 	}
 	
 }
