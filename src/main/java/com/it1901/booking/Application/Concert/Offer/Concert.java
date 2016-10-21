@@ -6,6 +6,7 @@ import com.it1901.booking.Application.DatabaseHandler;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.time.LocalDate;
 
 public class Concert {
@@ -34,7 +35,7 @@ public class Concert {
 		String query = "INSERT INTO concert VALUES " +
 				"(DEFAULT, ?, 5, ?, 0, ?, ?, ?)";
 		PreparedStatement prepStatement = dbh.prepareQuery(query);
-		prepStatement.setObject(1, this.startDate);
+		prepStatement.setObject(1, this.startDate, Types.DATE);
 		prepStatement.setInt(2, this.ticketPrice);
 		prepStatement.setInt(3, this.artistID);
 		prepStatement.setInt(4, this.offerID);
