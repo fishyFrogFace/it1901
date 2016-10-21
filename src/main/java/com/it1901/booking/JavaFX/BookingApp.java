@@ -38,9 +38,6 @@ public class BookingApp extends Application {
         setScene(loadGeneric("/Dashboard.fxml", "Dashboard"));
     }
 
-    public void makeSearchArtist() {
-    	setScene(loadGeneric("/SearchArtist.fxml", "Search for artist"));
-    }
 
     public void makeSearchGenre(){
         setScene(loadGeneric("/InformationByGenre.fxml", "Search by genre"));
@@ -48,10 +45,6 @@ public class BookingApp extends Application {
 
     public void makePriceGenerator(){
     	setScene(loadGeneric("/CalculatePrice.fxml", "Get ticketprice"));
-    }
-
-    public void makeTable(){
-    	setScene(loadGeneric("/TableController.fxml", "Table"));
     }
 
     public void makeCalendar(LocalDate basis) {
