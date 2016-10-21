@@ -14,7 +14,8 @@ import javafx.scene.text.Text;
 public class InfoController {
 
     ConcertViewController cvc;
-
+    Float ticketPrice;
+    Integer count = 0;
     @FXML
     private Text artist;
 
@@ -40,6 +41,7 @@ public class InfoController {
     }
     public void updateConcertInfo(Integer concertID){
     	try{
+    		
     		DatabaseHandler dbh = cvc.app.getDatabaseHandler();
         	ResultSet rs = SearchHandler.getConcertInformation(dbh, concertID);
             PriceGenerator p = new PriceGenerator();
@@ -51,13 +53,21 @@ public class InfoController {
             state.setText("Status: " + rs.getObject(6).toString());
             date.setText("Date: " + rs.getObject(2).toString());
             stage.setText("Scene: " + sc);
-            price.setText("Ticket-Price: " + p.computeTicketPrice(
-            		+ p.getArtistFee(ar, dbh),
-            		+ p.getScenePrice(sc, dbh),
-            		+ p.getSceneCapacity(sc, dbh)) + "kr");
+            if(count == 0){
+            	ticketPrice = p.computeTicketPrice(
+	            		+ p.getArtistFee(ar, dbh),
+	            		+ p.getScenePrice(sc, dbh),
+	            		+ p.getSceneCapacity(sc, dbh));
+	            price.setText("Ticket-Price: " + ticketPrice + "kr");
+	            count++;
+            }
+            else{
+            	price.setText("Ticket-Price: " + ticketPrice);
+            }
         }
         catch(SQLException e){
         	System.out.println("Error: " + e);
         }
     }
+   
 }
