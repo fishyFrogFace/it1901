@@ -47,7 +47,11 @@
                   </Tab>
                       <Tab text="Technicians" />
                       <Tab text="Assign technician" />
-                      <Tab text="Results" />
+                      <Tab text="Results">
+                      <content>
+                        <fx:include fx:id="report" source="Report.fxml" />
+                      </content>
+                      </Tab>
                   </tabs>
               </TabPane>
          </center>
