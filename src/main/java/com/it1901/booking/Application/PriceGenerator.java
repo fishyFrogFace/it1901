@@ -32,6 +32,9 @@ public class PriceGenerator {
 	public int getScenePrice(){
 		return scenePrice;
 	}
+	public int getTicketPrice(){
+		return ticketPrice;
+	}
 	
 	//Get capacity of scene, and totalcost from a scene. 
 	public int getSceneCapacity(String scene, DatabaseHandler dbh) throws SQLException{
