@@ -14,8 +14,6 @@ public class User {
 		this.userName = userData.getString(2);
 		this.name = userData.getString(3);
         this.type = userData.getString(5);
-
-		System.out.println(userID + ":" + userName);
 	}
 
 	public int getUserID() {

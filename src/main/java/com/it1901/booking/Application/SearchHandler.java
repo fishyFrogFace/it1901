@@ -81,7 +81,7 @@ public class SearchHandler {
     }
 
 	public static ResultSet getPreviousConcerts(String artist, DatabaseHandler dbh) throws SQLException {
-		String query = "SELECT concertID, startDate, duration, ticketPrice, ticketsSold, stage.name " +
+		String query = "SELECT startDate, duration, ticketPrice, ticketsSold, stage.name " +
 					   "FROM concert, artist, stage " +
 					   "WHERE concert.artistID = artist.artistID " + 
 					   "AND concert.stageID = stage.stageID " +

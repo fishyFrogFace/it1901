@@ -48,7 +48,16 @@
                         <Label fx:id="artistSold" text="Albums sold:" />
                      </children>
                   </VBox>
-                  <AnchorPane fx:id="tableAnchor" prefHeight="200.0" prefWidth="200.0" />
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" text="Earlier Concerts" textAlignment="CENTER">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane fx:id="tableAnchor" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
                </items>
             </SplitPane>
          </center>

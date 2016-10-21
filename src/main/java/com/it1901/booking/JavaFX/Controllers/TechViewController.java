@@ -17,13 +17,12 @@ public class TechViewController extends Controller{
     @Override
     public void onLoad(){
         try {
-            app.getDatabaseHandler().displayResult(SearchHandler.getAssignedConcerts(app.getUser().getUserID(), app.getDatabaseHandler()));
             tableAnchor.getChildren().add(
                     TableViewMaker.makeTable(
                             SearchHandler.getAssignedConcerts(
                                     app.getUser().getUserID(),
                                     app.getDatabaseHandler()),
-                            Arrays.asList("Date", "Hours", "Artist", "Stage"))); //add"Role",
+                            Arrays.asList("Date", "Hours", "Artist", "Stage")));
         } catch (SQLException e) {
             e.printStackTrace();
         }
