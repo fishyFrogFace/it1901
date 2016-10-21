@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 
 public class ArtistInfo {
-
+	//TEST
 	private DecimalFormat formatter = new DecimalFormat("#,###");
 
 	public String getArtistInfo(String artist, DatabaseHandler dbh) throws SQLException {
