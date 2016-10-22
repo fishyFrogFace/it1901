@@ -38,6 +38,10 @@ public class Calendar {
         this.app = app;
     }
 
+    public LocalDate getStartOfWeek() {
+        return this.startOfWeek;
+    }
+
     //returns a calendar GridPane loaded with this week's concerts
     public GridPane createCalendar() throws SQLException {
 
@@ -131,6 +135,7 @@ public class Calendar {
     public GridBox addGridBox(LocalDate date, Stage.stages stage, BookingApp app) {
         GridBox eventsToday = new GridBox(date, stage);
         eventsToday.getStyleClass().addAll("pane", "vbox");
+        eventsToday.setPadding(new Insets(20, 0, 20, 0));
         eventsToday.setPrefWidth(110);
         eventsToday.setMinHeight(60);
         eventsToday.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->

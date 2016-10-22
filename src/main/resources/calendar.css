@@ -2,6 +2,10 @@
     -fx-background-color: white;
 }
 
+.vbox:hover {
+    -fx-background-color: f4f4f4;
+}
+
 .grid {
     -fx-padding: 5px;
     -fx-background-color: f4f4f4;
