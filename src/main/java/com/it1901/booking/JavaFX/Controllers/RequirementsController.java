@@ -6,8 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RequirementsController extends Controller {
@@ -24,7 +26,8 @@ public class RequirementsController extends Controller {
     @FXML
     private TextArea comments;
 
-    //TODO add messageText
+    @FXML
+    private Text messageLabel;
 
     public void onLoad() {
         try {
@@ -36,15 +39,22 @@ public class RequirementsController extends Controller {
 
     public void storeRequirement(ActionEvent actionEvent) {
         String query = "INSERT INTO requirement VALUES" +
-                "(DEFAULT, ?, ?, ?)";
+                "(DEFAULT, ?, ?, ?)" +
+                "RETURNING *";
         try {
             PreparedStatement prepStatement = app.getDatabaseHandler().prepareQuery(query);
             prepStatement.setString(1, artists.getValue());
             prepStatement.setString(2, description.getText());
             prepStatement.setString(3, comments.getText());
-            prepStatement.executeUpdate();
+            ResultSet rs = prepStatement.executeQuery();
+            if (rs.next()) {
+                messageLabel.setText("Requirement added");
+            } else {
+                messageLabel.setText("Could not add this requirement");
+            }
+
         } catch (SQLException e) {
-            //TODO catch all exceptions and do something with them
+            messageLabel.setText("Could not establish connection with the database");
             e.printStackTrace();
         }
     }
