@@ -39,7 +39,7 @@ public class GenreSearchController extends Controller {
         try {
             String searchText = searchField.getText();
             ResultSet res = SearchHandler.eventsByGenre(searchField.getText(), app.getDatabaseHandler());
-            tableAnchor.getChildren().add(TableViewMaker.makeTable(res, Arrays.asList("ID", "Genre", "Sales", "Stage", "Artist"))); //Makes result set and displays to screen
+            tableAnchor.getChildren().add(TableViewMaker.makeTable(res, Arrays.asList("Genre", "Stage", "Artist", "Date", "Duration", "Sold", "Price")));
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
