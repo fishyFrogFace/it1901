@@ -3,6 +3,7 @@ package com.it1901.booking.JavaFX;
 import com.it1901.booking.Application.DatabaseHandler;
 import com.it1901.booking.Application.Employee.User;
 import com.it1901.booking.JavaFX.Controllers.*;
+import com.it1901.booking.JavaFX.Controllers.Calendar.CalendarContainer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -116,5 +117,9 @@ public class BookingApp extends Application {
 
     public void makeTechView() {
         setScene(loadGeneric("/TechView.fxml", user.getName() + "'s work hours"));
+    }
+
+    public void makeConcertList() {
+        setScene(loadGeneric("/ConcertView/ConcertListView.fxml", "List of concerts"));
     }
 }

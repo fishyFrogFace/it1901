@@ -89,7 +89,7 @@ public class Calendar {
         }
     }
 
-    private static ResultSet getCalendarContent(LocalDate startOfWeek, LocalDate endOfWeek,
+    public static ResultSet getCalendarContent(LocalDate start, LocalDate end,
                                                 DatabaseHandler dbh) throws SQLException {
         String query = "SELECT concertID, startDate, artist.name, genre, state, stage.name " +
                 "FROM concert, artist, offer, stage " +
@@ -100,9 +100,9 @@ public class Calendar {
                 "AND startDate < ? " +
                 "ORDER BY startDate, stage.name";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
-        prepStatement.setObject(1, startOfWeek.minusDays(1), Types.DATE);
-        prepStatement.setObject(2, endOfWeek.plusDays(1), Types.DATE);
-        System.out.println("Startdate: "+startOfWeek+" Enddate: "+endOfWeek);
+        prepStatement.setObject(1, start.minusDays(1), Types.DATE);
+        prepStatement.setObject(2, end.plusDays(1), Types.DATE);
+        System.out.println("Startdate: "+start+" Enddate: "+end);
         return prepStatement.executeQuery();
     }
 
@@ -132,10 +132,10 @@ public class Calendar {
         return newBtn;
     }
 
-    public GridBox addGridBox(LocalDate date, Stage.stages stage, BookingApp app) {
+    private GridBox addGridBox(LocalDate date, Stage.stages stage, BookingApp app) {
         GridBox eventsToday = new GridBox(date, stage);
         eventsToday.getStyleClass().addAll("pane", "vbox");
-        eventsToday.setPadding(new Insets(20, 0, 20, 0));
+        eventsToday.setPadding(new Insets(0, 0, 20, 0));
         eventsToday.setPrefWidth(110);
         eventsToday.setMinHeight(60);
         eventsToday.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->

@@ -1,14 +1,14 @@
-package com.it1901.booking.JavaFX.Controllers;
+package com.it1901.booking.JavaFX.Controllers.Calendar;
 
 import com.it1901.booking.JavaFX.BookingApp;
 import com.it1901.booking.JavaFX.Controllers.Calendar.Calendar;
 import com.it1901.booking.JavaFX.Controllers.Elements.NavBar;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -33,9 +33,7 @@ public class CalendarContainer {
         mainContainer.setTop(createHeader());
         mainContainer.setLeft(createBackBtn());
         mainContainer.setRight(createFwdBtn());
-
-        //TODO add buttons to show all pending/sent event and change status to declined/sent
-        //should be added to sides of BorderPane
+        mainContainer.setBottom(createBottom());
 
         return mainContainer;
     }
@@ -54,15 +52,14 @@ public class CalendarContainer {
     }
 
     private VBox createHeader() {
-        VBox header = new VBox();
-        header.setAlignment(Pos.CENTER);
-
         MenuBar menuBar = NavBar.createMenu(app);
 
         DatePicker datePicker = new DatePicker();
         datePicker.setOnAction(event -> app.makeCalendar(datePicker.getValue()));
-        header.getChildren().addAll(menuBar, datePicker);
-        return header;
+        HBox datePickerContainer = new HBox(datePicker);
+        datePickerContainer.setPadding(new Insets(20));
+        datePickerContainer.setAlignment(Pos.CENTER);
+        return new VBox(menuBar, datePickerContainer);
     }
 
     private VBox createBackBtn() {
@@ -87,5 +84,16 @@ public class CalendarContainer {
         fwd.setOnAction(event -> app.makeCalendar(calendar.getStartOfWeek().plusDays(7)));
         right.getChildren().add(fwd);
         return right;
+    }
+
+    private HBox createBottom() {
+        Button viewList = new Button("View list");
+        viewList.setPrefWidth(100);
+        viewList.setPrefHeight(40);
+        viewList.setOnAction(event -> app.makeConcertList());
+        HBox bottom = new HBox(viewList);
+        bottom.setPadding(new Insets(20));
+        bottom.setAlignment(Pos.CENTER);
+        return bottom;
     }
 }

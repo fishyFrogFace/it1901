@@ -19,6 +19,7 @@ public class TableViewMaker {
         ObservableList<ObservableList> data = FXCollections.observableArrayList();
         try {
             //Add table columns dynamically
+            System.out.println(rs.getMetaData().getColumnCount());
             for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
                 final int j = i; // used in string property down below
                 TableColumn<ObservableList, String> col = new TableColumn<>(labels.get(i)); //sets column label
