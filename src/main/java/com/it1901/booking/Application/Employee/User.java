@@ -9,7 +9,7 @@ public class User {
     private final Type type;
 
     public enum Type {
-        booker, administrator, organizer, tech
+        booker, administrator, organizer, tech, manager
     }
 
 	public User(ResultSet userData) throws SQLException {

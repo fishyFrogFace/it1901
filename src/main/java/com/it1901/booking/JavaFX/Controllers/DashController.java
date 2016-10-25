@@ -57,6 +57,9 @@ public class DashController extends Controller {
             case "tech":
                 userType.setText("Tekniker");
                 break;
+            case "manager":
+                userType.setText("Manager");
+                break;
         }
     }
 
