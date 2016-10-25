@@ -124,4 +124,8 @@ public class BookingApp extends Application {
     public void makeTechView() {
         setScene(loadGeneric("/TechView.fxml", user.getName() + "'s work hours"));
     }
+
+    public void makeRequirements() {
+        setScene(loadGeneric("/Requirements.fxml", "Requirements"));
+    }
 }
