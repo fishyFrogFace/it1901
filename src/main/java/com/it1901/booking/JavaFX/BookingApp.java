@@ -39,6 +39,9 @@ public class BookingApp extends Application {
         setScene(loadGeneric("/Dashboard.fxml", "Dashboard"));
     }
 
+    public void makeSearchArtist() {
+    	setScene(loadGeneric("/SearchArtist.fxml", "Search for artist"));
+    }
 
     public void makeSearchGenre(){
         setScene(loadGeneric("/InformationByGenre.fxml", "Search by genre"));
@@ -46,6 +49,10 @@ public class BookingApp extends Application {
 
     public void makePriceGenerator(){
     	setScene(loadGeneric("/CalculatePrice.fxml", "Get ticketprice"));
+    }
+
+    public void makeTable(){
+    	setScene(loadGeneric("/TableController.fxml", "Table"));
     }
 
     public void makeCalendar(LocalDate basis) {
@@ -74,7 +81,7 @@ public class BookingApp extends Application {
     }
 
     public void makeArtistView(String artist) {
-        Parent parent = loadGeneric("/ArtistView.fxml", "Search an artist");
+        Parent parent = loadGeneric("/ArtistView.fxml", artist);
         ((ArtistViewController) currentController).displayArtist(artist);
         setScene(parent);
     }
@@ -117,6 +124,10 @@ public class BookingApp extends Application {
 
     public void makeTechView() {
         setScene(loadGeneric("/TechView.fxml", user.getName() + "'s work hours"));
+    }
+
+    public void makeRequirements() {
+        setScene(loadGeneric("/Requirements.fxml", "Requirements"));
     }
 
     public void makeConcertList() {

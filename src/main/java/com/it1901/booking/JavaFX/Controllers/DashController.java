@@ -37,6 +37,8 @@ public class DashController extends Controller {
             case "tech":
                 createButton("Artists", event -> app.makeArtistView("init"));
                 createButton("View work hours", event -> app.makeTechView());
+            case "manager":
+                createButton("Requirements", event -> app.makeRequirements());
                 break;
         }
     }
