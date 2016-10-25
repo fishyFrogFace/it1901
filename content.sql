@@ -16,7 +16,10 @@ INSERT INTO employee VALUES
 	'organizer', 1),
     (DEFAULT, 'mars', 'Marvin Martian', 
 	'$2a$10$IjOmy7phDesVDYcxnTNJcOCEHb1/.OISWcpDCYpFyU./yENcGFkTK', 
-	'tech', 4);
+	'tech', 4),
+	(DEFAULT, 'manager', 'Frank Bakke',
+	'$2a$10$IjOmy7phDesVDYcxnTNJcOCEHb1/.OISWcpDCYpFyU./yENcGFkTK',
+    'manager', 1);
 
 INSERT INTO stage VALUES
     (DEFAULT, 'Storsalen', 1000, 10000),
