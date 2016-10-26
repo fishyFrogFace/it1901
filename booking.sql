@@ -4,7 +4,7 @@ CREATE TABLE paygrade (
     PRIMARY KEY(paygradeID));
 
 CREATE TYPE role AS ENUM 
-    ('tech', 'organizer', 'booker', 'administrator');
+    ('manager', 'tech', 'organizer', 'booker', 'administrator');
 
 CREATE TABLE employee (
     employeeID SERIAL,
