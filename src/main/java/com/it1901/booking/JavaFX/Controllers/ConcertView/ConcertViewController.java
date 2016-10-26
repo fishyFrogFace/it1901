@@ -28,7 +28,6 @@ public class ConcertViewController extends Controller {
         try {
             this.concert = ConcertHandler.fetchConcert(concertID, app.getDatabaseHandler());
             this.offer = OfferHandler.instanceFromConcert(concertID, app.getDatabaseHandler());
-            System.out.println(app.getUser().getUserType());
         } catch (SQLException e) {
             //TODO add message to user here
             e.printStackTrace();

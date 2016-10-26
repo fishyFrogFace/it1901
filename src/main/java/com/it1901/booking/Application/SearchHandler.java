@@ -27,7 +27,6 @@ public class SearchHandler {
         String query;
         PreparedStatement prepStatement;
         if (genre.isEmpty()) {
-            System.out.println("yp");
             query = "SELECT genre, stage.name, artist.name, startDate, duration, ticketsSold, ticketPrice " +
                     "FROM concert, stage, artist " +
                     "WHERE concert.artistID = artist.artistID " +
@@ -172,7 +171,7 @@ public class SearchHandler {
     }
 
     public static int getEmloyeeID(String text, DatabaseHandler dbh) throws SQLException {
-        String query = "SELECT employeeID FROM employee WHERE userName = ? ";
+        String query = "SELECT employeeID FROM employee WHERE name = ? ";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         prepStatement.setString(1, text);
         ResultSet rs = prepStatement.executeQuery();

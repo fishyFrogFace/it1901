@@ -42,7 +42,7 @@ public class TechController{
         cbxRole.getItems().addAll(Arrays.asList("lyd", "lys", "rigging"));
         cbxRole.setValue("rigging");
         try {
-            TextFields.bindAutoCompletion(txtName, SearchHandler.getCollection("userName", "employee", cvc.app.getDatabaseHandler()));
+            TextFields.bindAutoCompletion(txtName, SearchHandler.getCollection("name", "employee", cvc.app.getDatabaseHandler()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -67,7 +67,6 @@ public class TechController{
             lblError.setText("Please fill in all the fields.");
             return;
         }
-        System.out.println(SearchHandler.getEmloyeeID(txtName.getText(), cvc.app.getDatabaseHandler()));
         try {
             String query = "INSERT INTO assigned VALUES (DEFAULT, ?, ?::techType, ?, ?)";
             PreparedStatement preparedStatement = cvc.app.getDatabaseHandler().prepareQuery(query);
