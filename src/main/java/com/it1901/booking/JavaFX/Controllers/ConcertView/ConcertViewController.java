@@ -35,12 +35,7 @@ public class ConcertViewController extends Controller {
         }
         try {
 			infoController.load(this);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        statusController.load(this);
-        try {
+            statusController.load(this);
             techController.load(this);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,5 +49,8 @@ public class ConcertViewController extends Controller {
     //Update information when clicking on infotab.
     public void updateInfoTab(){
     	infoController.updateConcertInfo(concert.getConcertID());
+    }
+    public void updateTechTab(){
+        techController.getTechTable();
     }
 }

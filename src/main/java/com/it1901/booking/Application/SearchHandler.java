@@ -168,10 +168,15 @@ public class SearchHandler {
                 "AND assigned.employeeID = employee.employeeID ";
         PreparedStatement prepStatement = dbh.prepareQuery(query);
         prepStatement.setInt(1, concertID);
+        return prepStatement.executeQuery();
+    }
+
+    public static int getEmloyeeID(String text, DatabaseHandler dbh) throws SQLException {
+        String query = "SELECT employeeID FROM employee WHERE userName = ? ";
+        PreparedStatement prepStatement = dbh.prepareQuery(query);
+        prepStatement.setString(1, text);
         ResultSet rs = prepStatement.executeQuery();
-        if (rs == null) {
-            System.out.println("waddafak");
-        }
-        return rs;
+        rs.next();
+        return rs.getInt("employeeID");
     }
 }
