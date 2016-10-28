@@ -178,4 +178,15 @@ public class SearchHandler {
         rs.next();
         return rs.getInt("employeeID");
     }
+    
+    public static ResultSet getTechReq(int concertID, DatabaseHandler dbh) throws SQLException {
+    	String query = "artist.name, item, description, comment " +
+    				   "FROM requirement, neededby, artist, concert " +
+    				   "WHERE requirement.requirementID = neededby.requirementID " +
+    				   "AND concert.artistID = neededby.artistID" +
+    				   "AND concert.concertID = ?";
+    	PreparedStatement prepStatement = dbh.prepareQuery(query);
+    	prepStatement.setInt(1, concertID);
+    	return prepStatement.executeQuery();
+    }
 }
