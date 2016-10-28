@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.table.TableFilter;
 
 import java.sql.ResultSet;
@@ -19,7 +20,6 @@ public class TableViewMaker {
         ObservableList<ObservableList> data = FXCollections.observableArrayList();
         try {
             //Add table columns dynamically
-            System.out.println(rs.getMetaData().getColumnCount());
             for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
                 final int j = i; // used in string property down below
                 TableColumn<ObservableList, String> col = new TableColumn<>(labels.get(i)); //sets column label
@@ -42,6 +42,10 @@ public class TableViewMaker {
         }
 
         TableFilter filter = new TableFilter<>(tableView);
+        AnchorPane.setTopAnchor(tableView, 0.0);
+        AnchorPane.setBottomAnchor(tableView, 0.0);
+        AnchorPane.setLeftAnchor(tableView, 0.0);
+        AnchorPane.setRightAnchor(tableView, 0.0);
         return tableView;
     }
 

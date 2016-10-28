@@ -83,7 +83,7 @@ public class TechController{
 
             getTechTable();
         } catch (SQLException e) {
-            lblError.setText("Could not complete query.");
+            lblError.setText("Tech name not valid");
         }
     }
 }

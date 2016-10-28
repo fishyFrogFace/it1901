@@ -5,7 +5,7 @@ import com.it1901.booking.Application.Concert.Offer.ConcertHandler;
 import com.it1901.booking.Application.Concert.Offer.Offer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.text.Text;
+import javafx.scene.control.Label;
 
 import java.sql.SQLException;
 
@@ -27,7 +27,7 @@ public class StatusController {
     Button book;
 
     @FXML
-    Text messageLabel;
+    Label messageLabel;
 
     public void load(ConcertViewController concertViewController) {
         cvc = concertViewController;
