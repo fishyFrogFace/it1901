@@ -50,11 +50,11 @@
                                 <fx:include fx:id="tech" source="Tech.fxml" />
                             </content>
                         </Tab>
-                  <Tab text="Technical requirements">
-                  	<content>
-                  		<fx:include fx:id="techreq" source="TechReq.fxml" />
-                  	</content>
-                  </Tab>
+                        <Tab text="Technical requirements">
+                            <content>
+                                <fx:include fx:id="techreq" source="Techreq.fxml" />
+                            </content>
+                        </Tab>
                         <Tab text="Results" />
                     </tabs>
                 </TabPane>

@@ -24,7 +24,7 @@ public class ConcertViewController extends Controller {
     private TechController techController;
     
     @FXML
-    private TechReqController techReqController;
+    private TechreqController techreqController;
 
     @Override
     public void onLoad(Integer concertID) {
@@ -39,7 +39,7 @@ public class ConcertViewController extends Controller {
 			infoController.load(this);
             statusController.load(this);
             techController.load(this);
-            techReqController.load();
+            techreqController.load(this);
         } catch (SQLException e) {
             e.printStackTrace();
         }
