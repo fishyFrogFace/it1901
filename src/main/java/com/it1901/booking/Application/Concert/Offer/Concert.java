@@ -35,7 +35,7 @@ public class Concert {
 	//inserts a new event into the database
 	public void newConcert(DatabaseHandler dbh) throws SQLException {
 		String query = "INSERT INTO concert VALUES " +
-				"(DEFAULT, ?, 5, 0, ?, ?, ?, ?)";
+				"(DEFAULT, ?, 5, ?, 0, ?, ?, ?)";
 		PreparedStatement prepStatement = dbh.prepareQuery(query);
 		prepStatement.setObject(1, this.startDate, Types.DATE);
 		prepStatement.setInt(2, this.ticketPrice);
