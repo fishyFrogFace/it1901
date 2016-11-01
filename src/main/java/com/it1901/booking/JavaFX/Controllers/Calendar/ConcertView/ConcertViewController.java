@@ -48,7 +48,6 @@ public class ConcertViewController extends Controller {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        statusController.load(this);
 
     }
 
