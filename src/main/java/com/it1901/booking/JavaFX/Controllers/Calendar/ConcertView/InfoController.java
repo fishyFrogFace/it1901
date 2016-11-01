@@ -47,22 +47,13 @@ public class InfoController {
         	rs.next();
             String ar = rs.getString(4);
             String sc = rs.getString(7);
+            Integer tp = rs.getInt(10);
             artist.setText("Artist: " + ar);
             genre.setText("Genre: " +  rs.getObject(5).toString());
             state.setText("Status: " + rs.getObject(6).toString());
             date.setText("Date: " + rs.getObject(2).toString());
             stage.setText("Scene: " + sc);
-            if(count == 0){
-            	ticketPrice = p.computeTicketPrice(
-	            		+ p.getArtistFee(ar, dbh),
-	            		+ p.getScenePrice(sc, dbh),
-	            		+ p.getSceneCapacity(sc, dbh));
-	            price.setText("Ticket-Price: " + ticketPrice + "kr");
-	            count++;
-            }
-            else{
-            	price.setText("Ticket-Price: " + ticketPrice);
-            }
+            price.setText("Ticket-Price: " + tp.toString() + "kr");
         }
         catch(SQLException e){
         	System.out.println("Error: " + e);
