@@ -180,10 +180,11 @@ public class SearchHandler {
     }
     
     public static ResultSet getTechReq(int concertID, DatabaseHandler dbh) throws SQLException {
-    	String query = "artist.name, item, description, comment " +
-    				   "FROM requirement, neededby, artist, concert " +
+    	String query = "SELECT artist.name, item, description, comment " +
+    				   "FROM requirement, neededby, concert, artist " +
     				   "WHERE requirement.requirementID = neededby.requirementID " +
-    				   "AND concert.artistID = neededby.artistID" +
+    				   "AND concert.artistID = neededby.artistID " +
+    				   "AND concert.artistID = artist.artistID " +
     				   "AND concert.concertID = ?";
     	PreparedStatement prepStatement = dbh.prepareQuery(query);
     	prepStatement.setInt(1, concertID);
