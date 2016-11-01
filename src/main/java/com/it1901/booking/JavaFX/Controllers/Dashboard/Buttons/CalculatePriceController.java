@@ -27,7 +27,7 @@ public class CalculatePriceController extends Controller {
 	String scene;
 	int i = 0;
 	
-	//Compute ticketprice. 
+	// Compute ticketprice. 
 	public void onComputeClicked() throws SQLException{
 		try{
 			error.setText("");

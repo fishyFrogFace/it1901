@@ -20,7 +20,7 @@ public class PriceGenerator {
 	//artist pris. 
 	
 	public float computeTicketPrice(int fee, int scenePrice, int max) throws SQLException{
-		//Compute a ticketprice from a set of variables. 
+		// Compute a ticketprice from a set of variables. 
 		int totalcost = fee + scenePrice + (workHours * pay) + rentalEquipment;
 		int ticketPrice = ((totalcost/max) + 150);
 		ticketPrice -= ticketPrice % 50;
