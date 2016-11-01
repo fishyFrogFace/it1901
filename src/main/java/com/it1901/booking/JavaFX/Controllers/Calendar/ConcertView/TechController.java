@@ -5,6 +5,7 @@ import com.it1901.booking.Application.TableViewMaker;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.TextFields;
@@ -32,6 +33,12 @@ public class TechController{
     @FXML
     private Label lblError;
 
+    @FXML
+    private SplitPane splitPane;
+
+    @FXML
+    private AnchorPane addTechPane;
+
 
     public void load(ConcertViewController concertViewController) {
         this.cvc = concertViewController;
@@ -47,6 +54,12 @@ public class TechController{
         }
 
         getTechTable();
+
+        if (!cvc.app.getUser().getUserType().equals("administrator") || !cvc.app.getUser().getUserType().equals("booker")){
+            splitPane.setDividerPositions(1);
+            addTechPane.setDisable(true);
+            addTechPane.setManaged(false);
+        }
     }
 
     public void getTechTable() {
