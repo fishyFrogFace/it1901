@@ -149,7 +149,8 @@ public class SearchHandler {
 
     public static ResultSet getConcertInformation(DatabaseHandler dbh, Integer concertID) throws SQLException {
         String query = "SELECT offer.offerID, startDate, artist.artistID, artist.name, " +
-                "genre, state, stage.name, concert.stageID, offer.state " +
+                "genre, state, stage.name, concert.stageID, offer.state, " +
+                "concert.ticketPrice, concert.ticketsSold, artist.fee, artist.accomodationCost, concert.duration, stage.price " +
                 "FROM concert, artist, offer, stage " +
                 "WHERE concert.artistID = artist.artistID " +
                 "AND concert.offerID = offer.offerID " +
