@@ -1,4 +1,4 @@
-package com.it1901.booking.JavaFX.Controllers.ConcertView;
+package com.it1901.booking.JavaFX.Controllers.Calendar.ConcertView;
 
 import com.it1901.booking.Application.SearchHandler;
 import javafx.fxml.FXML;

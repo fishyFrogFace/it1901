@@ -31,6 +31,7 @@ public class Concert {
 		this.stageID = builder.stageID;
 	}
 
+
 	//inserts a new event into the database
 	public void newConcert(DatabaseHandler dbh) throws SQLException {
 		String query = "INSERT INTO concert VALUES " +

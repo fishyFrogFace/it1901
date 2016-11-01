@@ -50,7 +50,6 @@ public class ConcertViewController extends Controller {
         }
         statusController.load(this);
 
-        //add rest of nested controllers
     }
 
     public void goBack(ActionEvent actionEvent) {
