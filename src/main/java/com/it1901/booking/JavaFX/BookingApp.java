@@ -53,10 +53,6 @@ public class BookingApp extends Application {
     	setScene(loadGeneric("/Dashboard/Buttons/CalculatePrice.fxml", "Get ticketprice"));
     }
 
-    public void makeTable(){
-    	setScene(loadGeneric("/TableController.fxml", "Table"));
-    }
-
     public void makeCalendar(LocalDate basis) {
         CalendarContainer calendarContainer = new CalendarContainer(basis, this);
         BorderPane parent = calendarContainer.getCalendarContainer();
