@@ -10,6 +10,9 @@ public class PriceGenerator {
 	int artistPrice;
 	int scenePrice;
 	int capacity;
+	int workHours = 4;
+	int pay = 150;
+	int rentalEquipment = 10000;
 		
 	static DatabaseHandler dtb;
 	//7. Som bookingsjef ønsker jeg å kunne få generert et forslag til billettpris som tar høyde for markedsinformasjon
@@ -18,8 +21,9 @@ public class PriceGenerator {
 	
 	public float computeTicketPrice(int fee, int scenePrice, int max) throws SQLException{
 		//Compute a ticketprice from a set of variables. 
-		int totalcost = fee + scenePrice;
-		int ticketPrice = totalcost/max;
+		int totalcost = fee + scenePrice + (workHours * pay) + rentalEquipment;
+		int ticketPrice = ((totalcost/max) + 150);
+		ticketPrice -= ticketPrice % 50;
 		return ticketPrice;
 	}
 	public int getArtistPrice(){

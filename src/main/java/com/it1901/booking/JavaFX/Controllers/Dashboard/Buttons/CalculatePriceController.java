@@ -43,7 +43,7 @@ public class CalculatePriceController extends Controller {
 			ObservableList<String> tPrice = FXCollections.observableArrayList();
 			String costsArtist = "Pris på artist: " + fee + " kr";
 			String costScene = "Pris for konsert på gitt scene: " + scenePrice + " kr";
-			String thePrice = "Billettpris for økonomisk balanse: " + ticketPrice + "Kr" ;
+			String thePrice = "Billettpris: " + ticketPrice + "Kr" ;
 			tPrice.add(costsArtist);
 			tPrice.add(costScene);
 			tPrice.add(thePrice);
