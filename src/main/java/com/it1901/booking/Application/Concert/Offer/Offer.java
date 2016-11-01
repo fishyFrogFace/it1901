@@ -1,7 +1,6 @@
 package com.it1901.booking.Application.Concert.Offer;
 
 import com.it1901.booking.Application.DatabaseHandler;
-import com.sun.deploy.security.ValidationState;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

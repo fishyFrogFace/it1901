@@ -4,6 +4,8 @@ import com.it1901.booking.Application.DatabaseHandler;
 import com.it1901.booking.Application.Employee.User;
 import com.it1901.booking.JavaFX.Controllers.*;
 import com.it1901.booking.JavaFX.Controllers.Calendar.CalendarContainer;
+import com.it1901.booking.JavaFX.Controllers.Dashboard.Buttons.ArtistViewController;
+import com.it1901.booking.JavaFX.Controllers.Dashboard.Buttons.OfferController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -36,19 +38,19 @@ public class BookingApp extends Application {
     }
 
     public void makeDash() {
-        setScene(loadGeneric("/Dashboard.fxml", "Dashboard"));
+        setScene(loadGeneric("/Dashboard/Dashboard.fxml", "Dashboard"));
     }
 
     public void makeSearchArtist() {
-    	setScene(loadGeneric("/SearchArtist.fxml", "Search for artist"));
+    	setScene(loadGeneric("/Dashboard/Buttons/SearchArtist.fxml", "Search for artist"));
     }
 
     public void makeSearchGenre(){
-        setScene(loadGeneric("/InformationByGenre.fxml", "Search by genre"));
+        setScene(loadGeneric("/Dashboard/Buttons/InformationByGenre.fxml", "Search by genre"));
     }
 
     public void makePriceGenerator(){
-    	setScene(loadGeneric("/CalculatePrice.fxml", "Get ticketprice"));
+    	setScene(loadGeneric("/Dashboard/Buttons/CalculatePrice.fxml", "Get ticketprice"));
     }
 
     public void makeTable(){
@@ -58,7 +60,7 @@ public class BookingApp extends Application {
     public void makeCalendar(LocalDate basis) {
         CalendarContainer calendarContainer = new CalendarContainer(basis, this);
         BorderPane parent = calendarContainer.getCalendarContainer();
-        parent.getStylesheets().add(getClass().getResource("/calendar.css").toExternalForm());
+        parent.getStylesheets().add(getClass().getResource("/Calendar/calendar.css").toExternalForm());
         setScene(parent);
     }
 
@@ -81,7 +83,7 @@ public class BookingApp extends Application {
     }
 
     public void makeArtistView(String artist) {
-        Parent parent = loadGeneric("/ArtistView.fxml", artist);
+        Parent parent = loadGeneric("/Dashboard/Buttons/ArtistView.fxml", "Artist");
         ((ArtistViewController) currentController).displayArtist(artist);
         setScene(parent);
     }
@@ -94,7 +96,7 @@ public class BookingApp extends Application {
     }
 
     public void makeConcertView(Integer concertID) {
-        Parent parent = loadGeneric("/ConcertView/ConcertView.fxml", "Concert");
+        Parent parent = loadGeneric("/Calendar/ConcertView/ConcertView.fxml", "Concert");
         currentController.onLoad(concertID);
         setScene(parent);
     }
@@ -123,14 +125,14 @@ public class BookingApp extends Application {
     }
 
     public void makeTechView() {
-        setScene(loadGeneric("/TechView.fxml", user.getName() + "'s work hours"));
+        setScene(loadGeneric("/Dashboard/Buttons/TechView.fxml", user.getName() + "'s work hours"));
     }
 
     public void makeRequirements() {
-        setScene(loadGeneric("/Requirements.fxml", "Requirements"));
+        setScene(loadGeneric("/Calendar/ConcertView/Requirements.fxml", "Requirements"));
     }
 
     public void makeConcertList() {
-        setScene(loadGeneric("/ConcertView/ConcertListView.fxml", "List of concerts"));
+        setScene(loadGeneric("/Calendar/ConcertListView.fxml", "List of concerts"));
     }
 }
