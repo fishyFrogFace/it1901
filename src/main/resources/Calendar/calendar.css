@@ -7,6 +7,7 @@
 }
 
 .grid {
+    -fx-alignment: center;
     -fx-padding: 5px;
     -fx-background-color: f4f4f4;
     -fx-padding: 2;
@@ -14,29 +15,35 @@
     -fx-vgap: 2;
 }
 
+.accepted, .sent, .booked, .declined, .pending {
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+}
+
 .concert {
     -fx-text-alignment: center;
 }
 
 .pending {
-    -fx-base: #adadeb;
-    -fx-width: 80%;
+    -fx-background-color: #cccc40;
 }
 
 .accepted {
-    -fx-base: #df80ff;
+    -fx-background-color: #40cc40;
 }
 
 .sent {
-    -fx-base: #ffff99;
+    -fx-background-color: #4040cc;
+    -fx-text-fill: white;
 }
 
 .declined {
-    -fx-base: #e0e0d1;
+    -fx-background-color: #999999;
 }
 
 .booked {
-    -fx-base: #b3ffcc;
+    -fx-background-color: #A03033;
+    -fx-text-fill: white;
 }
 
 .label {

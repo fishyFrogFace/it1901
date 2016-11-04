@@ -28,7 +28,7 @@ MenuBar > *:selected    {
 }
 
 #btnContainer    {
-    -fx-background-color: #EEEEEE;
+    -fx-background-color: #DDDDDD;
 }
 
 
@@ -47,6 +47,36 @@ MenuBar > *:selected    {
 
 #btnContainer > *:hover   {
     -fx-background-color: #BA202C;
+}
+
+TextField {
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+}
+
+
+Button {
+    -fx-background-color: #A03033;
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+    -fx-text-fill: white;
+}
+
+ChoiceBox {
+    -fx-background-color: #A03033;
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+    -fx-highlight-text-fill: white;
+    -fx-text-fill: white;
+}
+
+ChoiceBox .context-menu {
+    -fx-background-color: #A03033;
+    -fx-text-fill: white;
+}
+
+ChoiceBox .label, ChoiceBox .context-menu {
+    -fx-text-fill: white;
 }
 
 
