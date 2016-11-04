@@ -1,16 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 @font-face  {
-    font-family: "Futura PT";
-    src: url('fonts/FuturaPTDemi.otf');
+    font-family: Lato;
+    src: url("https://fonts.googleapis.com/css?family=Lato");
+}
+
+@font-face  {
+    font-family: Futura PT;
+    src: url("fonts/FuturaPTDemi.otf");
+}
+
+@font-face  {
+    font-family: Futura PT Light;
+    src: url("fonts/FuturaPTLight.otf");
+}
+
+#userType   {
+    -fx-font-family: 'Futura PT Light';
 }
 
 Label {
     -fx-text-fill: #ff3636#
-    -fx-font-family: 'Futura PT'
+    -fx-font-family: 'Futura PT';
 }
 
 TextField {
-    -fx-text-fill: #ff3636#
-    -fx-font-family: 'Futura PT'
+    -fx-text-fill: #ff3636#;
+    -fx-font-family: 'Futura PT';
 }
 
 #buttonPane   {
@@ -20,6 +36,7 @@ TextField {
 #buttonPane > * {
     -fx-background-color: black;
     -fx-text-fill: white;
+    -fx-font-family: 'Futura PT';
 }
 
 MenuBar > *:selected    {
@@ -39,7 +56,8 @@ MenuBar > *:selected    {
     -fx-background-radius: 0 0 0 0;
     -fx-background-border: 50 50 50 50;
     -fx-border-insets: 0 0 0 0;
-    -fx-Borderpane.alignment: center;
+    -fx-font-family: 'Futura PT';
+    /*-fx-Borderpane.alignment: center;
     /*    -fx-margin: 100px 100px 100px 100px;
       -fx-text-transform: uppercase;  */
     -fx-text-fill: white;
