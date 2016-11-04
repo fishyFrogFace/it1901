@@ -3,6 +3,7 @@ package com.it1901.booking.JavaFX.Controllers.Dashboard;
 import com.it1901.booking.Application.Stage;
 import com.it1901.booking.Application.Employee.User;
 import com.it1901.booking.JavaFX.Controllers.Controller;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,23 +26,15 @@ public class DashController extends Controller {
         switch (user.getUserType()) {
             case "administrator":
                 createButton("Price calculator", event -> app.makePriceGenerator());
-                //createButton("Concert rapports", event -> app.placeHolder());
             case "booker":
-                //createButton("Calendar", event -> app.makeCalendar(LocalDate.now()));
-                //createButton("Search by concert", event -> app.placeHolder());
-                //createButton("Search by artist", event -> app.makeSearchArtist());
                 createButton("Make new offer", event -> app.makeOffer(LocalDate.now(), Stage.stages.Storsalen));
                 createButton("Artists", event -> app.makeArtistView("init"));
                 createButton("Search by genre", event -> app.makeSearchGenre());
             case "organizer":
-            	createButton("Calendar", event -> app.makeCalendar(LocalDate.now()));
-                //createButton("Assign Techs", event -> app.placeHolder());
-                //createButton("Concert view", event -> app.placeHolder());
-            case "manager":
-                createButton("Requirements", event -> app.makeRequirements());
-            
             case "tech":
                 createButton("View work hours", event -> app.makeTechView());
+            case "manager":
+                createButton("Calendar", event -> app.makeCalendar(LocalDate.now()));
                 break;
         }
     }
@@ -66,7 +59,7 @@ public class DashController extends Controller {
         }
     }
 
-    private void createButton(String label, EventHandler eventHandler) throws IOException {
+    private void createButton(String label, EventHandler<ActionEvent> eventHandler) throws IOException {
         Button btn = new Button(label);
         btn.setOnAction(eventHandler);
         btn.setPrefSize(160, 80); //FIXME flytt dette til css
