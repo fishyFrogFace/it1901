@@ -31,4 +31,8 @@ public class ConcertListViewController extends Controller{
             e.printStackTrace();
         }
     }
+
+    public void goBack(){
+        app.makeCalendar(LocalDate.now());
+    }
 }
