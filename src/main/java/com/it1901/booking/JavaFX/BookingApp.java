@@ -103,6 +103,8 @@ public class BookingApp extends Application {
 
     public void setScene(Parent parent) {
         primarystage.setScene(new Scene(parent));
+        parent.getStylesheets().add(getClass().getResource("/standard.css").toExternalForm());
+        parent.getStylesheets().add("https://fonts.googleapis.com/css?family=Lato");
         primarystage.show();
     }
 

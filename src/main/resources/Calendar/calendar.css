@@ -20,6 +20,7 @@
 
 .pending {
     -fx-base: #adadeb;
+    -fx-width: 80%;
 }
 
 .accepted {

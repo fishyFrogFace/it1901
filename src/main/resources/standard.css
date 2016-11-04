@@ -1,3 +1,52 @@
-.label {
-    -fx-text-fill: #ff3636#
+@font-face  {
+    font-family: "Futura PT";
+    src: url('fonts/FuturaPTDemi.otf');
 }
+
+Label {
+    -fx-text-fill: #ff3636#
+    -fx-font-family: 'Futura PT'
+}
+
+TextField {
+    -fx-text-fill: #ff3636#
+    -fx-font-family: 'Futura PT'
+}
+
+#buttonPane   {
+    -fx-background-color: black;
+}
+
+#buttonPane > * {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+MenuBar > *:selected    {
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: green;
+}
+
+#btnContainer    {
+    -fx-background-color: #EEEEEE;
+}
+
+
+
+#btnContainer > *  {
+    -fx-background-color: #A03033;
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+    -fx-background-border: 50 50 50 50;
+    -fx-border-insets: 0 0 0 0;
+    -fx-Borderpane.alignment: center;
+    /*    -fx-margin: 100px 100px 100px 100px;
+      -fx-text-transform: uppercase;  */
+    -fx-text-fill: white;
+}
+
+#btnContainer > *:hover   {
+    -fx-background-color: #BA202C;
+}
+
+

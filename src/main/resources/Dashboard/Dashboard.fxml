@@ -11,12 +11,12 @@
    <children>
       <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-            <FlowPane fx:id="btnContainer" hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="500.0" prefWidth="520.0" vgap="20.0" BorderPane.alignment="CENTER">
+            <FlowPane fx:id="btnContainer" hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" vgap="20.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
-                  <Insets />
+                  <Insets bottom="100" />
                </BorderPane.margin>
                <padding>
-                  <Insets top="40.0" />
+                  <Insets top="40.0" bottom="40.0" left="40" right="40" />
                </padding>
             </FlowPane>
          </bottom>
