@@ -52,7 +52,7 @@ public class CalendarContainer {
     }
 
     private VBox createHeader() {
-        MenuBar menuBar = NavBar.createMenu(app);
+        HBox menuBar = NavBar.createMenu(app);
 
         DatePicker datePicker = new DatePicker();
         datePicker.setOnAction(event -> app.makeCalendar(datePicker.getValue()));

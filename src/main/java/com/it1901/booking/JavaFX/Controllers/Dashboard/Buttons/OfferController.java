@@ -15,6 +15,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
@@ -25,6 +26,7 @@ public class OfferController {
     private final Integer width = 160;
     private final BorderPane mainContainer;
     private final BookingApp app;
+    private final LocalDate date;
     private final DatePicker datePicker;
     private final TextField priceField;
     private final ChoiceBox<Stage.stages> stages;
@@ -35,6 +37,7 @@ public class OfferController {
 
     public OfferController(BookingApp app, LocalDate date, Stage.stages stage) {
         this.mainContainer = new BorderPane();
+        this.date = date;
         this.datePicker = new DatePicker(date);
         datePicker.setPrefWidth(width);
         this.priceField = new TextField();
@@ -49,10 +52,11 @@ public class OfferController {
 
     public BorderPane createOfferContainer() {
         mainContainer.setCenter(getCenter());
-
-        MenuBar header = NavBar.createMenu(app);
-        mainContainer.setTop(header);
-
+        HBox navBar = NavBar.createMenu(app);
+        Button calendarButton = new Button("Calendar");
+        calendarButton.setOnAction(e -> app.makeCalendar(date));
+        navBar.getChildren().add(calendarButton);
+        mainContainer.setTop(navBar);
         return mainContainer;
     }
 
