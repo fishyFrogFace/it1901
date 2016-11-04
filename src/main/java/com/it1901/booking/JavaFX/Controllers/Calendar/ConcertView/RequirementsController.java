@@ -16,9 +16,6 @@ import java.sql.SQLException;
 public class RequirementsController extends Controller {
 
     @FXML
-    private ChoiceBox<String> artists;
-
-    @FXML
     private TextField requirement;
 
     @FXML
@@ -30,12 +27,10 @@ public class RequirementsController extends Controller {
     @FXML
     private Text messageLabel;
 
-    public void onLoad() {
-        try {
-            artists.getItems().setAll(Artist.getArtistNames(app.getDatabaseHandler()));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    private ConcertViewController cvc;
+
+    public void load(ConcertViewController cvc) {
+        this.cvc = cvc;
     }
 
     public void storeRequirement(ActionEvent actionEvent) {
@@ -43,8 +38,8 @@ public class RequirementsController extends Controller {
                 "(DEFAULT, ?, ?, ?)" +
                 "RETURNING *";
         try {
-            PreparedStatement prepStatement = app.getDatabaseHandler().prepareQuery(query);
-            prepStatement.setString(1, artists.getValue());
+            PreparedStatement prepStatement = cvc.app.getDatabaseHandler().prepareQuery(query);
+            prepStatement.setInt(1, cvc.concert.getConcertID());
             prepStatement.setString(2, description.getText());
             prepStatement.setString(3, comments.getText());
             ResultSet rs = prepStatement.executeQuery();

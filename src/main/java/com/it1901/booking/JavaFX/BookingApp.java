@@ -124,10 +124,6 @@ public class BookingApp extends Application {
         setScene(loadGeneric("/Dashboard/Buttons/TechView.fxml", user.getName() + "'s work hours"));
     }
 
-    public void makeRequirements() {
-        setScene(loadGeneric("/Calendar/ConcertView/Requirements.fxml", "Requirements"));
-    }
-
     public void makeConcertList() {
         setScene(loadGeneric("/Calendar/ConcertListView.fxml", "List of concerts"));
     }

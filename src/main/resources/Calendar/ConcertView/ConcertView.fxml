@@ -47,6 +47,11 @@
                                 <fx:include source="Report.fxml" fx:id="report" />
                             </content>
                         </Tab>
+                        <Tab text="Requirements">
+                            <content>
+                                <fx:include fx:id="requirements" source="Requirements.fxml" />
+                            </content>
+                        </Tab>
                     </tabs>
                 </TabPane>
             </center>

@@ -25,21 +25,15 @@ public class DashController extends Controller {
         switch (user.getUserType()) {
             case "administrator":
                 createButton("Price calculator", event -> app.makePriceGenerator());
-                //createButton("Concert rapports", event -> app.placeHolder());
             case "booker":
-                //createButton("Calendar", event -> app.makeCalendar(LocalDate.now()));
-                //createButton("Search by concert", event -> app.placeHolder());
-                //createButton("Search by artist", event -> app.makeSearchArtist());
                 createButton("Make new offer", event -> app.makeOffer(LocalDate.now(), Stage.stages.Storsalen));
                 createButton("Artists", event -> app.makeArtistView("init"));
                 createButton("Search by genre", event -> app.makeSearchGenre());
             case "organizer":
             	createButton("Calendar", event -> app.makeCalendar(LocalDate.now()));
-                //createButton("Assign Techs", event -> app.placeHolder());
-                //createButton("Concert view", event -> app.placeHolder());
             case "manager":
-                createButton("Requirements", event -> app.makeRequirements());
-            
+                createButton("Calendar", event -> app.makeCalendar(LocalDate.now()));
+                break;
             case "tech":
                 createButton("View work hours", event -> app.makeTechView());
                 break;
