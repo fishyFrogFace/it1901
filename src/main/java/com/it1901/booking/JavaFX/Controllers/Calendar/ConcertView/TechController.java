@@ -55,7 +55,7 @@ public class TechController{
 
         getTechTable();
 
-        if (!cvc.app.getUser().getUserType().equals("administrator") || !cvc.app.getUser().getUserType().equals("booker")){
+        if (!cvc.app.getUser().getUserType().equals("administrator") && !cvc.app.getUser().getUserType().equals("booker")){
             splitPane.setDividerPositions(1);
             addTechPane.setDisable(true);
             addTechPane.setManaged(false);
