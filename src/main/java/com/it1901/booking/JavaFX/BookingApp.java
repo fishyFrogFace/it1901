@@ -13,7 +13,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.time.LocalDate;
 
 public class BookingApp extends Application {
@@ -30,6 +33,13 @@ public class BookingApp extends Application {
     @Override
     public void start(Stage ps) {
         this.primarystage = ps;
+        try {
+            PrintStream out = new PrintStream(new FileOutputStream("log.txt"));
+            System.setOut(out);
+            System.setErr(out);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         makeLogin();
     }
 
@@ -97,10 +107,6 @@ public class BookingApp extends Application {
         setScene(parent);
     }
 
-    public void placeHolder() {
-        System.out.println("PlaceHolder, change method to your make___() method!");
-    }
-
     public void setScene(Parent parent) {
         primarystage.setScene(new Scene(parent));
         primarystage.show();
@@ -122,10 +128,6 @@ public class BookingApp extends Application {
 
     public void makeTechView() {
         setScene(loadGeneric("/Dashboard/Buttons/TechView.fxml", user.getName() + "'s work hours"));
-    }
-
-    public void makeRequirements() {
-        setScene(loadGeneric("/Calendar/ConcertView/Requirements.fxml", "Requirements"));
     }
 
     public void makeConcertList() {
