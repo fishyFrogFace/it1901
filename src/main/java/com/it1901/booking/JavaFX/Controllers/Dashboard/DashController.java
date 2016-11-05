@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Text;
+
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -17,10 +19,14 @@ public class DashController extends Controller {
 
     @FXML
     private Label userType;
+
     @FXML
     private FlowPane btnContainer;
 
-    public void addDashElements(User user) throws IOException {
+    @FXML
+    Text messageLabel;
+
+    private void addDashElements(User user) throws IOException {
         setUserType(user.getUserType());
         //TODO Add appropriate elements for this type of user
         switch (user.getUserType()) {
@@ -72,6 +78,7 @@ public class DashController extends Controller {
         try {
             addDashElements(app.getUser());
         } catch (IOException e) {
+            messageLabel.setText("Dashboard elements could not be added");
             e.printStackTrace();
             System.out.println("Could not add dashboard elements.");
         }
