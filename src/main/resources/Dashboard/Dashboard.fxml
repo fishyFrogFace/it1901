@@ -40,7 +40,7 @@
             </VBox>
          </center>
          <bottom>
-            <Text fx:id="messageLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="messageLabel" wrappingWidth="75.13671875" BorderPane.alignment="CENTER">
+            <Text fx:id="messageLabel" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="75.13671875" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="60.0" left="40.0" right="40.0" top="20.0" />
                </BorderPane.margin>
