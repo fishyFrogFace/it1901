@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Arrays;
 
+import static com.it1901.booking.Application.Employee.User.Role.*;
+
 public class TechController{
 
     ConcertViewController cvc;
@@ -55,7 +57,7 @@ public class TechController{
 
         getTechTable();
 
-        if (!cvc.app.getUser().getUserType().equals("administrator") && !cvc.app.getUser().getUserType().equals("booker")){
+        if (!cvc.app.getUser().getUserRole().equals(administrator) && !cvc.app.getUser().getUserRole().equals(booker)){
             splitPane.setDividerPositions(1);
             addTechPane.setDisable(true);
             addTechPane.setManaged(false);

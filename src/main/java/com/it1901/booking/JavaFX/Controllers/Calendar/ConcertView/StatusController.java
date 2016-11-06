@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 
 import java.sql.SQLException;
 
+import static com.it1901.booking.Application.Employee.User.Role.*;
+
 public class StatusController {
 
     ConcertViewController cvc;
@@ -35,8 +37,8 @@ public class StatusController {
     }
 
     public void acceptOffer() {
-        switch (cvc.app.getUser().getUserType()) {
-            case "administrator":
+        switch (cvc.app.getUser().getUserRole()) {
+            case administrator:
                 try {
                     //TODO store all state changes in a separate table so you can show them
                     //TODO load concert view information again if state is changed
@@ -55,9 +57,9 @@ public class StatusController {
     }
 
     public void declineOffer() {
-        switch (cvc.app.getUser().getUserType()) {
-            case "administrator":
-            case "booker":
+        switch (cvc.app.getUser().getUserRole()) {
+            case administrator:
+            case booker:
                 try {
                     cvc.offer.saveState(Offer.offerState.declined, cvc.app.getDatabaseHandler());
                     messageLabel.setText("State changed");
@@ -74,7 +76,7 @@ public class StatusController {
 
     public void sendEmail() {
         if (startingState.equals(Offer.offerState.accepted) ||
-                cvc.app.getUser().getUserType().equals("administrator")) {
+                cvc.app.getUser().getUserRole().equals(administrator)) {
             try {
                 Email thisEmail = Email.fetchEmail(
                         cvc.offer.getOfferID(),
@@ -97,7 +99,7 @@ public class StatusController {
     public void bookConcert() {
         if (startingState.equals(Offer.offerState.accepted) ||
                 startingState.equals(Offer.offerState.sent) ||
-                cvc.app.getUser().getUserType().equals("administrator")) {
+                cvc.app.getUser().getUserRole().equals(administrator)) {
             try {
                 if (ConcertHandler.checkAvailable(
                         cvc.concert.getStageID(),
@@ -119,6 +121,6 @@ public class StatusController {
     }
 
     public void setEmpty() {
-        System.out.println("text should be empty");
+        messageLabel.setText("");
     }
 }

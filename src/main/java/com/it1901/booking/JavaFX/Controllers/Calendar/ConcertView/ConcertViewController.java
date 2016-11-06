@@ -38,7 +38,7 @@ public class ConcertViewController extends Controller {
             this.concert = ConcertHandler.fetchConcert(concertID, app.getDatabaseHandler());
             this.offer = OfferHandler.instanceFromConcert(concertID, app.getDatabaseHandler());
             randomizeResults(this.concert, app.getDatabaseHandler());
-            System.out.println(app.getUser().getUserType());
+            System.out.println(app.getUser().getUserRole());
         } catch (SQLException e) {
             //TODO add message to user here
             e.printStackTrace();
