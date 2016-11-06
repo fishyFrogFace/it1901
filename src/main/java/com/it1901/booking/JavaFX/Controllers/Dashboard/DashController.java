@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class DashController extends Controller {
 
     @FXML
-    private Label userType;
+    private Label userRole;
 
     @FXML
     private FlowPane btnContainer;
@@ -27,40 +27,40 @@ public class DashController extends Controller {
     Text messageLabel;
 
     private void addDashElements(User user) throws IOException {
-        setUserType(user.getUserType());
+        setUserRole(user.getUserRole());
         //TODO Add appropriate elements for this type of user
-        switch (user.getUserType()) {
-            case "administrator":
+        switch (user.getUserRole()) {
+            case administrator:
                 createButton("Price calculator", event -> app.makePriceGenerator());
-            case "booker":
+            case booker:
                 createButton("Make new offer", event -> app.makeOffer(LocalDate.now(), Stage.stages.Storsalen));
                 createButton("Artists", event -> app.makeArtistView("init"));
                 createButton("Search by genre", event -> app.makeSearchGenre());
-            case "organizer":
-            case "tech":
+            case organizer:
+            case tech:
                 createButton("View work hours", event -> app.makeTechView());
-            case "manager":
+            case manager:
                 createButton("Calendar", event -> app.makeCalendar(LocalDate.now()));
                 break;
         }
     }
 
-    private void setUserType(String type) {
-        switch (type) {
-            case "administrator":
-                userType.setText("Bookingsjef");
+    private void setUserRole(User.Role role) {
+        switch (role) {
+            case administrator:
+                userRole.setText("Bookingsjef");
                 break;
-            case "booker":
-                userType.setText("Bookingansvarlig");
+            case booker:
+                userRole.setText("Bookingansvarlig");
                 break;
-            case "organizer":
-                userType.setText("Arrangør");
+            case organizer:
+                userRole.setText("Arrangør");
                 break;
-            case "tech":
-                userType.setText("Tech");
+            case tech:
+                userRole.setText("Tech");
                 break;
-            case "manager":
-                userType.setText("Manager");
+            case manager:
+                userRole.setText("Manager");
                 break;
         }
     }

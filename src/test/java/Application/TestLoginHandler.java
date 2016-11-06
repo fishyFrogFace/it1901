@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.sql.SQLException;
 
+import static com.it1901.booking.Application.Employee.User.Role.administrator;
 import static org.junit.Assert.assertEquals;
 
 public class TestLoginHandler {
@@ -15,7 +16,7 @@ public class TestLoginHandler {
     public void testLogin() {
         try {
             User actual = LoginHandler.login("acme", "1234", dbh);
-            assertEquals("administrator", actual.getUserType());
+            assertEquals(administrator, actual.getUserRole());
             User notExist = LoginHandler.login("nobody", "password", dbh);
             assertEquals(null, notExist);
             User wrongPassword = LoginHandler.login("acme", "123", dbh);
