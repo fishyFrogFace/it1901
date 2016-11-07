@@ -31,9 +31,9 @@
                         <Font size="32.0" />
                      </font>
                   </Label>
-                  <FlowPane fx:id="btnContainer" hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="500.0" prefWidth="520.0" vgap="20.0">
+                  <FlowPane fx:id="btnContainer" hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="417.0" prefWidth="606.0" vgap="20.0">
                      <padding>
-                        <Insets top="40.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </padding>
                   </FlowPane>
                </children>
