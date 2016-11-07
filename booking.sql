@@ -37,19 +37,6 @@ CREATE TABLE artist (
   accomodationCost INT,
   PRIMARY KEY(artistID));
 
-CREATE TABLE requirement (
-  requirementID SERIAL,
-  item TEXT NOT NULL,
-  description TEXT NOT NULL,
-  comment TEXT NOT NULL,
-  PRIMARY KEY(requirementID));
-
-CREATE TABLE neededby (
-  eventID INT NOT NULL REFERENCES artist(artistID)
-  ON DELETE CASCADE,
-  requirementID INT REFERENCES requirement(requirementID)
-  ON DELETE CASCADE);
-
 CREATE TABLE artistinfo (
   infoID SERIAL,
   spotify INT,
@@ -96,6 +83,19 @@ CREATE TABLE concert (
   stageID INT NOT NULL REFERENCES stage(stageID)
   ON DELETE CASCADE,
   PRIMARY KEY(concertID));
+  
+CREATE TABLE requirement (
+  requirementID SERIAL,
+  item TEXT NOT NULL,
+  description TEXT NOT NULL,
+  comment TEXT NOT NULL,
+  PRIMARY KEY(requirementID));
+
+CREATE TABLE needed (
+  requirementID INT REFERENCES requirement(requirementID)
+  ON DELETE CASCADE,
+  concertID INT NOT NULL REFERENCES concert(concertID)
+  ON DELETE CASCADE);
 
 CREATE TYPE techType AS ENUM
 ('lyd', 'lys', 'rigging');

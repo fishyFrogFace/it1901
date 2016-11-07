@@ -32,6 +32,9 @@ public class ConcertViewController extends Controller {
     @FXML
     private ReportController reportController;
 
+    @FXML
+    private RequirementsController requirementsController;
+
     @Override
     public void onLoad(Integer concertID) {
         try {
@@ -49,6 +52,7 @@ public class ConcertViewController extends Controller {
             techController.load(this);
             techreqController.load(this);
             reportController.load(this);
+            requirementsController.load(this);
         } catch (SQLException e) {
             e.printStackTrace();
         }

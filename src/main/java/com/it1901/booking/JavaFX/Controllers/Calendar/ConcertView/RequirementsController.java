@@ -1,10 +1,8 @@
 package com.it1901.booking.JavaFX.Controllers.Calendar.ConcertView;
 
-import com.it1901.booking.Application.Artist;
 import com.it1901.booking.JavaFX.Controllers.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -15,6 +13,7 @@ import java.sql.SQLException;
 
 public class RequirementsController extends Controller {
 
+    //change to choicebox with possibility to make new
     @FXML
     private TextField requirement;
 
@@ -34,15 +33,8 @@ public class RequirementsController extends Controller {
     }
 
     public void storeRequirement(ActionEvent actionEvent) {
-        String query = "INSERT INTO requirement VALUES" +
-                "(DEFAULT, ?, ?, ?)" +
-                "RETURNING *";
         try {
-            PreparedStatement prepStatement = cvc.app.getDatabaseHandler().prepareQuery(query);
-            prepStatement.setInt(1, cvc.concert.getConcertID());
-            prepStatement.setString(2, description.getText());
-            prepStatement.setString(3, comments.getText());
-            ResultSet rs = prepStatement.executeQuery();
+            ResultSet rs = saveNeeded(saveRequirement());
             if (rs.next()) {
                 messageLabel.setText("Requirement added");
             } else {
@@ -53,5 +45,28 @@ public class RequirementsController extends Controller {
             messageLabel.setText("Could not establish connection with the database");
             e.printStackTrace();
         }
+    }
+
+    private Integer saveRequirement() throws SQLException {
+        String query = "INSERT INTO requirement VALUES" +
+            "(DEFAULT, ?, ?, ?)" +
+            "RETURNING *";
+        PreparedStatement prepStatement = cvc.app.getDatabaseHandler().prepareQuery(query);
+        prepStatement.setString(1, requirement.getText());
+        prepStatement.setString(2, description.getText());
+        prepStatement.setString(3, comments.getText());
+        ResultSet rs = prepStatement.executeQuery();
+        rs.next();
+        return rs.getInt(1);
+    }
+
+    private ResultSet saveNeeded(Integer requirementID) throws SQLException {
+        String query = "INSERT INTO needed VALUES" +
+                "(?, ?)" +
+                "RETURNING *";
+        PreparedStatement prepStatement = cvc.app.getDatabaseHandler().prepareQuery(query);
+        prepStatement.setInt(1, requirementID);
+        prepStatement.setInt(2, cvc.concert.getConcertID());
+        return prepStatement.executeQuery();
     }
 }

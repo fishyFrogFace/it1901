@@ -17,7 +17,7 @@ INSERT INTO employee VALUES
     (DEFAULT, 'mars', 'Marvin Martian', 
 	'$2a$10$IjOmy7phDesVDYcxnTNJcOCEHb1/.OISWcpDCYpFyU./yENcGFkTK', 
 	'tech', 4),
-	(DEFAULT, 'manager', 'Frank Bakke',
+		(DEFAULT, 'manager', 'Frank Bakke',
 	'$2a$10$IjOmy7phDesVDYcxnTNJcOCEHb1/.OISWcpDCYpFyU./yENcGFkTK',
     'manager', 1);
 
@@ -47,9 +47,9 @@ INSERT INTO requirement VALUES
 		pre fader og 4 post fader. Alle innganger må i tillegg ha 4 bånds parametrisk equalizer og 48V phantommating.
 		Miksebordet må ha insertmuligheter på alle kanaler, samt belysning.', 'Avtalt med Reidar');
 
-INSERT INTO neededby VALUES
+INSERT INTO needed VALUES
 	(1, 1),
-	(3, 1);
+	(1, 3);
 	
 INSERT INTO artistinfo VALUES
 	(DEFAULT, 4500, 20000, 'Spilt på Rockefeller tidligere. Utsolgt konsert.', 1),
