@@ -21,11 +21,7 @@
             </FlowPane>
          </bottom>
          <center>
-            <Label fx:id="userType" alignment="CENTER" contentDisplay="CENTER" text="role_name" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="32.0" />
-               </font>
-            </Label>
+            <Label fx:id="userType" alignment="CENTER" contentDisplay="CENTER" text="role_name" BorderPane.alignment="CENTER"/>
          </center>
          <top>
              <HBox fx:id="buttonPane" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" spacing="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" >
