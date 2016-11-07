@@ -46,6 +46,7 @@ public class Calendar {
     public GridPane createCalendar() throws SQLException {
 
         calGrid.getStyleClass().addAll("pane", "grid");
+        calGrid.setStyle("-fx-alignment: center");
 
         this.loadConcerts();
         this.setDateLabels();
@@ -140,6 +141,7 @@ public class Calendar {
         eventsToday.setMinHeight(60);
         eventsToday.addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
                 app.makeOffer(date, stage));
+        eventsToday.setStyle("-fx-alignment: center");
         return eventsToday;
     }
 

@@ -13,8 +13,6 @@ import javafx.scene.text.Text;
 public class InfoController {
 
     ConcertViewController cvc;
-    Float ticketPrice;
-    Integer count = 0;
     @FXML
     private Text artist;
 
@@ -42,9 +40,7 @@ public class InfoController {
     	try{
     		
     		DatabaseHandler dbh = cvc.app.getDatabaseHandler();
-        	ResultSet rs = SearchHandler.getConcertInformation(dbh, concertID);
-            PriceGenerator p = new PriceGenerator();
-        	rs.next();
+        	ResultSet rs = SearchHandler.getConcertInformation(dbh, concertID);rs.next();
             String ar = rs.getString(4);
             String sc = rs.getString(7);
             Integer tp = rs.getInt(10);

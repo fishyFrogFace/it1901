@@ -1,3 +1,102 @@
-.label {
-    -fx-text-fill: #ff3636#
+@font-face  {
+    font-family: Futura PT;
+    src: url("fonts/FuturaPTDemi.otf");
 }
+
+@font-face  {
+    font-family: Futura PT Light;
+    src: url("fonts/FuturaPTLight.otf");
+}
+
+#userType   {
+    -fx-font-family: 'Futura PT Light';
+    -fx-font-size: 42px;
+    -fx-text-fill: #A03033;
+}
+
+#logPane    {
+    -fx-background-color: #EEEEEE;
+    -fx-padding: 50 0 50 0;
+}
+
+
+Label {
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-font-family: 'Futura PT';
+}
+
+TextField {
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+    -fx-font-family: 'Futura PT Light';
+}
+
+#buttonPane   {
+    -fx-background-color: black;
+}
+
+#buttonPane > * {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-font-family: 'Futura PT';
+}
+
+#buttonPane > *:hover {
+    -fx-text-fill: #CECECE;
+    -fx-font-family: 'Futura PT';
+}
+
+
+#btnContainer    {
+    -fx-background-color: #DDDDDD;
+}
+
+
+
+#btnContainer > *  {
+    -fx-background-color: #A03033;
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+    -fx-background-border: 50 50 50 50;
+    -fx-border-insets: 0 0 0 0;
+    -fx-font-family: 'Futura PT';
+    -fx-text-transform: uppercase;
+    -fx-text-fill: white;
+}
+
+#btnContainer > *:hover   {
+    -fx-background-color: #BA202C;
+}
+
+TextField {
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+}
+
+
+Button {
+    -fx-background-color: #A03033;
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+    -fx-text-fill: white;
+}
+
+ChoiceBox {
+    -fx-background-color: #A03033;
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+    -fx-highlight-text-fill: white;
+    -fx-text-fill: white;
+}
+
+ChoiceBox .context-menu {
+    -fx-background-color: #A03033;
+    -fx-text-fill: white;
+}
+
+ChoiceBox .label, ChoiceBox .context-menu {
+    -fx-text-fill: white;
+}
+
+
