@@ -21,6 +21,7 @@ public class NavBar {
             app.makeLogin();
         });
         HBox menuBar = new HBox(logout, dash);
+        menuBar.setId("buttonPane");
         menuBar.setPrefHeight(40);
         menuBar.setMinHeight(40);
         menuBar.setMaxHeight(40);

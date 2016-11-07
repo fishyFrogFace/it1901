@@ -6,10 +6,7 @@ import com.it1901.booking.JavaFX.Controllers.Elements.NavBar;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
 import java.sql.SQLException;
@@ -28,7 +25,8 @@ public class CalendarContainer {
 
     public BorderPane getCalendarContainer() {
         GridPane calGrid = getCalendar();
-
+        mainContainer.setPrefWidth(1100);
+        mainContainer.setMinHeight(600);
         mainContainer.setCenter(new ScrollPane(calGrid));
         mainContainer.setTop(createHeader());
         mainContainer.setLeft(createBackBtn());
@@ -64,11 +62,13 @@ public class CalendarContainer {
 
     private VBox createBackBtn() {
         VBox left = new VBox();
-        left.setAlignment(Pos.CENTER);
         left.setPadding(new Insets(20));
         Button back = new Button("<");
-        back.setPrefWidth(40);
-        back.setPrefHeight(50);
+        AnchorPane.setTopAnchor(back, 0.0);
+        AnchorPane.setBottomAnchor(back, 0.0);
+        AnchorPane.setLeftAnchor(back, 200.0);
+        back.setPrefWidth(60);
+        back.setPrefHeight(500);
         back.setOnAction(event -> app.makeCalendar(calendar.getStartOfWeek().minusDays(7)));
         left.getChildren().add(back);
         return left;
@@ -76,11 +76,13 @@ public class CalendarContainer {
 
     private VBox createFwdBtn() {
         VBox right = new VBox();
-        right.setAlignment(Pos.CENTER);
         right.setPadding(new Insets(20));
         Button fwd = new Button(">");
-        fwd.setPrefWidth(40);
-        fwd.setPrefHeight(50);
+        AnchorPane.setTopAnchor(fwd, 0.0);
+        AnchorPane.setBottomAnchor(fwd, 0.0);
+        AnchorPane.setRightAnchor(fwd, 200.0);
+        fwd.setPrefWidth(60);
+        fwd.setPrefHeight(500);
         fwd.setOnAction(event -> app.makeCalendar(calendar.getStartOfWeek().plusDays(7)));
         right.getChildren().add(fwd);
         return right;
