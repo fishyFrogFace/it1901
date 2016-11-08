@@ -8,7 +8,7 @@
     src: url("fonts/FuturaPTLight.otf");
 }
 
-#userType   {
+#userRole   {
     -fx-font-family: 'Futura PT Light';
     -fx-font-size: 42px;
     -fx-text-fill: #A03033;

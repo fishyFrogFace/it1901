@@ -3,13 +3,19 @@ Connected to database.
 
 Role: administrator
 Loaded: /Dashboard/Dashboard.fxml
+Loaded: /Dashboard/Buttons/CalculatePrice.fxml
+Loaded: /Dashboard/Dashboard.fxml
+Loaded: /Dashboard/Buttons/InformationByGenre.fxml
+Loaded: /Dashboard/Dashboard.fxml
 Startdate: 2016-11-07 Enddate: 2016-11-13
-Startdate: 2016-10-31 Enddate: 2016-11-06
-Startdate: 2016-10-24 Enddate: 2016-10-30
+Loaded: /Dashboard/Dashboard.fxml
+Loaded: /Dashboard/Buttons/ArtistView.fxml
+Loaded: /Dashboard/Dashboard.fxml
+Startdate: 2016-11-07 Enddate: 2016-11-13
 Loaded: /Calendar/ConcertView/ConcertView.fxml
 administrator
-Publikumstall: 0 / 5000
-Kostnad: 23000
-Resultat: -23000
-3214
+Publikumstall: 0 / 3000
+Kostnad: 21000
+Resultat: -21000
+450
 0
