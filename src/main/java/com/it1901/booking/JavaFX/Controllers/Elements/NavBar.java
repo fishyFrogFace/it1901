@@ -22,9 +22,9 @@ public class NavBar {
         });
         HBox menuBar = new HBox(logout, dash);
         menuBar.setId("buttonPane");
-        menuBar.setPrefHeight(40);
-        menuBar.setMinHeight(40);
-        menuBar.setMaxHeight(40);
+        menuBar.setPrefHeight(58);
+        menuBar.setMinHeight(58);
+        menuBar.setMaxHeight(58);
         AnchorPane.setRightAnchor(menuBar, 0.0);
         AnchorPane.setLeftAnchor(menuBar, 0.0);
         AnchorPane.setTopAnchor(menuBar, 0.0);
