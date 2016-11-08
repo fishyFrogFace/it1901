@@ -68,7 +68,7 @@ public class DashController extends Controller {
     private void createButton(String label, EventHandler<ActionEvent> eventHandler) throws IOException {
         Button btn = new Button(label);
         btn.setOnAction(eventHandler);
-        btn.setPrefSize(160, 80); //FIXME flytt dette til css
+        btn.setPrefSize(160, 80);
         btnContainer.getChildren().add(btn);
     }
 
