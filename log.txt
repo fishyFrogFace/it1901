@@ -1,8 +1,15 @@
 Loaded: /Login.fxml
 Connected to database.
 
-Connected to database.
-
 Role: administrator
 Loaded: /Dashboard/Dashboard.fxml
-Loaded: /Dashboard/Buttons/ArtistView.fxml
+Startdate: 2016-11-07 Enddate: 2016-11-13
+Startdate: 2016-10-31 Enddate: 2016-11-06
+Startdate: 2016-10-24 Enddate: 2016-10-30
+Loaded: /Calendar/ConcertView/ConcertView.fxml
+administrator
+Publikumstall: 0 / 5000
+Kostnad: 23000
+Resultat: -23000
+3214
+0

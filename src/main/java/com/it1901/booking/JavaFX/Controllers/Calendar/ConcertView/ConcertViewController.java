@@ -69,6 +69,9 @@ public class ConcertViewController extends Controller {
     public void updateTechTab(){
         techController.getTechTable();
     }
+    public void updateTechreqTab(){
+        techreqController.getTechReq(concert.getConcertID());
+    }
 
     private void randomizeResults(Concert concert, DatabaseHandler dbh) throws SQLException  {
         if(this.offer.getState() == Offer.offerState.booked && concert.getTicketsSold() == 0 && concert.getStartDate().isBefore(LocalDate.now())){
