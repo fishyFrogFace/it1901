@@ -1,0 +1,8 @@
+Loaded: /Login.fxml
+Connected to database.
+
+Connected to database.
+
+Role: administrator
+Loaded: /Dashboard/Dashboard.fxml
+Loaded: /Dashboard/Buttons/ArtistView.fxml

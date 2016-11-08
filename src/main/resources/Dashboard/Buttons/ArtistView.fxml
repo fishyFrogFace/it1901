@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.it1901.booking.JavaFX.Controllers.Dashboard.Buttons.ArtistViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.it1901.booking.JavaFX.Controllers.Dashboard.Buttons.ArtistViewController">
    <children>
       <BorderPane layoutX="146.0" layoutY="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -26,7 +26,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="searchArtistButton" mnemonicParsing="false" onAction="#searchArtist" text="Search">
+                              <Button fx:id="searchArtistButton" mnemonicParsing="false" onAction="#searchArtist" prefHeight="34.0" text="Search">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -58,7 +58,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </Label>
-                        <AnchorPane fx:id="tableAnchor" />
+                        <AnchorPane fx:id="tableAnchor" prefHeight="520.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                      </children>
                   </VBox>
                </items>

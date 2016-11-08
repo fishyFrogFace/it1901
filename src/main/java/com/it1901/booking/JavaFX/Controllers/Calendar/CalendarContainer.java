@@ -25,7 +25,7 @@ public class CalendarContainer {
 
     public BorderPane getCalendarContainer() {
         GridPane calGrid = getCalendar();
-        mainContainer.setPrefWidth(1100);
+        mainContainer.setPrefWidth(1200);
         mainContainer.setMinHeight(600);
         mainContainer.setCenter(new ScrollPane(calGrid));
         mainContainer.setTop(createHeader());
