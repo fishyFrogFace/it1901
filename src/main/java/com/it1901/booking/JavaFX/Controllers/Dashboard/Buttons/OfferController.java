@@ -88,6 +88,7 @@ public class OfferController {
 
         //TODO make this automated
         Button calcPrice = new Button("Calculate price");
+        calcPrice.setStyle("-fx-pref-height: 34px");
         calcPrice.setOnAction(event -> {
             try{
                 PriceGenerator price = new PriceGenerator();
@@ -133,6 +134,7 @@ public class OfferController {
 
     private Button submit() {
         Button submitButton = new Button("Submit");
+        submitButton.setStyle("-fx-pref-height: 34px");
         submitButton.setOnAction(event -> {
             try {
                 Integer stageID = Stage.fetchStageID(app.getDatabaseHandler(), stages.getValue().toString());

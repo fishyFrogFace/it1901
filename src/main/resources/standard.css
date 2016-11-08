@@ -8,7 +8,7 @@
     src: url("fonts/FuturaPTLight.otf");
 }
 
-#userType   {
+#userRole   {
     -fx-font-family: 'Futura PT Light';
     -fx-font-size: 70px;
     -fx-text-fill: #A03033;
@@ -19,7 +19,7 @@
 }
 
 #logPane    {
-    -fx-background-color: #EEEEEE;
+    -fx-background-color: #CCCCCC;
     -fx-padding: 50 0 50 0;
 }
 

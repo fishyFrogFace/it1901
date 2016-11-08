@@ -53,10 +53,6 @@ public class BookingApp extends Application {
         setScene(loadGeneric("/Dashboard/Dashboard.fxml", "Dashboard"));
     }
 
-    public void makeSearchArtist() {
-    	setScene(loadGeneric("/Dashboard/Buttons/SearchArtist.fxml", "Search for artist"));
-    }
-
     public void makeSearchGenre(){
         setScene(loadGeneric("/Dashboard/Buttons/InformationByGenre.fxml", "Search by genre"));
     }

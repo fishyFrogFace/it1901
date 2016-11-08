@@ -41,9 +41,9 @@ public class CalculatePriceController extends Controller {
 			float ticketPrice = price.computeTicketPrice(fee, scenePrice, maxAttendance);
 			
 			ObservableList<String> tPrice = FXCollections.observableArrayList();
-			String costsArtist = "Pris på artist: " + fee + " kr";
-			String costScene = "Pris for konsert på gitt scene: " + scenePrice + " kr";
-			String thePrice = "Billettpris: " + ticketPrice + "Kr" ;
+			String costsArtist = "Price of artist: " + fee + " kr";
+			String costScene = "Price of stage: " + scenePrice + " kr";
+			String thePrice = "Ticket price: " + ticketPrice + "Kr" ;
 			tPrice.add(costsArtist);
 			tPrice.add(costScene);
 			tPrice.add(thePrice);
@@ -52,14 +52,14 @@ public class CalculatePriceController extends Controller {
 		catch(Exception e){
 			System.out.println("Not all values given");
 			error.setTextFill(Paint.valueOf("#ff3636"));
-			error.setText("Må ha noe i begge felter for å kunne gjennomføre søk");
+			error.setText("Please fill in all the fields");
 		}
 
 	}
 	//Generate suggestion, collect artists from database. 
 	@FXML
 	public void generateSuggestion() throws SQLException{
-		//get all artists friom database
+		//get all artists from database
 		
 		if(i == 0){
 			i++;

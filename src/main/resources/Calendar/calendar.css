@@ -15,17 +15,14 @@
     -fx-vgap: 2;
 }
 
-.accepted, .sent, .booked, .declined, .pending {
+.concert {
+    -fx-text-alignment: center;
     -fx-border-radius: 0 0 0 0;
     -fx-background-radius: 0 0 0 0;
 }
 
-.concert {
-    -fx-text-alignment: center;
-}
-
 .pending {
-    -fx-background-color: #cccc40;
+    -fx-background-color: #ccffcc;
 }
 
 .accepted {
@@ -44,6 +41,10 @@
 .booked {
     -fx-background-color: #A03033;
     -fx-text-fill: white;
+}
+
+.concert:hover {
+    -fx-background-color: white;
 }
 
 .label {

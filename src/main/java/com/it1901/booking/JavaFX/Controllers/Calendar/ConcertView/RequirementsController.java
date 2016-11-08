@@ -37,6 +37,9 @@ public class RequirementsController extends Controller {
             ResultSet rs = saveNeeded(saveRequirement());
             if (rs.next()) {
                 messageLabel.setText("Requirement added");
+                requirement.setText("");
+                description.setText("");
+                comments.setText("");
             } else {
                 messageLabel.setText("Could not add this requirement");
             }

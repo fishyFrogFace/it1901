@@ -39,7 +39,7 @@
                                 <fx:include fx:id="tech" source="Tech.fxml" />
                             </content>
                         </Tab>
-                        <Tab text="Technical requirements">
+                        <Tab text="Technical requirements" onSelectionChanged="#updateTechreqTab">
                             <content>
                                 <fx:include fx:id="techreq" source="Techreq.fxml" />
                             </content>
