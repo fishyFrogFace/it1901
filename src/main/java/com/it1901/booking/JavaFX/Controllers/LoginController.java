@@ -22,11 +22,21 @@ public class LoginController extends Controller{
 
     @FXML
     public void onSubmitClick() {
-        DatabaseHandler dbh = new DatabaseHandler(
-                "org.postgresql.Driver",
-                "jdbc:postgresql://52.40.176.177:5432/booking",
-                "team",
-                "it1901");
+        DatabaseHandler dbh = null;
+        errorLabel.setTextFill(Paint.valueOf("#ff3636"));
+        try {
+            dbh = new DatabaseHandler(
+                    "org.postgresql.Driver",
+                    "jdbc:postgresql://localhost:5432/booking",
+                    "team",
+                    "it1901");
+        } catch (SQLException e) {
+            errorLabel.setText("No contact with database");
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            errorLabel.setText("Driver error");
+            e.printStackTrace();
+        }
         app.setDatabaseHandler(dbh);
 
         User user = null;
@@ -34,10 +44,10 @@ public class LoginController extends Controller{
             user = LoginHandler.login(username.getText(), pass.getText(), dbh);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            errorLabel.setTextFill(Paint.valueOf("#ff3636"));
             errorLabel.setText("Error");
         }
         if (user != null) {
+            errorLabel.setTextFill(Paint.valueOf("#000000"));
             errorLabel.setText("Welcome");
             try {
                 app.setUser(user);
@@ -47,7 +57,6 @@ public class LoginController extends Controller{
             }
         }
         else {
-            errorLabel.setTextFill(Paint.valueOf("#ff3636"));
             errorLabel.setText("Wrong username or password");
         }
 
