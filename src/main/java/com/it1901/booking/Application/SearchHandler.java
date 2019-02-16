@@ -171,13 +171,17 @@ public class SearchHandler {
         return prepStatement.executeQuery();
     }
 
-    public static int getEmloyeeID(String text, DatabaseHandler dbh) throws SQLException {
+    public static int getEmployeeID(String text, DatabaseHandler dbh) throws SQLException {
         String query = "SELECT employeeID FROM employee WHERE name = ? ";
+        return fetchID(dbh, query, text);
+    }
+
+    public static Integer fetchID(DatabaseHandler dbh, String query, String name) throws SQLException {
         PreparedStatement prepStatement = dbh.prepareQuery(query);
-        prepStatement.setString(1, text);
+        prepStatement.setString(1, name);
         ResultSet rs = prepStatement.executeQuery();
         rs.next();
-        return rs.getInt("employeeID");
+        return rs.getInt(1);
     }
     
     public static ResultSet getTechReq(int concertID, DatabaseHandler dbh) throws SQLException {

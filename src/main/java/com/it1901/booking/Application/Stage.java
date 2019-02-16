@@ -23,10 +23,6 @@ public class Stage {
     public static Integer fetchStageID(DatabaseHandler dbh, String name) throws SQLException {
         String query = "SELECT stageID FROM stage " +
                 "WHERE name = ?";
-        PreparedStatement prepStatement = dbh.prepareQuery(query);
-        prepStatement.setString(1, name);
-        ResultSet rs = prepStatement.executeQuery();
-        rs.next();
-        return rs.getInt(1);
+        return SearchHandler.fetchID(dbh, query, name);
     }
 }

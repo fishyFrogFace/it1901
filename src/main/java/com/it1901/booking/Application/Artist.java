@@ -27,10 +27,6 @@ public class Artist {
     public static Integer fetchArtistID(DatabaseHandler dbh, String name) throws SQLException {
         String query = "SELECT artistID FROM artist " +
                 "WHERE name = ?";
-        PreparedStatement prepStatement = dbh.prepareQuery(query);
-        prepStatement.setString(1, name);
-        ResultSet rs = prepStatement.executeQuery();
-        rs.next();
-        return rs.getInt(1);
+        return SearchHandler.fetchID(dbh, query, name);
     }
 }

@@ -76,7 +76,7 @@ public class TechController{
         }
     }
 
-    public void submit() throws SQLException {
+    public void submit() {
         if (cbxHours.getValue() == null || txtName.getText().equals("") || cbxRole.getValue() == null) {
             lblError.setText("Please fill in all the fields.");
             return;
@@ -86,7 +86,7 @@ public class TechController{
             PreparedStatement preparedStatement = cvc.app.getDatabaseHandler().prepareQuery(query);
             preparedStatement.setInt(1, cbxHours.getValue());
             preparedStatement.setString(2, cbxRole.getValue());
-            preparedStatement.setInt(3, SearchHandler.getEmloyeeID(txtName.getText(), cvc.app.getDatabaseHandler()));
+            preparedStatement.setInt(3, SearchHandler.getEmployeeID(txtName.getText(), cvc.app.getDatabaseHandler()));
             preparedStatement.setInt(4, cvc.concert.getConcertID());
             preparedStatement.execute();
 
