@@ -66,6 +66,6 @@
             <Insets bottom="8.0" left="20.0" right="8.0" top="8.0" />
          </padding>
       </VBox>
-      <ListView fx:id="veiw" layoutX="20.0" layoutY="272.0" prefHeight="314.0" prefWidth="760.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="272.0" />
+      <ListView fx:id="view" layoutX="20.0" layoutY="272.0" prefHeight="314.0" prefWidth="760.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="272.0" />
    </children>
 </AnchorPane>

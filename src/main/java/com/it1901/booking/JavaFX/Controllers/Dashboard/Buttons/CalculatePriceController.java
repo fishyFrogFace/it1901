@@ -13,32 +13,25 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
 
 public class CalculatePriceController extends Controller {
 
 	@FXML private ChoiceBox choose = new ChoiceBox();
 	@FXML private ChoiceBox artist = new ChoiceBox();
-	@FXML private TextField tField;
-	@FXML private ListView<String> veiw;
+	@FXML private ListView<String> view;
 	@FXML private Label error;
-	String tekst;
-	String scene;
 	int i = 0;
 	
 	// Compute ticketprice. 
-	public void onComputeClicked() throws SQLException{
+	public void onComputeClicked(){
 		try{
 			error.setText("");
-			PriceGenerator price = new PriceGenerator();
-			tekst = artist.getValue().toString();
-			tekst.toLowerCase();
-			scene = choose.getValue().toString();
-			int fee = price.getArtistFee(tekst, app.getDatabaseHandler());
-			int scenePrice = price.getScenePrice(scene, app.getDatabaseHandler());
-			int maxAttendance = price.getSceneCapacity(scene, app.getDatabaseHandler());
-			float ticketPrice = price.computeTicketPrice(fee, scenePrice, maxAttendance);
+			String scene = choose.getValue().toString();
+			int fee = PriceGenerator.getArtistFee(artist.getValue().toString(), app.getDatabaseHandler());
+			int scenePrice = PriceGenerator.getScenePrice(scene, app.getDatabaseHandler());
+			int maxAttendance = PriceGenerator.getSceneCapacity(scene, app.getDatabaseHandler());
+			float ticketPrice = PriceGenerator.computeTicketPrice(fee, scenePrice, maxAttendance);
 			
 			ObservableList<String> tPrice = FXCollections.observableArrayList();
 			String costsArtist = "Price of artist: " + fee + " kr";
@@ -47,10 +40,9 @@ public class CalculatePriceController extends Controller {
 			tPrice.add(costsArtist);
 			tPrice.add(costScene);
 			tPrice.add(thePrice);
-			veiw.setItems(tPrice);
+			view.setItems(tPrice);
 		}
 		catch(Exception e){
-			System.out.println("Not all values given");
 			error.setTextFill(Paint.valueOf("#ff3636"));
 			error.setText("Please fill in all the fields");
 		}
@@ -58,7 +50,7 @@ public class CalculatePriceController extends Controller {
 	}
 	//Generate suggestion, collect artists from database. 
 	@FXML
-	public void generateSuggestion() throws SQLException{
+	public void generateSuggestion() throws SQLException {
 		//get all artists from database
 		
 		if(i == 0){
